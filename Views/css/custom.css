@@ -1,0 +1,292 @@
+@font-face {
+    font-family: 'museo_sans500';
+    src: url('fonts/museosans/500/MuseoSans_500-webfont.eot');
+    src: url('fonts/museosans/500/MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/museosans/500/MuseoSans_500-webfont.woff2') format('woff2'),
+        url('fonts/museosans/500/MuseoSans_500-webfont.woff') format('woff'),
+        url('fonts/museosans/500/MuseoSans_500-webfont.ttf') format('truetype'),
+        url('fonts/museosans/500/MuseoSans_500-webfont.svg#museo_sans500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    font-family: 'museo_sans500' !important;
+    font-size:11px !important; 
+}
+.formbox{
+    background-color: #ffffff;
+    color: blue;
+    font-family:Tahoma;
+    font-size: 90%;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.dhx_toolbar_dhx_terrace div.dhx_toolbar_btn div.dhxtoolbar_text {
+    margin: 1px 3px !important;
+    padding: 0;
+}
+.dhxtabbar_base_dhx_terrace div.dhx_cell_tabbar div.dhx_cell_cont_tabbar {
+    border: 0.01px solid #ccc !important;
+}
+.dhxsidebar_tpl_myview div.dhxsidebar_item {
+    height: 43px  !important;
+    line-height: 43px !important;
+}
+.dhxwins_vp_dhx_terrace div.dhxwin_hdr div.dhxwin_icon {
+    display: none;
+}
+.dhxwins_vp_dhx_terrace div.dhxwin_hdr div.dhxwin_icon.without_icon {
+    display: none;
+}
+.logout_web{
+    color:#fff !important;
+}
+.bcf-toolbar-icons{
+    color:#3da0e3;
+    font-size:1.3em;
+    padding-right: 2px;
+}
+.dhxtoolbar_text i{
+    color:#3da0e3;
+    font-size:1.5em;
+}
+
+div.gridbox_dhx_terrace.gridbox table.hdr td div.hdrcell {
+    font-family: 'museo_sans500' !important;
+    line-height: 36px;
+    padding-left: 20px;
+    text-transform: none !important;
+    width: auto;
+}
+div.gridbox table.obj{
+    font-family: 'museo_sans500' !important;
+    /*font-size: 11px  !important;*/
+}
+
+@media (min-width: 768px) {
+    .dhxlayout_base_dhx_terrace div.dhx_cell_layout div.dhx_cell_hdr {
+        font-family: 'museo_sans500' !important;
+        font-size:9px !important;
+    }
+    .dhxsidebar_base_dhx_terrace div.dhxsidebar_cont div.dhxsidebar_side div.dhxsidebar_side_items div.dhxsidebar_item {
+        font-family: 'museo_sans500' !important;
+        font-size:9px !important;
+    }
+    .dhxform_obj_dhx_web .dhxform_textarea {
+        font-size: 9px !important; 
+    }
+    div.gridbox div.ftr td {
+        font-size: 9px !important; 
+    }
+    .dhxtabbar_base_dhx_terrace div.dhxtabbar_tabs div.dhxtabbar_tab div.dhxtabbar_tab_text {
+        font-size: 9px !important; 
+    }
+    div.gridbox_dhx_web.gridbox table.hdr td{
+        font-size: 9px !important; 
+    }
+    div.gridbox_dhx_web.gridbox table.hdr td{
+        font-family: 'museo_sans500' !important;
+        padding: 1px 0px 1px !important;
+        font-size: 9px !important;
+    }
+
+    div.gridbox_dhx_web.gridbox table.obj tr td{
+        font-family: 'museo_sans500' !important;
+        font-size: 9px  !important; 
+    }
+
+    .dhxform_obj_dhx_web {
+        color: #000;
+        font-family: 'museo_sans500' !important;
+        font-size: 9px !important;
+        line-height: normal;
+    }
+    .dhxform_obj_dhx_web fieldset.dhxform_fs legend.fs_legend {
+        font-family: 'museo_sans500' !important;
+        font-size: 9px !important; 
+    }
+    .dhxform_obj_dhx_web div.dhxform_label {
+        font-family: 'museo_sans500' !important;
+        font-size: 9px !important; 
+    }
+    .dhxtabbar_base_dhx_web div.dhxtabbar_tabs div.dhxtabbar_tab {
+        color: #fff;
+        cursor: pointer;
+        font-family: 'museo_sans500' !important;
+        font-size: 9px !important; 
+    }
+    .dhx_toolbar_dhx_terrace div.dhx_toolbar_btn div.dhxtoolbar_text, .dhx_toolbar_dhx_terrace div.dhx_toolbar_arw div.arwimg {
+        font-family: 'museo_sans500' !important;
+        font-size: 9px !important; 
+    }
+
+    .dhx_toolbar_dhx_web div.dhx_toolbar_btn div.dhxtoolbar_text, .dhx_toolbar_dhx_web div.dhx_toolbar_arw div.arwimg {
+        font-family: 'museo_sans500' !important;
+        font-size: 9px !important; 
+    }
+    .dhxform_obj_dhx_web .dhxform_textarea {
+        font-family: 'museo_sans500' !important;
+        font-size: 9px !important; 
+    }
+    div.gridbox_dhx_web.gridbox table.obj.row20px tr td {
+        border-bottom: 1px solid #ededed;
+        border-right: 1px solid #ededed;
+        height: 24px !important;
+        line-height: 20px !important;
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .dhxlayout_base_dhx_terrace div.dhx_cell_layout div.dhx_cell_hdr {
+        font-family: 'museo_sans500' !important;
+        font-size:11px !important;
+    }
+    .dhxsidebar_base_dhx_terrace div.dhxsidebar_cont div.dhxsidebar_side div.dhxsidebar_side_items div.dhxsidebar_item {
+        font-family: 'museo_sans500' !important;
+        font-size:11px !important;
+    }
+    div.gridbox_dhx_web.gridbox table.obj.row20px tr td {
+        border-bottom: 1px solid #ededed;
+        border-right: 1px solid #ededed;
+        height: 24px !important;
+        line-height: 20px !important;
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+    div.gridbox div.ftr td {
+        background-color: #f9f9f9 !important;
+        border-right: 1px solid #ededed !important;
+        border-top: 1px solid #ededed !important;
+        font-family: 'museo_sans500' !important;
+        font-size: 11px !important;
+        font-style: normal !important;
+        overflow: hidden;
+        padding: 5px 5px 5px 10px !important;
+        text-align: right;
+        font-weight: bold;
+    }
+    .dhxtabbar_base_dhx_terrace div.dhxtabbar_tabs div.dhxtabbar_tab div.dhxtabbar_tab_text {
+        font-family: 'museo_sans500' !important;
+        font-size:11px !important; 
+    }
+    .dhxsidebar_base_dhx_terrace div.dhxsidebar_cont div.dhx_cell_sidebar div.dhx_cell_toolbar_def {
+        border-right: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        overflow: hidden;
+        padding: 2px !important;
+        position: relative;
+    }
+
+    div.gridbox_dhx_web.gridbox table.hdr td div.hdrcell {
+        font-family: 'museo_sans500' !important;
+        line-height: 25px;
+        padding-left: 10px;
+        text-transform: none !important;
+        width: auto;
+    }
+    div.gridbox_dhx_terrace.gridbox table.hdr td div.hdrcell {
+        font-family: 'museo_sans500' !important;
+        line-height: 36px;
+        padding-left: 20px;
+        text-transform: capitalize !important;
+        width: auto;
+    }
+    .dhxform_block .in_block{
+        padding: 0px !important;
+    }
+    .dhxform_obj_dhx_terrace div.dhxform_btn{
+        background-color: #3276b1 !important;
+        border: 1px solid #2c699d !important;
+        border-radius: 3px;
+        clear: both;
+        color: #fff !important;
+    }
+    div.hdrcell .combo{
+        /*padding-top: 5px !important;*/
+    }
+
+
+    /*div.gridbox_dhx_web.gridbox .xhdr{
+        height:30px !important;
+    }*/
+    div.gridbox_dhx_web.gridbox table.hdr td{
+        font-family: 'museo_sans500' !important;
+        padding: 1px 0px 1px !important;
+        font-size: 11px !important;
+    }
+
+    div.gridbox_dhx_web.gridbox table.obj tr td{
+        font-family: 'museo_sans500' !important;
+        font-size: 11px  !important; 
+    }
+
+    .dhxform_obj_dhx_web {
+        color: #000;
+        font-family: 'museo_sans500' !important;
+        font-size: 12px !important;
+        line-height: normal;
+    }
+    .dhxform_obj_dhx_web fieldset.dhxform_fs legend.fs_legend {
+        font-family: 'museo_sans500' !important;
+        font-size: 11px !important; 
+    }
+    .dhxform_obj_dhx_web div.dhxform_label {
+        font-family: 'museo_sans500' !important;
+        font-size: 11px !important; 
+    }
+    .dhxtabbar_base_dhx_web div.dhxtabbar_tabs div.dhxtabbar_tab {
+        color: #fff;
+        cursor: pointer;
+        font-family: 'museo_sans500' !important;
+        font-size: 11px !important; 
+    }
+    .dhx_toolbar_dhx_terrace div.dhx_toolbar_btn div.dhxtoolbar_text, .dhx_toolbar_dhx_terrace div.dhx_toolbar_arw div.arwimg {
+        font-family: 'museo_sans500' !important;
+        font-size: 11px !important; 
+    }
+
+    .dhx_toolbar_dhx_web div.dhx_toolbar_btn div.dhxtoolbar_text, .dhx_toolbar_dhx_web div.dhx_toolbar_arw div.arwimg {
+        font-family: 'museo_sans500' !important;
+        font-size: 11px !important; 
+    }
+    .dhxform_obj_dhx_web .dhxform_textarea {
+        font-family: 'museo_sans500' !important;
+        font-size: 11px !important; 
+    }
+}
+
+.dhxtree_dhx_skyblue .standartTreeRow, .dhxtree_dhx_skyblue .standartTreeRow_lor {
+    font-family: "museo_sans500" !important;
+    font-size: 11px !important;
+}
+.dhxtree_dhx_skyblue .selectedTreeRow_lor, .dhxtree_dhx_skyblue .selectedTreeRow {
+    background-color: #85d3ff;
+    background-repeat: repeat-x;
+    font-family: "museo_sans500" !important;
+    font-size: 11px !important;
+    overflow: hidden;
+}
+.dhxform_obj_dhx_terrace {
+    float: left;
+    font-family: "museo_sans500" !important;
+    font-size: 12px !important;
+}
+
+div.dhtmlxMenu_dhx_terrace_TopLevel_Item_Normal, div.dhtmlxMenu_dhx_terrace_TopLevel_Item_Disabled, div.dhtmlxMenu_dhx_terrace_TopLevel_Item_Selected {
+    font-family: "museo_sans500" !important;
+    font-size: 11px !important;
+}
