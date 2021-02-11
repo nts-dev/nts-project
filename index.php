@@ -5,6 +5,7 @@ if (!$eid) {
 }
 include 'dbconn.php';
 
+//error must
 session_start();
 $query_check_credentials = "SELECT contact_attendent,contact_id,contact_language_id,branch_id FROM relation_contact JOIN trainees ON trainees.IntranetID = relation_contact.contact_id WHERE contact_id = '" . $eid . "'";
 $result_check_credentials = mysqli_query($dbc, $query_check_credentials);
