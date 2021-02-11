@@ -361,7 +361,7 @@ switch ($action) {
 
         if ($Report_Employee_ID > 0) {
 
-            $result = mysqli_query($dbc, "SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE ID = " . $Report_Employee_ID);
+            $result = mysqli_query($dbc, "SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE ID = " . $Report_Employee_ID);
             $row = mysqli_fetch_array($result);
             $assigned_eid = $row[0];
         }
@@ -543,7 +543,7 @@ switch ($action) {
                         c2.contact_attendent Author
                 FROM
                         document_toc_history th
-                LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = th.employee_id
+                LEFT JOIN relation_contact c2 ON c2.contact_id = th.employee_id
                 WHERE
                         th.toc_id = " . $id . "
                 ORDER BY
@@ -580,11 +580,11 @@ switch ($action) {
             tr.explorer_id,
             tr.goal,
             tr.scope,
-            (SELECT CONCAT(COALESCE(FirstName, ''),' ',COALESCE(SecondName, ''),' ',COALESCE(LastName, '')) FROM nts_site.trainees WHERE ID = tr.supervisor)`supervisor`,
+            (SELECT CONCAT(COALESCE(FirstName, ''),' ',COALESCE(SecondName, ''),' ',COALESCE(LastName, '')) FROM trainees WHERE ID = tr.supervisor)`supervisor`,
             tr.doc_input,
             tr.doc_output,
             trf.description doc_frequency,
-            (SELECT GROUP_CONCAT(CONCAT(COALESCE(FirstName, ''))) FROM nts_site.trainees WHERE ID IN(SELECT employee_id FROM `tradestar_reports_to_employees` WHERE `report_id` = $id ))employees
+            (SELECT GROUP_CONCAT(CONCAT(COALESCE(FirstName, ''))) FROM trainees WHERE ID IN(SELECT employee_id FROM `tradestar_reports_to_employees` WHERE `report_id` = $id ))employees
     FROM
             tradestar_reports tr
     LEFT JOIN tradestar_report_frequency trf ON trf.id = tr.doc_frequency          

@@ -232,7 +232,7 @@ switch ($action) {
             $rooms[] = $row['field_value'];
         }
 
-        $query = "SELECT `ntk_rooms`.*,nts_site.branch.Branch_Name FROM `ntk_rooms` JOIN nts_site.branch ON nts_site.branch.Branch_ID = `ntk_rooms`.branch_id WHERE `ntk_rooms`.id IN  (" . implode(',', $rooms) . ") ORDER BY `ntk_rooms`.branch_id,`ntk_rooms`.id";
+        $query = "SELECT `ntk_rooms`.*,branch.Branch_Name FROM `ntk_rooms` JOIN branch ON branch.Branch_ID = `ntk_rooms`.branch_id WHERE `ntk_rooms`.id IN  (" . implode(',', $rooms) . ") ORDER BY `ntk_rooms`.branch_id,`ntk_rooms`.id";
         $result = mysqli_query($dbc,$query) ;
         while ($row = mysqli_fetch_array($result)) {
             $branchMenu[$row['branch_id']] = $row['Branch_Name'];
@@ -329,7 +329,7 @@ switch ($action) {
         }
 
         $branch = array();
-        $query = "SELECT k.id,k.`name`,k.parent_id,nts_site.branch.Branch_ID,nts_site.branch.Branch_Name,(SELECT `name` FROM ntk_rooms WHERE id = k.parent_id) parent FROM `ntk_rooms` k JOIN nts_site.branch ON nts_site.branch.Branch_ID = k.branch_id WHERE k.id IN (" . implode(',', $rooms) . ") ORDER BY k.branch_id,k.id";
+        $query = "SELECT k.id,k.`name`,k.parent_id,branch.Branch_ID,branch.Branch_Name,(SELECT `name` FROM ntk_rooms WHERE id = k.parent_id) parent FROM `ntk_rooms` k JOIN branch ON branch.Branch_ID = k.branch_id WHERE k.id IN (" . implode(',', $rooms) . ") ORDER BY k.branch_id,k.id";
         $result = mysqli_query($dbc,$query) ;
         while ($row = mysqli_fetch_array($result)) {
 
@@ -394,7 +394,7 @@ switch ($action) {
 
         if ($projectId > 0) {
 
-            $result = mysqli_query($dbc,"SELECT `query` FROM nts_site.`ntk_assetcat_to_project` WHERE `asset_cat_id` = " . $templateId . " AND `project_id` = " . $projectId);
+            $result = mysqli_query($dbc,"SELECT `query` FROM `ntk_assetcat_to_project` WHERE `asset_cat_id` = " . $templateId . " AND `project_id` = " . $projectId);
             $row = mysqli_fetch_array($result);
             $string = $row[0];
 
@@ -425,7 +425,7 @@ switch ($action) {
                                                 SELECT
                                                         Branch_Name
                                                 FROM
-                                                        nts_site.branch
+                                                        branch
                                                 WHERE
                                                         visible = 1
                                                 AND Branch_ID =(
@@ -525,7 +525,7 @@ switch ($action) {
                                                     SELECT
                                                             Branch_Name
                                                     FROM
-                                                            nts_site.branch
+                                                            branch
                                                     WHERE
                                                             visible = 1
                                                     AND Branch_ID =(
@@ -645,7 +645,7 @@ switch ($action) {
 
         if ($projectId > 0) {
 
-            $result = mysqli_query($dbc,"SELECT `query` FROM nts_site.`ntk_assetcat_to_project` WHERE `asset_cat_id` = " . $templateId . " AND `project_id` = " . $projectId);
+            $result = mysqli_query($dbc,"SELECT `query` FROM `ntk_assetcat_to_project` WHERE `asset_cat_id` = " . $templateId . " AND `project_id` = " . $projectId);
             $row = mysqli_fetch_array($result);
             $string = $row[0];
 
@@ -676,7 +676,7 @@ switch ($action) {
                                                 SELECT
                                                         Branch_Name
                                                 FROM
-                                                        nts_site.branch
+                                                        branch
                                                 WHERE
                                                         visible = 1
                                                 AND Branch_ID =(
@@ -776,7 +776,7 @@ switch ($action) {
                                                     SELECT
                                                             Branch_Name
                                                     FROM
-                                                            nts_site.branch
+                                                            branch
                                                     WHERE
                                                             visible = 1
                                                     AND Branch_ID =(
@@ -875,7 +875,7 @@ switch ($action) {
                 `ntk_device_to_document`.*,tradestar_reports.Report_Subject
             FROM
                 `ntk_device_to_document`
-            JOIN nts_site.tradestar_reports ON tradestar_reports.Report_ID = `ntk_device_to_document`.document_id
+            JOIN tradestar_reports ON tradestar_reports.Report_ID = `ntk_device_to_document`.document_id
             WHERE
                 templ_id =" . $templ_id;
 
@@ -901,7 +901,7 @@ switch ($action) {
                     `ntk_device_to_document`.*, tradestar_reports.Report_Subject
             FROM
                     `ntk_device_to_document`
-            JOIN nts_site.tradestar_reports ON tradestar_reports.Report_ID = `ntk_device_to_document`.document_id
+            JOIN tradestar_reports ON tradestar_reports.Report_ID = `ntk_device_to_document`.document_id
             JOIN ntk_templates ON `ntk_device_to_document`.templ_id = ntk_templates.id
             JOIN ntk_devices ON ntk_devices.id = ntk_templates.device_id
             WHERE
@@ -930,7 +930,7 @@ switch ($action) {
                 `ntk_device_to_document`.*,tradestar_reports.Report_Subject,tradestar_reports.Report_Body
             FROM
                 `ntk_device_to_document`
-            JOIN nts_site.tradestar_reports ON tradestar_reports.Report_ID = `ntk_device_to_document`.document_id
+            JOIN tradestar_reports ON tradestar_reports.Report_ID = `ntk_device_to_document`.document_id
             WHERE
                 ntk_device_to_document.device_id =" . $id . " AND ntk_device_to_document.templ_id =" . $templ_id;
 
@@ -1017,7 +1017,7 @@ function createQuery($string) {
 
         if ($field === 'branch') {
 
-            $result = mysqli_query($dbc,"SELECT Branch_ID FROM nts_site.branch WHERE Branch_Name = '$fvalue'");
+            $result = mysqli_query($dbc,"SELECT Branch_ID FROM branch WHERE Branch_Name = '$fvalue'");
             $row = mysqli_fetch_array($result);
             $fieldvalue = $row[0];
         } else {

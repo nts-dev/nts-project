@@ -607,7 +607,7 @@ function createInt($max_pl, $startDate, $endDate, $interval, $typ, $endtime, $db
                 $startDate = date('Y-m-d H:i:s', strtotime($startDate . "-" . $wk_bal . $typ_dy));
             }
             //select employee_id sent by category table 
-            $empQuery = "Select ID as a1,FirstName as a2 from nts_site.trainees where ID in ($_GET[ass_emp]) order by ID asc";
+            $empQuery = "Select ID as a1,FirstName as a2 from trainees where ID in ($_GET[ass_emp]) order by ID asc";
             $empRes = mysqli_query($dbc, $empQuery);
             while ($row_pl = mysqli_fetch_array($empRes)) {
                 $max_pl++;

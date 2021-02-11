@@ -258,7 +258,7 @@ switch ($action) {
                                                     SELECT
                                                             Branch_Name
                                                     FROM
-                                                            nts_site.branch
+                                                            branch
                                                     WHERE
                                                             visible = 1
                                                     AND Branch_ID =(

@@ -1088,7 +1088,7 @@ switch ($action) {
                     tradestar_reports_archive th
             JOIN tradestar_reports tr ON tr.Report_ID = th.History_Report_ID
             LEFT JOIN trainees c ON c.ID = tr.Report_Employee_ID
-            LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = th.History_Author
+            LEFT JOIN relation_contact c2 ON c2.contact_id = th.History_Author
             WHERE
                     DATE_FORMAT(th.History_Date, '%Y-%m-%d')= CURDATE()
             ORDER BY
@@ -1146,8 +1146,8 @@ switch ($action) {
             FROM
                     tradestar_reports_archive th
             JOIN tradestar_reports tr ON tr.Report_ID = th.History_Report_ID
-            LEFT JOIN nts_site.trainees c ON c.ID = tr.Report_Employee_ID
-            LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = th.History_Author
+            LEFT JOIN trainees c ON c.ID = tr.Report_Employee_ID
+            LEFT JOIN relation_contact c2 ON c2.contact_id = th.History_Author
             WHERE
                     DATE_FORMAT(th.History_Date, '%Y-%m-%d')= '" . $actualDate . "'
             GROUP BY th.History_Report_ID
