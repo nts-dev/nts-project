@@ -96,10 +96,10 @@ switch ($action) {
                 JOIN tradestar_reports tr ON projects_to_documents.report_id = tr.Report_ID  AND visible_in_projects = 1";
             $qry .= $languageId > 0 ? " AND tr.language_id  = " . $languageId : "";
             $qry .= $branchId > 0 ? " JOIN document_to_branch ON document_to_branch.document_id = tr.Report_ID AND document_to_branch.branch_id = " . $branchId : "";
-            $qry .= " LEFT JOIN nts_site.projects_dir p ON p.id = tr.PrId
-                LEFT JOIN nts_site.trainees c ON c.ID = tr.Report_Employee_ID
-                LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = tr.Report_Author
-                LEFT JOIN nts_site.tradestar_reports_category ON tradestar_reports_category.id = tr.category_id WHERE projects_to_documents.project_id = " . $id . " AND projects_to_documents.is_active = 1";
+            $qry .= " LEFT JOIN projects_dir p ON p.id = tr.PrId
+                LEFT JOIN trainees c ON c.ID = tr.Report_Employee_ID
+                LEFT JOIN relation_contact c2 ON c2.contact_id = tr.Report_Author
+                LEFT JOIN tradestar_reports_category ON tradestar_reports_category.id = tr.category_id WHERE projects_to_documents.project_id = " . $id . " AND projects_to_documents.is_active = 1";
             $qry .= " ORDER BY
                         Report_Date DESC";
 
@@ -265,7 +265,7 @@ switch ($action) {
         }
 
         if ($field == "Report_Employee_ID") {
-            $bID = getTableDetailField("nts_site.trainees", $fieldvalue, "ID", "branch_id");
+            $bID = getTableDetailField("trainees", $fieldvalue, "ID", "branch_id");
             // if($bID == 11){$bID = 5;}
             switch ($bID) {
                 case 6:
@@ -305,9 +305,9 @@ switch ($action) {
         $branchId = filter_input(INPUT_POST, 'branch', FILTER_SANITIZE_NUMBER_INT);
         $languageId = filter_input(INPUT_POST, 'language', FILTER_SANITIZE_NUMBER_INT);
 
-        $tID = getTableDetailField("nts_site.trainees", $userlggd, "IntranetID", "ID");
-        $bID = getTableDetailField("nts_site.trainees", $userlggd, "IntranetID", "branch_id");
-        $subject = getTableDetailField("nts_site.projects_dir", $projectId, "id", "project_name");
+        $tID = getTableDetailField("trainees", $userlggd, "IntranetID", "ID");
+        $bID = getTableDetailField("trainees", $userlggd, "IntranetID", "branch_id");
+        $subject = getTableDetailField("projects_dir", $projectId, "id", "project_name");
         $subject = mysqli_real_escape_string($dbc, $subject);
 
         switch ($bID) {
@@ -552,9 +552,9 @@ switch ($action) {
                 FROM
                         tradestar_reports_archive th
                 JOIN tradestar_reports tr ON tr.Report_ID = th.History_Report_ID
-                LEFT JOIN nts_site.projects_dir p ON p.id = tr.PrId
-                LEFT JOIN nts_site.trainees c ON c.ID = tr.Report_Employee_ID
-                LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = th.History_Author
+                LEFT JOIN projects_dir p ON p.id = tr.PrId
+                LEFT JOIN trainees c ON c.ID = tr.Report_Employee_ID
+                LEFT JOIN relation_contact c2 ON c2.contact_id = th.History_Author
                 WHERE
                         th.History_Report_ID = " . $id . "
                 ORDER BY
@@ -646,9 +646,9 @@ switch ($action) {
 
         if ($field === 'default_report') {
             mysqli_query($dbc, "UPDATE projects_to_documents SET default_report = 0 WHERE report_id=" . $id . " AND default_report=1");
-            $updateResult = updateSQL("nts_site.projects_to_documents", $field, $fieldvalue, $id, "report_id", $colType);
+            $updateResult = updateSQL("projects_to_documents", $field, $fieldvalue, $id, "report_id", $colType);
         } else {
-            $updateResult = updateSQL("nts_site.`tradestar_reports`", $field, $fieldvalue, $id, "Report_ID", $colType);
+            $updateResult = updateSQL("`tradestar_reports`", $field, $fieldvalue, $id, "Report_ID", $colType);
         }
 
         if ($updateResult) {
@@ -685,10 +685,10 @@ switch ($action) {
                 FROM
                         projects_to_documents
                 JOIN tradestar_reports tr ON projects_to_documents.report_id = tr.Report_ID
-                LEFT JOIN nts_site.projects_dir p ON p.id = tr.PrId
-                LEFT JOIN nts_site.trainees c ON c.ID = tr.Report_Employee_ID
-                LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = tr.Report_Author
-                LEFT JOIN nts_site.tradestar_reports_category ON tradestar_reports_category.id = tr.category_id
+                LEFT JOIN projects_dir p ON p.id = tr.PrId
+                LEFT JOIN trainees c ON c.ID = tr.Report_Employee_ID
+                LEFT JOIN relation_contact c2 ON c2.contact_id = tr.Report_Author
+                LEFT JOIN tradestar_reports_category ON tradestar_reports_category.id = tr.category_id
                 WHERE projects_to_documents.project_id = " . $id . " AND projects_to_documents.is_active = 1
                 ORDER BY
                         Report_Date DESC";
@@ -769,7 +769,7 @@ switch ($action) {
         $id = $_POST["id"];
         $field = $_POST["colId"];
 
-        $updateResult = updateSQL("nts_site.`projects_uploads`", $field, $fieldvalue, $id, "id", $colType);
+        $updateResult = updateSQL("`projects_uploads`", $field, $fieldvalue, $id, "id", $colType);
         if ($updateResult) {
             $data['data'] = array('response' => $updateResult, 'text' => 'Successfully Updated');
         } else {
@@ -844,7 +844,7 @@ switch ($action) {
         header("Content-type:text/xml");
         print("<?xml version = \"1.0\"?>");
         echo "<complete>";
-        $query = "SELECT * from nts_site.xoops_shop_languages ORDER BY sort_order ASC";
+        $query = "SELECT * from xoops_shop_languages ORDER BY sort_order ASC";
         $result = mysqli_query($dbc, $query);
         while ($row = mysqli_fetch_array($result)) {
             if ($row["languages_id"] === 1) {
@@ -877,7 +877,7 @@ switch ($action) {
                 SELECT
                     doc_content
                 FROM
-                    nts_site.tbdocuments
+                    tbdocuments
                 WHERE
                     doc_id = " . $fieldvalue . "
                 AND doc_lang_id =(
@@ -931,7 +931,7 @@ switch ($action) {
         header("Content-type:text/xml");
         print("<?xml version = \"1.0\"?>");
         echo "<complete>";
-        $query = "SELECT * from nts_site.tradestar_reports_category";
+        $query = "SELECT * from tradestar_reports_category";
         $result = mysqli_query($dbc, $query);
         while ($row = mysqli_fetch_array($result)) {
             echo "<option value='{$row["id"]}'>" . $row["category_name"] . "</option>";
@@ -967,15 +967,15 @@ switch ($action) {
         $userId = filter_input(INPUT_POST, 'eid', FILTER_SANITIZE_NUMBER_INT);
 
         if ($langId > 0) {
-            $updateSQL = "UPDATE nts_site.tbdocuments SET doc_content = '" . $article_text . "',doc_status = IF(doc_status='1','8','6') WHERE doc_id = " . $docId . " AND doc_lang_id = " . $langId;
+            $updateSQL = "UPDATE tbdocuments SET doc_content = '" . $article_text . "',doc_status = IF(doc_status='1','8','6') WHERE doc_id = " . $docId . " AND doc_lang_id = " . $langId;
         } else {
-            $updateSQL = "UPDATE nts_site.tbdocuments SET doc_content = '" . $article_text . "',doc_status = IF(doc_status='1','8','6') WHERE doc_id = " . $docId . " AND doc_lang_id = SELECT contact_language_id FROM relation_contact contact_id = " . $userId;
+            $updateSQL = "UPDATE tbdocuments SET doc_content = '" . $article_text . "',doc_status = IF(doc_status='1','8','6') WHERE doc_id = " . $docId . " AND doc_lang_id = SELECT contact_language_id FROM relation_contact contact_id = " . $userId;
         }
 
         $updateResult = mysqli_query($dbc, $updateSQL) or die(mysqli_error($dbc) . $updateSQL);
         if ($updateResult) {
 
-            $qry_insert = "INSERT INTO nts_site.tbdocuments_history(`doc_lang_id`,`doc_datetime`,`doc_author_id`,`doc_content`,`doc_parent_id`,`doc_revised_by`)
+            $qry_insert = "INSERT INTO tbdocuments_history(`doc_lang_id`,`doc_datetime`,`doc_author_id`,`doc_content`,`doc_parent_id`,`doc_revised_by`)
               values(" . $langId . ",Now()," . $userId . ",'" . $article_text . "'," . $docId . "," . $userId . ")";
 
             $res_insert = mysqli_query($dbc, $qry_insert) or die("" . mysqli_error($dbc));
@@ -1024,11 +1024,11 @@ switch ($action) {
                         projects_to_documents
                 JOIN tradestar_reports tr ON projects_to_documents.report_id = tr.Report_ID
                 JOIN projects_dir  ON projects_dir.id = projects_to_documents.project_id
-                LEFT JOIN nts_site.trainees c ON c.ID = tr.Report_Employee_ID
-                LEFT JOIN nts_site.relation_contact c1 ON c1.contact_id = c.IntranetID
-                LEFT JOIN nts_site.xoops_shop_languages xsl ON xsl.languages_id = tr.language_id
-                LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = tr.Report_Author
-                LEFT JOIN nts_site.tradestar_reports_category ON tradestar_reports_category.id = tr.category_id WHERE projects_to_documents.is_active = 0 ";
+                LEFT JOIN trainees c ON c.ID = tr.Report_Employee_ID
+                LEFT JOIN relation_contact c1 ON c1.contact_id = c.IntranetID
+                LEFT JOIN xoops_shop_languages xsl ON xsl.languages_id = tr.language_id
+                LEFT JOIN relation_contact c2 ON c2.contact_id = tr.Report_Author
+                LEFT JOIN tradestar_reports_category ON tradestar_reports_category.id = tr.category_id WHERE projects_to_documents.is_active = 0 ";
         if ($id) {
             $qry .= " AND projects_to_documents.report_id = $id";
         }
@@ -1087,7 +1087,7 @@ switch ($action) {
             FROM
                     tradestar_reports_archive th
             JOIN tradestar_reports tr ON tr.Report_ID = th.History_Report_ID
-            LEFT JOIN nts_site.trainees c ON c.ID = tr.Report_Employee_ID
+            LEFT JOIN trainees c ON c.ID = tr.Report_Employee_ID
             LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = th.History_Author
             WHERE
                     DATE_FORMAT(th.History_Date, '%Y-%m-%d')= CURDATE()

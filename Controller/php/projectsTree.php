@@ -794,7 +794,7 @@ switch ($action) {
 
     case 26:
 
-        $query = "SELECT * from nts_site.xoops_shop_languages WHERE languages_id IN(1,4) ORDER BY sort_order ASC";
+        $query = "SELECT * from xoops_shop_languages WHERE languages_id IN(1,4) ORDER BY sort_order ASC";
         $result = mysqli_query($dbc, $query);
         $values[] = array('type' => 'button', 'id' => 'l_0', "text" => 'All Languages');
         while ($row = mysqli_fetch_assoc($result)) {

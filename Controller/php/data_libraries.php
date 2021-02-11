@@ -168,7 +168,7 @@ switch ($action) {
                         ' ',
                         COALESCE(LastName, '')) employee
             FROM
-                nts_site.trainees
+                trainees
             WHERE
                 status_id = 1
                     AND (IntranetId <> 0
@@ -217,7 +217,7 @@ switch ($action) {
                     libraries.author
                     -- c2.contact_attendent author
             FROM
-                    nts_site.libraries
+                    libraries
             WHERE
                     libraries.id = " . $id;
         $result = mysqli_query($dbc,$query) ;
@@ -336,7 +336,7 @@ switch ($action) {
 
         $rptSubject = 'Libraries';
 
-        $employee_query = mysqli_query($dbc,"SELECT ID FROM nts_site.trainees WHERE IntranetID = " . $uID);
+        $employee_query = mysqli_query($dbc,"SELECT ID FROM trainees WHERE IntranetID = " . $uID);
         $row = mysqli_fetch_array($employee_query);
         $Report_Employee_ID = $row[0];
 
@@ -345,7 +345,7 @@ switch ($action) {
         $chapter = $row[0];
 
         if ($Report_Employee_ID > 0) {
-            $assigned_query = mysqli_query($dbc,"SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE ID = " . $Report_Employee_ID);
+            $assigned_query = mysqli_query($dbc,"SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE ID = " . $Report_Employee_ID);
             $row = mysqli_fetch_array($assigned_query);
             $assigned_eid = $row[0];
         }
@@ -527,7 +527,7 @@ switch ($action) {
                         c2.contact_attendent Author
                 FROM
                         libraries_history th
-                LEFT JOIN nts_site.relation_contact c2 ON c2.contact_id = th.employee_id
+                LEFT JOIN relation_contact c2 ON c2.contact_id = th.employee_id
                 WHERE
                         th.libraries_id = " . $id . "
                 ORDER BY

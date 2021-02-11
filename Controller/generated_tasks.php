@@ -120,7 +120,7 @@ switch ($_GET['action']) {
             while (strtotime($startDate) < strtotime($endDate)) {
 
                 //select employee_id sent by category table 
-                $empQuery = "Select ID as a1,FirstName as a2 from nts_site.trainees where ID in ($_GET[ass_emp]) order by ID asc";
+                $empQuery = "Select ID as a1,FirstName as a2 from trainees where ID in ($_GET[ass_emp]) order by ID asc";
                 $empRes = mysqli_query($dbc, $empQuery);
                 while ($row_pl = mysqli_fetch_array($empRes)) {
                     $max_pl++;
@@ -417,7 +417,7 @@ function generateSubProjects($event_pjd, $startDate, $tskend, $document_id)
                 if ($b == $a) {
                     //save to database                                                 
                     //select employee_id sent by category table 
-                    $empQuery = "Select ID as a1,FirstName as a2 from nts_site.trainees where id in ($_GET[ass_emp]) order by ID asc";
+                    $empQuery = "Select ID as a1,FirstName as a2 from trainees where id in ($_GET[ass_emp]) order by ID asc";
                     $empRes = mysqli_query($dbc, $empQuery);
                     while ($row_pl = mysqli_fetch_array($empRes)) {
                         $empID = $row_pl['a1'];

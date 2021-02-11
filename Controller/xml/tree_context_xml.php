@@ -17,7 +17,7 @@ switch ($_GET['case']) {
         print ('<toolbar>');
 
         $lang_id = $_COOKIE['lang_id'];
-        $select = "SELECT lower(name) as nm,name,languages_id  FROM nts_site.xoops_shop_languages WHERE languages_id = '" . $lang_id . "'";
+        $select = "SELECT lower(name) as nm,name,languages_id  FROM xoops_shop_languages WHERE languages_id = '" . $lang_id . "'";
         $result = mysqli_query($dbc,$select);
         $row = mysqli_fetch_array($result);
         $languageimg = $row['name'] . '.png';
@@ -45,7 +45,7 @@ switch ($_GET['case']) {
             print('<item id="langauge" type="buttonSelect" img="' . $languageimg . '" imgdis="' . $languageimg . '" text="' . $language . '">');
         }
 
-        $select = "SELECT lower(name) as nm,name,languages_id  FROM nts_site.xoops_shop_languages  ORDER BY languages_id ASC";
+        $select = "SELECT lower(name) as nm,name,languages_id  FROM xoops_shop_languages  ORDER BY languages_id ASC";
         $result = mysqli_query($dbc,$select) or die("SQL advTemp grid rendering: " . mysqli_error($dbc));
         if ($result) {
             while ($row = mysqli_fetch_array($result)) {
@@ -63,7 +63,7 @@ switch ($_GET['case']) {
         print ('<toolbar>');
 
         $lang_id = $_COOKIE['lang_id'];
-        $select = "SELECT lower(name) as nm,name,languages_id  FROM nts_site.xoops_shop_languages WHERE languages_id = '" . $lang_id . "'";
+        $select = "SELECT lower(name) as nm,name,languages_id  FROM xoops_shop_languages WHERE languages_id = '" . $lang_id . "'";
         $result = mysqli_query($dbc,$select);
         $row = mysqli_fetch_array($result);
         $languageimg = $row['name'] . '.png';
@@ -76,7 +76,7 @@ switch ($_GET['case']) {
             print('<item id="langauge" type="buttonSelect" img="' . $languageimg . '" imgdis="' . $languageimg . '" text="' . $language . '">');
         }
 
-        $select = "SELECT lower(name) as nm,name,languages_id  FROM nts_site.xoops_shop_languages  ORDER BY languages_id ASC";
+        $select = "SELECT lower(name) as nm,name,languages_id  FROM xoops_shop_languages  ORDER BY languages_id ASC";
         $result = mysqli_query($dbc,$select) or die("SQL advTemp grid rendering: " . mysqli_error($dbc));
         if ($result) {
             while ($row = mysqli_fetch_array($result)) {
@@ -94,7 +94,7 @@ switch ($_GET['case']) {
         print('<item text="Add Sub Project"  img="View/images/add.png"  id="add_sub"/>');
         print('</item>');
         print('<item text="Add Specifications Template"  img="View/images/add.png"  id="tpl_add_dir">');
-        $qry = "SELECT * FROM nts_site.specification_template_name";
+        $qry = "SELECT * FROM specification_template_name";
         $res = mysqli_query($dbc,$qry) ;
         while ($rows = mysqli_fetch_array($res)) {
             print("<item text='" . $rows['spec_tpl_name'] . "' id='" . $rows['spec_tpl_cat'] . "'/>");

@@ -228,7 +228,7 @@ switch ($action) {
                     '' date_edited,
                     c2.contact_attendent author
             FROM
-                    nts_site.document_toc
+                    document_toc
             JOIN document_toc_history history ON history.toc_id = document_toc.id
             JOIN relation_contact c2 ON c2.contact_id = history.employee_id
             WHERE

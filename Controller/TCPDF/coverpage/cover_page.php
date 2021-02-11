@@ -18,7 +18,7 @@ $Report_Employee_ID = $row['Report_Employee_ID'];
 
 if ($Report_Employee_ID > 0) {
 
-    $result = mysqli_query($dbc,"SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE ID = " . $Report_Employee_ID);
+    $result = mysqli_query($dbc,"SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE ID = " . $Report_Employee_ID);
     $row = mysqli_fetch_array($result);
     $assigned_eid = $row[0];
 }

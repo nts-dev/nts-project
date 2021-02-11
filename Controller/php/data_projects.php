@@ -129,7 +129,7 @@ switch ($action) {
         $projectId = filter_input(INPUT_GET, 'projectId', FILTER_SANITIZE_NUMBER_INT);
         $templateId = filter_input(INPUT_GET, 'templateId', FILTER_SANITIZE_NUMBER_INT);
 
-        $result = mysqli_query($dbc,"SELECT query FROM nts_site.`ntk_assetcat_to_project` WHERE `asset_cat_id` = " . $templateId . " AND `project_id` = " . $projectId);
+        $result = mysqli_query($dbc,"SELECT query FROM `ntk_assetcat_to_project` WHERE `asset_cat_id` = " . $templateId . " AND `project_id` = " . $projectId);
         $row = mysqli_fetch_array($result);
         $string = $row[0];
 
@@ -158,7 +158,7 @@ switch ($action) {
                                                 SELECT
                                                         Branch_Name
                                                 FROM
-                                                        nts_site.branch
+                                                        branch
                                                 WHERE
                                                         visible = 1
                                                 AND Branch_ID =(

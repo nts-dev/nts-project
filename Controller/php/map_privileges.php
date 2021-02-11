@@ -35,9 +35,9 @@ switch ($action) {
 	priviledges.file_access";
         }
         $query .= " FROM
-                nts_site.trainees t
-            JOIN nts_site.branch b ON b.Branch_ID = t.branch_id
-            JOIN nts_site.relation_contact rc ON t.IntranetID = rc.contact_id ";
+                trainees t
+            JOIN branch b ON b.Branch_ID = t.branch_id
+            JOIN relation_contact rc ON t.IntranetID = rc.contact_id ";
 
         if ($itemId > 0) {
             $query .= "LEFT JOIN project_map_privileges priviledges ON t.IntranetID = priviledges.employee_id

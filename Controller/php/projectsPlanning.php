@@ -87,7 +87,7 @@ switch ($action) {
                 COALESCE(LastName, '')
               ) employee 
             FROM
-              nts_site.trainees 
+              trainees 
             WHERE status_id = 1 
               AND (
                 IntranetId <> 0 || IntranetId IS NOT NULL
@@ -121,7 +121,7 @@ switch ($action) {
 
         if ($Report_Employee_ID > 0) {
 
-            $result = mysqli_query($dbc, "SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE ID = " . $Report_Employee_ID);
+            $result = mysqli_query($dbc, "SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE ID = " . $Report_Employee_ID);
             $row = mysqli_fetch_array($result);
             $assigned_eid = $row[0];
         }
@@ -151,7 +151,7 @@ switch ($action) {
 
         $eventId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
         $projectId = filter_input(INPUT_GET, 'project_id', FILTER_SANITIZE_NUMBER_INT);
-        $deleteFromEvents = mysqli_query($dbc, "DELETE FROM nts_site.`events` WHERE `event_id`=" . $eventId);
+        $deleteFromEvents = mysqli_query($dbc, "DELETE FROM `events` WHERE `event_id`=" . $eventId);
         if ($deleteFromEvents) {
             mysqli_query($dbc, "DELETE FROM projects_planning WHERE event_id = " . $eventId . " AND parent=" . $projectId);
             $data['data'] = array('response' => $deleteFromEvents, 'text' => 'Deleted');
@@ -349,7 +349,7 @@ switch ($action) {
             echo "</task>";
         }
 
-        $query = "SELECT ID,CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE status_id = 1
+        $query = "SELECT ID,CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE status_id = 1
                     AND(
                             IntranetId <> 0 || IntranetId IS NOT NULL
                     )
@@ -370,11 +370,11 @@ switch ($action) {
         $id = $_POST["id"];
         $field = $_POST["colId"];
 
-        $updateResult = updateSQL("nts_site.`events`", $field, $fieldvalue, $id, "event_id", $colType);
+        $updateResult = updateSQL("`events`", $field, $fieldvalue, $id, "event_id", $colType);
 
         if ($updateResult) {
             if ($field === 'is_procedure') {
-                updateSQL("nts_site.`events`", $field, $fieldvalue, $id, "event_pid", $colType);
+                updateSQL("`events`", $field, $fieldvalue, $id, "event_pid", $colType);
             }
             $data['data'] = array('response' => $updateResult, 'text' => 'Successfully Updated');
         } else {
@@ -392,7 +392,7 @@ switch ($action) {
         $colType = $_GET["colType"];
         $fieldvalue = mysqli_real_escape_string($dbc, $fieldvalue);
 
-        $updateResult = updateSQL("nts_site.`events`", $field, $fieldvalue, $id, "event_id", $colType);
+        $updateResult = updateSQL("`events`", $field, $fieldvalue, $id, "event_id", $colType);
         if ($updateResult) {
             $data['data'] = array('response' => $updateResult, 'text' => 'Successfully Updated');
         } else {
@@ -415,7 +415,7 @@ switch ($action) {
         $title = $_POST['title'];
         $uID = filter_input(INPUT_POST, 'eid', FILTER_SANITIZE_NUMBER_INT);
 
-        $result = mysqli_query($dbc, "SELECT Report_Subject FROM nts_site.tradestar_reports WHERE Report_ID =" . $docId);
+        $result = mysqli_query($dbc, "SELECT Report_Subject FROM tradestar_reports WHERE Report_ID =" . $docId);
         $row = mysqli_fetch_array($result);
         $rptSubject = $row[0];
 
@@ -425,7 +425,7 @@ switch ($action) {
         $prct_name = '[' . $no . '/' . $docId . ']' . ' ' . $title;
 
         if ($is_new) {
-            $insert = "INSERT INTO events(`event_name`,`details`,`start_date`,`end_date`,`entered_by`,`cat_id`,`event_pid`,`visible`,`completed`,`masterrecord`,employee_id,assigned_eid) SELECT '$prct_details','" . $prct_name . "','" . $start_date . "','" . $end_date . "',$uID,1,null,1,0,'" . $projectId . "'," . $employee . ",CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE ID = " . $employee; //echo $insert; exit;
+            $insert = "INSERT INTO events(`event_name`,`details`,`start_date`,`end_date`,`entered_by`,`cat_id`,`event_pid`,`visible`,`completed`,`masterrecord`,employee_id,assigned_eid) SELECT '$prct_details','" . $prct_name . "','" . $start_date . "','" . $end_date . "',$uID,1,null,1,0,'" . $projectId . "'," . $employee . ",CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE ID = " . $employee; //echo $insert; exit;
 
             $insertTOEvents = mysqli_query($dbc, $insert) or die(mysqli_error($dbc) . $insert);
             if ($insertTOEvents) {
@@ -437,7 +437,7 @@ switch ($action) {
             }
         } else {
 
-            $update = "UPDATE events SET `event_name` = '$prct_details',`details`= '" . $prct_name . "',`start_date` = '" . $start_date . "',`end_date` = '" . $end_date . "',`entered_by` = $uID,`visible` = 1,`completed` = 0,employee_id = " . $employee . ",assigned_eid = (SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE ID = " . $employee . ") WHERE event_id =" . $eventId;
+            $update = "UPDATE events SET `event_name` = '$prct_details',`details`= '" . $prct_name . "',`start_date` = '" . $start_date . "',`end_date` = '" . $end_date . "',`entered_by` = $uID,`visible` = 1,`completed` = 0,employee_id = " . $employee . ",assigned_eid = (SELECT CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE ID = " . $employee . ") WHERE event_id =" . $eventId;
 
             $updateResult = mysqli_query($dbc, $update) or die(mysqli_error($dbc) . $update);
             if ($updateResult) {
@@ -502,7 +502,7 @@ switch ($action) {
 
                     foreach ($emp_list as $emp_id) {
 
-                        $insert = "INSERT INTO events(`event_name`,`details`,`start_date`,`end_date`,`entered_by`,`cat_id`,`event_pid`,`visible`,`completed`,`masterrecord`,employee_id,assigned_eid) SELECT '" . $details . "','" . $prct_details . "','" . $begin_date . "','" . $end_date . "',$uID,1,null,1,0,'" . $projectId . "',ID,'" . $employee_name . "' FROM nts_site.`trainees` WHERE `IntranetID` =" . $emp_id;
+                        $insert = "INSERT INTO events(`event_name`,`details`,`start_date`,`end_date`,`entered_by`,`cat_id`,`event_pid`,`visible`,`completed`,`masterrecord`,employee_id,assigned_eid) SELECT '" . $details . "','" . $prct_details . "','" . $begin_date . "','" . $end_date . "',$uID,1,null,1,0,'" . $projectId . "',ID,'" . $employee_name . "' FROM `trainees` WHERE `IntranetID` =" . $emp_id;
 
                         $insertTOEvents = mysqli_query($dbc, $insert) or die(mysqli_error($dbc) . $insert);
                         if ($insertTOEvents) {
@@ -600,7 +600,7 @@ switch ($action) {
 
         }
 
-        $query = "SELECT ID,CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE status_id = 1 || id = 51 ORDER BY branch_id,SortId";
+        $query = "SELECT ID,CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE status_id = 1 || id = 51 ORDER BY branch_id,SortId";
         $result = mysqli_query($dbc, $query);
 
         //load all employees with default:checkbox case 1:select emp string saved in assigned value                        
@@ -798,7 +798,7 @@ switch ($action) {
             $row = mysqli_fetch_array($result);
             $emp_strdb = mysqli_real_escape_string($dbc, $row[0]);
 
-            mysqli_query($dbc, "UPDATE nts_site.`events`
+            mysqli_query($dbc, "UPDATE `events`
                             SET details = '{$_POST['event_name']}',
                              event_name = '{$_POST['details']}',
                              start_date = '{$s1}',
@@ -818,15 +818,15 @@ switch ($action) {
                              event_id = '{$event_id}'");
 
 
-            $sql = "DELETE FROM nts_site.`events` WHERE event_pid = '{$_POST['event_id']}'";
+            $sql = "DELETE FROM `events` WHERE event_pid = '{$_POST['event_id']}'";
             $res = mysqli_query($dbc, $sql);
 
-            $result = mysqli_query($dbc, "SELECT document_id FROM nts_site.`events` WHERE event_id = $event_id");
+            $result = mysqli_query($dbc, "SELECT document_id FROM `events` WHERE event_id = $event_id");
             $row = mysqli_fetch_array($result);
             $document_id = $row[0];
 
             foreach ($emplist as $key => $value) {
-                $qry_insert = "INSERT INTO nts_site.`events`(
+                $qry_insert = "INSERT INTO `events`(
                                     `event_pid`,
                                     `event_name`,
                                     `details`,
@@ -857,7 +857,7 @@ switch ($action) {
                                     `duration`,
                                     `masterrecord`
                              FROM
-                                    nts_site.`events`
+                                    `events`
                              WHERE event_id = {$_POST['event_id']}";
                 mysqli_query($dbc, $qry_insert);
             }
@@ -876,7 +876,7 @@ switch ($action) {
             $emp_apprv = mysqli_real_escape_string($dbc, $row[0]);
 
 
-            $update = "UPDATE nts_site.`events`
+            $update = "UPDATE `events`
                             SET details = '{$_POST['event_name']}',
                              event_name = '{$_POST['details']}',
                              start_date = '{$s1}',
@@ -937,7 +937,7 @@ switch ($action) {
             $s2 = $cdtend->format('Y-m-d');
             $s2 = $s2 . " " . $endtime;
         }
-        $empResBranch = mysqli_query($dbc, "Select branch_id from nts_site.trainees where ID in ($_GET[ass_emp]) order by ID asc");
+        $empResBranch = mysqli_query($dbc, "Select branch_id from trainees where ID in ($_GET[ass_emp]) order by ID asc");
         $branchOfEmp = array();
         while ($rowBranch = mysqli_fetch_array($empResBranch)) {
             $branchOfEmp[] = $rowBranch['branch_id'];
@@ -1033,7 +1033,7 @@ switch ($action) {
 
             while (strtotime($startDate) < strtotime($endDate)) {
                 //select employee_id sent by category table 
-                $empQuery = "Select ID as a1,FirstName as a2 from nts_site.trainees where ID in ($_GET[ass_emp]) order by ID asc";
+                $empQuery = "Select ID as a1,FirstName as a2 from trainees where ID in ($_GET[ass_emp]) order by ID asc";
                 $empRes = mysqli_query($dbc, $empQuery);
                 while ($row_pl = mysqli_fetch_array($empRes)) {
                     $max_pl++;
@@ -1623,7 +1623,7 @@ switch ($action) {
         $insertResult = mysqli_query($dbc, $insert);
         if ($insertResult) {
 
-            $result = mysqli_query($dbc, "SELECT GROUP_CONCAT(CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')))employee FROM nts_site.trainees WHERE ID IN (SELECT employee_id FROM `events` WHERE `event_id` = " . $eventId . " AND is_active = 1)");
+            $result = mysqli_query($dbc, "SELECT GROUP_CONCAT(CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')))employee FROM trainees WHERE ID IN (SELECT employee_id FROM `events` WHERE `event_id` = " . $eventId . " AND is_active = 1)");
             $row = mysqli_fetch_array($result);
             $assigned_eid = $row[0];
 
@@ -1651,7 +1651,7 @@ switch ($action) {
             $emplist[] = $row['employee_id'];
         }
 
-//        $query = "SELECT ID,CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM nts_site.trainees WHERE status_id = 1 || id = 51 ORDER BY branch_id,ID";
+//        $query = "SELECT ID,CONCAT(COALESCE(FirstName,''),' ',COALESCE(SecondName,''),' ',COALESCE(LastName,'')) employee FROM trainees WHERE status_id = 1 || id = 51 ORDER BY branch_id,ID";
 
         $query = "
             SELECT 
@@ -1664,7 +1664,7 @@ switch ($action) {
                 COALESCE(LastName, '')
               ) employee 
             FROM
-              nts_site.trainees 
+              trainees 
             WHERE status_id = 1 
               AND (
                 IntranetId <> 0 || IntranetId IS NOT NULL
@@ -1731,7 +1731,7 @@ switch ($action) {
             $apprv_str = 0;
         }
 
-        $update = "UPDATE nts_site.`events`
+        $update = "UPDATE `events`
                             SET details = '{$_POST['event_name']}',
                              event_name = '{$_POST['details']}',
                              start_date = '{$s1}',
@@ -1815,7 +1815,7 @@ switch ($action) {
             $apprv_str = 0;
         }
 
-        $update = "UPDATE nts_site.`events`
+        $update = "UPDATE `events`
                             SET details = '{$_POST['event_name']}',
                              event_name = '{$_POST['asset_event_details']}',
                              start_date = '{$s1}',
@@ -1916,7 +1916,7 @@ switch ($action) {
         }
 
 
-        $empResBranch = mysqli_query($dbc, "SELECT branch_id FROM nts_site.trainees WHERE ID IN (" . $_GET['ass_emp'] . ") GROUP BY ID ORDER BY ID ASC");
+        $empResBranch = mysqli_query($dbc, "SELECT branch_id FROM trainees WHERE ID IN (" . $_GET['ass_emp'] . ") GROUP BY ID ORDER BY ID ASC");
         $branchOfEmp = array();
         while ($rowBranch = mysqli_fetch_assoc($empResBranch)) {
             $branchOfEmp[] = $rowBranch['branch_id'];
@@ -2012,7 +2012,7 @@ switch ($action) {
 
             while (strtotime($startDate) < strtotime($endDate)) {
                 //select employee_id sent by category table 
-                $empQuery = "Select ID as a1,FirstName as a2 from nts_site.trainees where ID IN(" . $_GET['ass_emp'] . ") GROUP BY ID order by ID asc";
+                $empQuery = "Select ID as a1,FirstName as a2 from trainees where ID IN(" . $_GET['ass_emp'] . ") GROUP BY ID order by ID asc";
                 $empRes = mysqli_query($dbc, $empQuery);
                 while ($row_pl = mysqli_fetch_array($empRes)) {
                     $max_pl++;
@@ -2210,7 +2210,7 @@ switch ($action) {
             $apprv_str = 0;
         }
 
-        $update = "UPDATE nts_site.`events`
+        $update = "UPDATE `events`
                             SET details = '{$_POST['event_name']}',
                              event_name = '{$_POST['asset_event_name_child']}',
                              start_date = '{$s1}',
@@ -2277,7 +2277,7 @@ switch ($action) {
             $apprv_str = 0;
         }
 
-        $update = "UPDATE nts_site.`events`
+        $update = "UPDATE `events`
                             SET details = '{$_POST['event_name']}',
                              event_name = '{$_POST['toc_details']}',
                              start_date = '{$s1}',

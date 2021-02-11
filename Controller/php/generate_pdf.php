@@ -27,7 +27,7 @@ $query = "
 				COALESCE(LastName, '')
 			)
 		FROM
-			nts_site.trainees
+			trainees
 		WHERE
 			ID = tr.supervisor
 	)`supervisor`,
@@ -40,7 +40,7 @@ $query = "
 				CONCAT(COALESCE(FirstName, ''))
 			)
 		FROM
-			nts_site.trainees
+			trainees
 		WHERE
 			ID IN(
 				SELECT

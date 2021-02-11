@@ -61,7 +61,7 @@ switch ($action) {
                         ntk_templates.id template,
                         ntk_assetcat_to_project.default_value
                 FROM
-                        nts_site.ntk_assetcat_to_project
+                        ntk_assetcat_to_project
                 JOIN `ntk_templates` ON `ntk_templates`.id = ntk_assetcat_to_project.asset_cat_id       
                 JOIN ntk_devices ON ntk_devices.id = ntk_templates.device_id
                 WHERE
@@ -121,7 +121,7 @@ switch ($action) {
                         ntk_assetcat_to_project.*,prjct.project_name
                 FROM
                         ntk_assetcat_to_project
-                LEFT JOIN nts_site.projects_dir prjct ON prjct.id = ntk_assetcat_to_project.project_id
+                LEFT JOIN projects_dir prjct ON prjct.id = ntk_assetcat_to_project.project_id
                 WHERE
                         asset_cat_id = " . $id;
 

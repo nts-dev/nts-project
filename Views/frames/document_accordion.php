@@ -9,11 +9,11 @@ $query = "
             tr.explorer_id,
             tr.goal,
             tr.scope,
-            (SELECT CONCAT(COALESCE(FirstName, ''),' ',COALESCE(SecondName, ''),' ',COALESCE(LastName, '')) FROM nts_site.trainees WHERE ID = tr.supervisor)`supervisor`,
+            (SELECT CONCAT(COALESCE(FirstName, ''),' ',COALESCE(SecondName, ''),' ',COALESCE(LastName, '')) FROM trainees WHERE ID = tr.supervisor)`supervisor`,
             tr.doc_input,
             tr.doc_output,
             tr.doc_frequency,
-            (SELECT GROUP_CONCAT(CONCAT(COALESCE(FirstName, ''))) FROM nts_site.trainees WHERE ID IN(SELECT employee_id FROM `tradestar_reports_to_employees` WHERE `report_id` = $id ))employees
+            (SELECT GROUP_CONCAT(CONCAT(COALESCE(FirstName, ''))) FROM trainees WHERE ID IN(SELECT employee_id FROM `tradestar_reports_to_employees` WHERE `report_id` = $id ))employees
     FROM
             tradestar_reports tr
     WHERE

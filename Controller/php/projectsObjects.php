@@ -19,7 +19,7 @@ switch ($action) {
         print ('<toolbar>');
 
         /* $lang_id = 1; //$_COOKIE['lang_id'];
-          $select = "SELECT lower(name) as nm,name,languages_id  FROM nts_site.xoops_shop_languages WHERE languages_id = '" . $lang_id . "'";
+          $select = "SELECT lower(name) as nm,name,languages_id  FROM xoops_shop_languages WHERE languages_id = '" . $lang_id . "'";
           $result = mysqli_query($dbc,$select);
           $row = mysqli_fetch_array($result);
           $languageimg = $row['name'] . '.png';
@@ -77,7 +77,7 @@ switch ($action) {
         ini_set('max_execution_time', 600);
         print("<?xml version=\"1.0\"?>");
         echo " <complete>";
-        $select = "SELECT lower(name) as nm,name,languages_id  FROM nts_site.xoops_shop_languages  ORDER BY languages_id ASC";
+        $select = "SELECT lower(name) as nm,name,languages_id  FROM xoops_shop_languages  ORDER BY languages_id ASC";
         $result = mysqli_query($dbc,$select) or die("SQL advTemp grid rendering: " . mysqli_error($dbc));
         if ($result) {
             while ($row = mysqli_fetch_array($result)) {
