@@ -359,7 +359,7 @@ function openClassesWindow() {
     classPlanningEmployeeCombo.load("Controller/php/projectsPlanning.php?action=2");
 
     var classPlanningApproved_Combo = classPlanningForm.getCombo("approved_by");
-    classPlanningApproved_Combo.load(path + "/Schedule/Controller/recurring.php?action=110");
+    classPlanningApproved_Combo.load("Controller/php/recurring.php?action=110");
 
     classPlanningEmployeeCombo.attachEvent("onCheck", function (value, state) {
         var eventId = classplanningGrid.getSelectedRowId();
@@ -778,7 +778,7 @@ function classplanningGridEdit(stage, id, index, new_value, old_value, cellIndex
                         }
                         //load the combo checked values
                         classPlanningEmployeeCombo.clearAll();
-                        classPlanningEmployeeCombo.load(path + "/Schedule/Controller/recurring.php?action=110&load=1&evt_id=" + event_id);
+                        classPlanningEmployeeCombo.load("Controller/php/recurring.php?action=110&load=1&evt_id=" + event_id);
                     });
                 } else
                     dhtmlx.alert({title: 'Error', text: data.data.text});

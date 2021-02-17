@@ -1,7 +1,7 @@
 <?php
 
 //generate the tasks
-require_once("php/config.php");
+require 'config_mysqli.php';
 
 switch ($_GET['action']) {
     case 1:

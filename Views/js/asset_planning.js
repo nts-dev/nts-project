@@ -136,11 +136,11 @@ function assetPlanningGridRowSelect(id, ind) {
         }
         //load the combo checked values
         assetEventFormEmplCombo.clearAll();
-        assetEventFormEmplCombo.load(path + "/Schedule/Controller/recurring.php?action=110&load=1&evt_id=" + event_id);
+        assetEventFormEmplCombo.load("Controller/php/recurring.php?action=110&load=1&evt_id=" + event_id);
 //        assetEventFormEmplCombo.clearAll();
 //        assetEventFormEmplCombo.load("Controller/php/projectsPlanning.php?action=29&evt_id=" + event_id);
     });
-    assetEventReoccurencesGrid.clearAndLoad(path + "/Schedule/Controller/generated_tasks.php?id=" + event_id, function () {});
+    assetEventReoccurencesGrid.clearAndLoad("Controller/php/generated_tasks.php?id=" + event_id, function () {});
 
 }
 
@@ -179,7 +179,7 @@ function assetPlanningGridEdit(stage, id, index, new_value, old_value, cellIndex
                         }
                         //load the combo checked values
                         assetEventFormEmplCombo.clearAll();
-                        assetEventFormEmplCombo.load(path + "/Schedule/Controller/recurring.php?action=110&load=1&evt_id=" + event_id);
+                        assetEventFormEmplCombo.load("Controller/php/recurring.php?action=110&load=1&evt_id=" + event_id);
 //        assetEventFormEmplCombo.clearAll();
 //        assetEventFormEmplCombo.load("Controller/php/projectsPlanning.php?action=29&evt_id=" + event_id);
                     });
@@ -242,7 +242,7 @@ function assetEventFormToolbarClicked(id) {
                             assetEventsGrid.updateFromXML("https://bo.nts.nl/network/Controller/php/data_planning.php?action=default&id=" + device_id, true, true, function () {
                                 //load the combo checked values
                                 assetEventFormEmplCombo.clearAll();
-                                assetEventFormEmplCombo.load(path + "/Schedule/Controller/recurring.php?action=110&load=1&evt_id=" + event_id);
+                                assetEventFormEmplCombo.load("Controller/php/recurring.php?action=110&load=1&evt_id=" + event_id);
                                 asset_events_layout.cells('a').progressOff();
                             });
                         } else {
@@ -367,7 +367,7 @@ assetEventFormEmplCombo.attachEvent("onCheck", function (value, state) {
 });
 
 var asset_approved_Combo = assetEventForm.getCombo("approved_by");
-asset_approved_Combo.load(path + "/Schedule/Controller/recurring.php?action=110");
+asset_approved_Combo.load("Controller/php/recurring.php?action=110");
 
 /************************************** reoccurences *******************************************/
 
@@ -432,7 +432,7 @@ function generateAssetEvents() {
                 {
                     //refresh the child task grid
                     dhtmlx.alert("Recurring Event Activated!");
-                    assetEventReoccurencesGrid.clearAndLoad(path + "/Schedule/Controller/generated_tasks.php?id=" + evt_id, function () {
+                    assetEventReoccurencesGrid.clearAndLoad("Controller/php/generated_tasks.php?id=" + evt_id, function () {
                         assetEventReoccurencesGrid.selectAll();
                     });
                 });
@@ -462,10 +462,10 @@ function toolbarSaveAssetReoccurencesDetails(id) {
                     ;
                     if (t !== null && t.data.response) {
                         dhtmlx.message({title: 'Success', text: t.data.text});
-                        assetEventReoccurencesGrid.updateFromXML(path + "/Schedule/Controller/generated_tasks.php?id=" + event_id, true, true, function ()
+                        assetEventReoccurencesGrid.updateFromXML("Controller/php/generated_tasks.php?id=" + event_id, true, true, function ()
                         {
                             assetEventReoccurencesGrid.selectRowById(t.data.newId);
-                            assetEventReoccurencesForm.load(path + '/Schedule/Controller/recurring.php?action=3&id=' + event_id, function (id, response) {
+                            assetEventReoccurencesForm.load('Controller/php/recurring.php?action=3&id=' + event_id, function (id, response) {
                             });
                         });
                     } else {
@@ -586,7 +586,7 @@ function toolbarSaveAssetReoccurencesDetails(id) {
             if (event_id !== null)
             {
                 //send the parent record
-                $.get(path + "/Schedule/Controller/generated_tasks.php?action=4&grdRow=" + event_id, function (data)
+                $.get("Controller/php/generated_tasks.php?action=4&grdRow=" + event_id, function (data)
                 {
 
                     if (data.bool == true)
@@ -712,4 +712,4 @@ assetEventReoccurencesForm.getInput("end_date").style.backgroundPosition = "cent
 assetEventReoccurencesForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 
 var assetEmpChild_Combo = assetEventReoccurencesForm.getCombo("employee_id");
-assetEmpChild_Combo.load(path + "/Schedule/Controller/recurring.php?action=110");
+assetEmpChild_Combo.load("Controller/php/recurring.php?action=110");

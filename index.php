@@ -142,8 +142,8 @@ $language = $_SESSION['contact_language_id'];
         <script>
             var uID = "<?= $eid ?>";
             var username = "<b><?= $_SESSION['contact_attendent'] ?></b>";
-            var branchId = '0';
-            var languageId = '0';
+            // var branchId = '1';
+            // var languageId = '1';
         </script> 
         <script src="Views/js/ats_functions.js"></script>
         <script src="Views/js/projects_functions.js"></script>

@@ -1,6 +1,6 @@
 <?php
 
-require_once("php/config.php");
+require 'config_mysqli.php';
 require_once("SpecialCharacter.php");
 
 $language_id = 1;

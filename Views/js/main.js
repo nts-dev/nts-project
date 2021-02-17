@@ -54,7 +54,7 @@ var course_id = null;
 var server_id = null;
 var is_moodle = false;
 var languageId = 1;
-var branchId = 0;
+var branchId = 1;
 
 getMonthName = function (v) {
     var n = ["", "All", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -1824,7 +1824,7 @@ function doOnEditprojectPlanningGrid(stage, id, index, new_value, old_value, cel
                     dhtmlx.message({type: "Success", text: data.data.text});
                     projectPlanningGrid.updateFromXML('Controller/php/projectsPlanning.php?action=1&id=' + item_id, true, true);
                     eventDetailsForm.clear();
-                    eventDetailsForm.load('Controller/recurring.php?action=3&id=' + event_id, function (id, response) {
+                    eventDetailsForm.load('Controller/php/recurring.php?action=3&id=' + event_id, function (id, response) {
                         var rec_type = eventDetailsForm.getItemValue('rec_type');
                         for (var i = 0; i < 8; i++) {
                             eventDetailsForm.uncheckItem('days_select[' + i + ']');
@@ -1873,7 +1873,7 @@ function doOnProjectPlanningGridRowSelect(id, ind) {
     //get the event selected 
     var event_id = id;
     //load form details
-    eventDetailsForm.load('Controller/recurring.php?action=3&id=' + event_id, function (id, response) {
+    eventDetailsForm.load('Controller/php/recurring.php?action=3&id=' + event_id, function (id, response) {
         var rec_type = eventDetailsForm.getItemValue('rec_type');
         for (var i = 0; i < 8; i++) {
             eventDetailsForm.uncheckItem('days_select[' + i + ']');
@@ -1893,7 +1893,7 @@ function doOnProjectPlanningGridRowSelect(id, ind) {
         employeeCombo.clearAll();
         employeeCombo.load("Controller/php/projectsPlanning.php?action=29&evt_id=" + event_id);
     });
-    eventReoccurencesGrid.clearAndLoad("Controller/generated_tasks.php?id=" + event_id);
+    eventReoccurencesGrid.clearAndLoad("Controller/php/generated_tasks.php?id=" + event_id);
 }
 
 projectPlanningListTabbar.addTab('gantt', 'Events');
@@ -2116,7 +2116,7 @@ employeeCombo.enableFilteringMode(true);
 employeeCombo.load("Controller/php/projectsPlanning.php?action=2");
 
 var approved_Combo = eventDetailsForm.getCombo("approved_by");
-approved_Combo.load("Controller/recurring.php?action=110");
+approved_Combo.load("Controller/php/recurring.php?action=110");
 
 employeeCombo.attachEvent("onCheck", function (value, state) {
 
@@ -2192,10 +2192,10 @@ function generateEvents() {
             //send to server
             var evt_id = task_id;
             if (eventDetailsForm.getItemValue('begn') != null && eventDetailsForm.getItemValue('end') != null) {
-                eventDetailsForm.send("Controller/recurring.php?action=6&evtId=" + evt_id + "&ass_emp=" + emp_assigned, function (loader, response) {
+                eventDetailsForm.send("Controller/php/recurring.php?action=6&evtId=" + evt_id + "&ass_emp=" + emp_assigned, function (loader, response) {
                     //refresh the child task grid
                     dhtmlx.alert("Recurring Event Activated!");
-                    eventReoccurencesGrid.clearAndLoad("Controller/generated_tasks.php?id=" + evt_id, function () {
+                    eventReoccurencesGrid.clearAndLoad("Controller/php/generated_tasks.php?id=" + evt_id, function () {
                         eventReoccurencesGrid.selectAll();
                     });
                 });
@@ -2223,9 +2223,9 @@ function toolbarSaveReoccurencesDetails(id) {
                     ;
                     if (t !== null && t.data.response) {
                         dhtmlx.message({title: 'Success', text: t.data.text});
-                        eventReoccurencesGrid.updateFromXML("Controller/generated_tasks.php?id=" + event_id, true, true, function () {
+                        eventReoccurencesGrid.updateFromXML("Controller/php/generated_tasks.php?id=" + event_id, true, true, function () {
                             eventReoccurencesGrid.selectRowById(t.data.newId);
-                            eventReoccurencesForm.load('Controller/recurring.php?action=3&id=' + event_id, function (id, response) {
+                            eventReoccurencesForm.load('Controller/php/recurring.php?action=3&id=' + event_id, function (id, response) {
                             });
                         });
                     } else {
@@ -2336,7 +2336,7 @@ function toolbarSaveReoccurencesDetails(id) {
             var event_id = projectPlanningGrid.getSelectedRowId();
             if (event_id !== null) {
                 //send the parent record
-                $.get("Controller/generated_tasks.php?action=4&grdRow=" + event_id, function (data) {
+                $.get("Controller/php/generated_tasks.php?action=4&grdRow=" + event_id, function (data) {
 
                     if (data.bool == true) { //check all items on the grid
                         eventReoccurencesGrid.forEachRow(function (id) {
@@ -2515,7 +2515,7 @@ eventReoccurencesForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 
 
 var empChild_Combo = eventReoccurencesForm.getCombo("employee_id");
-empChild_Combo.load("Controller/recurring.php?action=110");
+empChild_Combo.load("Controller/php/recurring.php?action=110");
 
 
 projectDetailsTabbar.addTab('admin', 'Admin');

@@ -162,7 +162,7 @@ function projectsTreeToolbarClick(id) {
                         projectsTreeCell.progressOn();
                         projectsTree.deleteChildItems(0);
                         projectsTree.loadXML("Controller/php/projectsTree.php?type=" + content_type + "&branch=" + branchId + "&language=" + languageId + "&eid=" + uID, function () {
-                            projectsTreeCell.progressOn();
+                            projectsTreeCell.progressOff();
                         });
                     } else {
                         window_4.close();
@@ -512,6 +512,7 @@ function sendLogin() {
 function projectsTreeContextMenuClicked(id) {
     switch (id) {
         case 'add_root':
+
             if (branchId > 0) {
                 var popupMainWindow = new dhtmlXWindows();
                 var popupWindow = popupMainWindow.createWindow("add_root_win", 0, 0, 400, 150);

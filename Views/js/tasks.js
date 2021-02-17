@@ -330,7 +330,7 @@ function projectTasksReoccurencesGridToolbarClicked(id) {
                     ;
                     if (t !== null && t.data.response) {
                         dhtmlx.message({title: 'Success', text: t.data.text});
-                        projectTasksReoccurencesGrid.updateFromXML(path + "/Schedule/Controller/generated_tasks.php?id=" + event_id, true, true, function ()
+                        projectTasksReoccurencesGrid.updateFromXML("Controller/php/generated_tasks.php?id=" + event_id, true, true, function ()
                         {
                             projectTasksReoccurencesGrid.selectRowById(t.data.newId);
 //                            eventReoccurencesForm.load(path + '/Schedule/Controller/recurring.php?action=3&id=' + event_id);
@@ -444,7 +444,7 @@ function projectTasksReoccurencesGridToolbarClicked(id) {
             if (event_id !== null)
             {
                 //send the parent record
-                $.get(path + "/Schedule/Controller/generated_tasks.php?action=4&grdRow=" + event_id, function (data)
+                $.get("Controller/php/generated_tasks.php?action=4&grdRow=" + event_id, function (data)
                 {
 
                     if (data.bool == true)

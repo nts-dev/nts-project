@@ -1395,7 +1395,7 @@ function toc_planningGridEdit(stage, id, index, new_value, old_value, cellIndex)
                         }
                         //load the combo checked values
                         toc_planningEmployeeCombo.clearAll();
-                        toc_planningEmployeeCombo.load("Controller/recurring.php?action=110&load=1&evt_id=" + event_id);
+                        toc_planningEmployeeCombo.load("Controller/php/recurring.php?action=110&load=1&evt_id=" + event_id);
                     });
                 } else
                     dhtmlx.alert({title: 'Error', text: data.data.text});
@@ -1589,7 +1589,7 @@ toc_planningEmployeeCombo.enableFilteringMode(true);
 toc_planningEmployeeCombo.load("Controller/php/projectsPlanning.php?action=2");
 
 var toc_planningApproved_Combo = toc_planningForm.getCombo("approved_by");
-toc_planningApproved_Combo.load("Controller/recurring.php?action=110");
+toc_planningApproved_Combo.load("Controller/php/recurring.php?action=110");
 
 toc_planningEmployeeCombo.attachEvent("onCheck", function (value, state) {
     var eventId = toc_planningGrid.getSelectedRowId();

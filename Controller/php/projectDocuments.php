@@ -425,6 +425,8 @@ switch ($action) {
 
     case 11:
 
+        ini_set('display_errors', '1');
+
         $projectId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
         $userId = filter_input(INPUT_GET, 'eid', FILTER_SANITIZE_NUMBER_INT);
         $languageId = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_NUMBER_INT);
@@ -444,7 +446,7 @@ switch ($action) {
             $uploadOk = 0;
         }
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
+        if ($_FILES["file"]["size"] > 500000) {
             $errors[] = "Sorry, your file is too large.";
             $uploadOk = 0;
         }
