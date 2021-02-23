@@ -17,7 +17,7 @@ switch ($action) {
 //            generateTreeByBranch($eid,$branchId, $languageId);
 //        } else {
         generateTree($eid, $type);
-        if ((isset($_GET['type']) && $type == 0) || $type == 2) {
+        if ($type == 2) {
             getMoodleTree();
         }
 
@@ -1148,10 +1148,7 @@ function generateTree($eid, $type = null, $showAll = false)
                 projects_dir.project_name,
                 projects_dir_translation.title
               ) project_name,
-              sort_id,
-              `privileges`.map_access,
-              `privileges`.doc_access,
-              `privileges`.file_access 
+              sort_id
             FROM
               projects_dir 
               LEFT JOIN project_type 
@@ -1160,10 +1157,10 @@ function generateTree($eid, $type = null, $showAll = false)
                 ON types.id = project_type.type_id 
               LEFT JOIN projects_dir_translation 
                 ON projects_dir_translation.project_id = projects_dir.id 
-                AND projects_dir_translation.language_id = 1 
-              LEFT JOIN project_map_privileges `privileges` 
-                ON `privileges`.project_id = projects_dir.id 
-                AND `privileges`.employee_id =" . $eid;
+                AND projects_dir_translation.language_id = 1";
+//              LEFT JOIN project_map_privileges `privileges`
+//                ON `privileges`.project_id = projects_dir.id
+//                AND `privileges`.employee_id =" . $eid;
 
     if (!$showAll) {
         $query .= " WHERE archive = 0 ";
@@ -1206,9 +1203,6 @@ function generateTree($eid, $type = null, $showAll = false)
         $obj->id = $row['id'];
         $obj->name = $row['project_name'];
         $obj->parent_id = $row['parent_id'];
-        $obj->map_access = $row['map_access'];
-        $obj->doc_access = $row['doc_access'];
-        $obj->file_access = $row['file_access'];
         $obj->has_training = $row['has_training'];
 
         if ($eid == 24743) {
@@ -1308,9 +1302,6 @@ function printXML(stdClass $obj, $x, $eid, $isRoot = false)
         }
 
         echo '<userdata name="thisurl">index.php?page=' . $obj->id . '</userdata>' . PHP_EOL;
-//        echo '<userdata name="map_access">' . $obj->map_access . '</userdata>' . PHP_EOL;
-//        echo '<userdata name="doc_access">' . $obj->doc_access . '</userdata>' . PHP_EOL;
-//        echo '<userdata name="file_access">' . $obj->file_access . '</userdata>' . PHP_EOL;
         echo '<userdata name="has_video">' . $obj->has_training . '</userdata>' . PHP_EOL;
         $y = 0;
         foreach ($obj->children as $child) {
@@ -1329,9 +1320,6 @@ function printXML(stdClass $obj, $x, $eid, $isRoot = false)
             echo "<userdata name='" . $type->name . "'>1</userdata>" . PHP_EOL;
         }
         echo '<userdata name="thisurl">index.php?page=' . $obj->id . '</userdata>' . PHP_EOL;
-//        echo '<userdata name="map_access">' . $obj->map_access . '</userdata>' . PHP_EOL;
-//        echo '<userdata name="doc_access">' . $obj->doc_access . '</userdata>' . PHP_EOL;
-//        echo '<userdata name="file_access">' . $obj->file_access . '</userdata>' . PHP_EOL;
         echo '<userdata name="has_video">' . $obj->has_training . '</userdata>' . PHP_EOL;
         $y = 0;
         foreach ($obj->children as $child) {
