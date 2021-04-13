@@ -10,7 +10,7 @@ $query_check_credentials = "SELECT contact_attendent,contact_id,branch_id FROM r
 //echo $query_check_credentials; exit;
 $result_check_credentials = mysqli_query($dbc, $query_check_credentials);
 if (!$result_check_credentials) {//If the QUery Failed 
-    echo 'Query Failed ';
+    echo 'Query Failedg';
 }
 if (@mysqli_num_rows($result_check_credentials) == 1) {//if Query is successfull  // A match was made.
     $_SESSION = mysqli_fetch_array($result_check_credentials, MYSQLI_ASSOC); //Assign the result of this query to SESSION Global Variable
