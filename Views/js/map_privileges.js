@@ -16,8 +16,8 @@ projectMapPrivilegesCellToolbar.attachEvent("onClick", doOnUserPrivilegesCellToo
 
 
 var projectMapPrivilegesGrid = projectMapPrivilegesCell.attachGrid();
-//userPrivilegesGrid.setImagePath('dhtmlxsuite4/codebase/imgs/');
-projectMapPrivilegesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+//userPrivilegesGrid.setImagePath('dhtmlxSuite4/codebase/imgs/');
+projectMapPrivilegesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 projectMapPrivilegesGrid.setSkin('dhx_web');
 projectMapPrivilegesGrid.setHeader(
         ["Employee Name", "Employee ID","Map Access", "Document Access", "File access"],

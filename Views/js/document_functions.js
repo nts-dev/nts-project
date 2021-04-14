@@ -317,7 +317,7 @@ function projectDocumentsToolbarClicked(id) {
             });
 
             var docArchivesGrid = docArchivesGidCell.attachGrid();
-            docArchivesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+            docArchivesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
             docArchivesGrid.setSkin('dhx_web');
             docArchivesGrid.setHeader(["", "Project", "Document ID", "Employee", "Date", "Subject", "Category", "Author", "Language"], null, [, "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;"]);
             docArchivesGrid.attachHeader(",#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter", [, "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;"]);
@@ -476,7 +476,7 @@ function documentFilesToolbarClicked(id) {
                     name: "myFiles",
                     inputWidth: 330,
                     url: "Controller/php/projectDocuments.php?action=11&id=" + project_id + "&eid=" + uID + "&language=" + languageId + "&branchId=" + branchId,
-                    swfPath: "dhtmlxsuite4/codebase/ext/uploader.swf",
+                    swfPath: "dhtmlxSuite4/codebase/ext/uploader.swf",
 //                          swfUrl: "https://" + location.host + "/script/dhtmlx3.6pro/dhtmlxForm/samples/07_uploader/php/dhtmlxform_item_upload.php"
                 }]
             }];

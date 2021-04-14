@@ -1,8 +1,10 @@
 <!-- Place inside the <head> of your HTML -->
-<script type="text/javascript" src="../tinymce4.4/tinymce.min.js"></script>
-<!--  Jquery -->
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
+<?php
+include ('../../../includes.php');
+
+JSPackage::TINYMCE();
+JSPackage::JQUERY();
+?>
 
 <script type="text/javascript">
     var report_id;

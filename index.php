@@ -1,5 +1,6 @@
 <?php
 $eid = filter_input(INPUT_GET, 'eid', FILTER_SANITIZE_NUMBER_INT);
+require_once ('../includes.php');
 if (!$eid) {
     header("location: login.php");
 }
@@ -7,7 +8,11 @@ include 'dbconn.php';
 
 //error must
 session_start();
-$query_check_credentials = "SELECT contact_attendent,contact_id,contact_language_id,branch_id FROM relation_contact JOIN trainees ON trainees.IntranetID = relation_contact.contact_id WHERE contact_id = '" . $eid . "'";
+$query_check_credentials = /** @lang text */
+    "
+SELECT 
+    contact_attendent,contact_id,contact_language_id,branch_id 
+    FROM relation_contact JOIN trainees ON trainees.IntranetID = relation_contact.contact_id WHERE contact_id = '" . $eid . "'";
 $result_check_credentials = mysqli_query($dbc, $query_check_credentials);
 if (!$result_check_credentials) {//If the QUery Failed 
     echo 'Query Failed ';
@@ -23,15 +28,21 @@ $language = $_SESSION['contact_language_id'];
     <head>
         <title>Projects Program</title>
         <link rel="shortcut icon" href="Views/imgs/laptop_settings-512.png"  type="image/x-icon" >
-        <script src="dhtmlxsuite4/codebase/dhtmlx.js"></script>
-        <link rel="stylesheet" type="text/css" href="dhtmlxsuite4/codebase/dhtmlx.css"/>
-        <link rel="stylesheet" type="text/css" href="dhtmlxsuite4/skins/terrace/dhtmlx.css"/>
-        <link rel="stylesheet" type="text/css" href="dhtmlxsuite4/skins/web/dhtmlx.css"/>
-        <link rel="stylesheet" type="text/css" href="Views/css/font-awesome/css/font-awesome.min.css"/>
+
+
+        <?php
+
+            CSSPackage::DHTMLX();
+            CSSPackage::FONTAWESOME();
+
+            JSPackage::DHTMLX();
+            JSPackage::JQUERY();
+
+
+        ?>
         <link rel="stylesheet" type="text/css" href="Views/css/custom.css"/>
         <!--  Jquery -->
-        <script src="Views/js/jquery.min.js"></script>
-        <script src="Views/js/jquery-ui.min.js"></script>
+<!--        <script src="Views/js/jquery-ui.min.js"></script>-->
 
         <style>
 
@@ -142,8 +153,12 @@ $language = $_SESSION['contact_language_id'];
         <script>
             var uID = "<?= $eid ?>";
             var username = "<b><?= $_SESSION['contact_attendent'] ?></b>";
+
+            const DHTMLXPATH = "<?=  Boot::WWWROOT .'packages/lib/dhtmlxSuite4/' ?>";
             // var branchId = '1';
             // var languageId = '1';
+
+
         </script> 
         <script src="Views/js/ats_functions.js"></script>
         <script src="Views/js/projects_functions.js"></script>

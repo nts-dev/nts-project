@@ -25,8 +25,8 @@ userPrivilegesCellToolbar.attachEvent("onClick", doOnUserPrivilegesCellToolbarCl
 
 
 var userPrivilegesGrid = userMapPrivilegesCell.attachGrid();
-//userPrivilegesGrid.setImagePath('dhtmlxsuite4/codebase/imgs/');
-userPrivilegesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+//userPrivilegesGrid.setImagePath('dhtmlxSuite4/codebase/imgs/');
+userPrivilegesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 userPrivilegesGrid.setSkin('dhx_web');
 userPrivilegesGrid.setHeader(
         ["Item Name", "Read", "Write", "Create", "Delete"],
@@ -83,7 +83,7 @@ userPermissionsCellToolbar.attachEvent("onClick", userPermissionsCellToolbarClic
 
 
 var userPermissionsGrid = userMapPermissionsCell.attachGrid();
-userPermissionsGrid.setImagePath('dhtmlxsuite4/skins/web/imgs/');
+userPermissionsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
 userPermissionsGrid.setSkin('dhx_web');
 userPermissionsGrid.setHeader(
         ["Item Name", "Create New Maps", "Rename Maps", "Delete Maps"],
@@ -149,7 +149,7 @@ newlyCreatedMapsDefaultRightsCellToolbar.attachEvent("onClick", newlyCreatedMaps
 
 var newlyCreatedMapsDefaultRightsGrid = newlyCreatedMapsDefaultRightsCell.attachGrid();
 newlyCreatedMapsDefaultRightsGrid.setSkin('dhx_web');
-newlyCreatedMapsDefaultRightsGrid.setImagePath('dhtmlxsuite4/skins/web/imgs/');
+newlyCreatedMapsDefaultRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
 
 newlyCreatedMapsDefaultRightsGrid.setHeader(
         ["Item Name", "Read", "Write", "Create", "Delete"],
@@ -209,7 +209,7 @@ selfCreatedMapsDefaultRightsCellToolbar.attachEvent("onClick", selfCreatedMapsDe
 
 var selfCreatedMapsDefaultRightsGrid = selfCreatedMapsDefaultRightsCell.attachGrid();
 selfCreatedMapsDefaultRightsGrid.setSkin('dhx_web');
-selfCreatedMapsDefaultRightsGrid.setImagePath('dhtmlxsuite4/skins/web/imgs/');
+selfCreatedMapsDefaultRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
 
 selfCreatedMapsDefaultRightsGrid.setHeader(
         ["Item Name", "Read", "Write", "Create", "Delete"],
@@ -268,7 +268,7 @@ masterRightsCellToolbar.attachEvent("onClick", masterRightsCellToolbarClicked);
 
 var masterRightsGrid = masterRightsCell.attachGrid();
 masterRightsGrid.setSkin('dhx_web');
-masterRightsGrid.setImagePath('dhtmlxsuite4/skins/web/imgs/');
+masterRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
 
 masterRightsGrid.setHeader(
         ["Item Name", "Master Rights"],
@@ -329,7 +329,7 @@ locationRightsCellToolbar.attachEvent("onClick", locationRightsCellToolbarClicke
 
 var locationRightsGrid = locationRightsCell.attachGrid();
 locationRightsGrid.setSkin('dhx_web');
-locationRightsGrid.setImagePath('dhtmlxsuite4/skins/web/imgs/');
+locationRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
 
 locationRightsGrid.setHeader(
         ["Item Name", "New Location", "Own New Location"],

@@ -62,7 +62,7 @@ lytProjectsData.cells('b').hideHeader();
 lytProjectsData.cells('b').setHeight(420);
 
 var devicesDataGrid = lytProjectsData.cells("a").attachGrid();
-devicesDataGrid.setImagesPath('https://' + location.host + '/dhtmlxsuite4/skins/web/imgs/');
+devicesDataGrid.setImagesPath('https://' + location.host + '/dhtmlxSuite4/skins/web/imgs/');
 devicesDataGrid.setSkin('dhx_web');
 devicesDataGrid.enableColumnAutoSize(true);
 devicesDataGrid.enableAutoWidth(true);
@@ -489,7 +489,7 @@ assetFilesToolbar.attachEvent("onClick", function (id) {
                                 name: "myFiles",
                                 inputWidth: 330,
                                 url: "https://bo.nts.nl/network/Controller/php/data_files.php?action=1&id=" + row_id,
-                                swfPath: "https://" + location.host + "/dhtmlxsuite4/codebase/ext/uploader.swf",
+                                swfPath: "https://" + location.host + "/dhtmlxSuite4/codebase/ext/uploader.swf",
 //                                            swfUrl: "https://" + location.host + "/script/dhtmlx3.6pro/dhtmlxForm/samples/07_uploader/php/dhtmlxform_item_upload.php"
                             }]
                     }];
@@ -544,7 +544,7 @@ assetFilesToolbar.attachEvent("onClick", function (id) {
 
 //files grid
 var assetFilesGrid = asset_file_list_cell.attachGrid();
-assetFilesGrid.setImagesPath('https://' + location.host + '/dhtmlxsuite4/skins/web/imgs/');
+assetFilesGrid.setImagesPath('https://' + location.host + '/dhtmlxSuite4/skins/web/imgs/');
 assetFilesGrid.setHeader("#,File Name,Info,File size,Upload Date,Type,Viewer");
 assetFilesGrid.setColumnIds("id,name,info,filesize,upload_date,type,viewer");
 assetFilesGrid.attachHeader('#numeric_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter');
@@ -851,7 +851,7 @@ function assetRowSelected(id) {
 
 function addEditFieldGrid(field_id, device_id, infoWindow) {
     var editFieldGrid = infoWindow.attachGrid();
-    editFieldGrid.setImagesPath('https://' + location.host + '/dhtmlxsuite4/skins/web/imgs/');
+    editFieldGrid.setImagesPath('https://' + location.host + '/dhtmlxSuite4/skins/web/imgs/');
     editFieldGrid.setHeader("ID,Description,Check");
     editFieldGrid.attachHeader("#text_filter,#text_filter,#master_checkbox");
     editFieldGrid.setColumnIds("id,name,select");
@@ -1023,7 +1023,7 @@ function devicesToolbarClicked(id) {
                                 name: "myFiles",
                                 inputWidth: 330,
                                 url: "https://bo.nts.nl/network/Controller/php/data_import.php?action=1",
-                                swfPath: "https://" + location.host + "/dhtmlxsuite4/codebase/ext/uploader.swf",
+                                swfPath: "https://" + location.host + "/dhtmlxSuite4/codebase/ext/uploader.swf",
 //                                            swfUrl: "https://" + location.host + "/script/dhtmlx3.6pro/dhtmlxForm/samples/07_uploader/php/dhtmlxform_item_upload.php"
                             }]
                     }];
@@ -1061,7 +1061,7 @@ function devicesToolbarClicked(id) {
                                 var myLayout = popupWindow2.attachLayout("1C");
                                 myLayout.cells("a").hideHeader();
                                 var devicesPopUpGrid = myLayout.cells("a").attachGrid();
-                                devicesPopUpGrid.setImagesPath("https://" + location.host + "/dhtmlxsuite4/codebase/imgs/");
+                                devicesPopUpGrid.setImagesPath("https://" + location.host + "/dhtmlxSuite4/codebase/imgs/");
                                 devicesPopUpGrid.setSkin('dhx_web');
                                 devicesPopUpGrid.enableColumnAutoSize(true);
                                 devicesPopUpGrid.enableAutoWidth(true);
@@ -1160,7 +1160,7 @@ function devicesToolbarClicked(id) {
 
                 //export to excel branch selection grid
                 var exportToExcelBranchesGrid = exportToExcelLyt.cells('a').attachGrid();
-                exportToExcelBranchesGrid.setImagesPath('https://' + location.host + '/dhtmlxsuite4/skins/web/imgs/');
+                exportToExcelBranchesGrid.setImagesPath('https://' + location.host + '/dhtmlxSuite4/skins/web/imgs/');
                 exportToExcelBranchesGrid.setHeader("Branch Name,Check");
                 exportToExcelBranchesGrid.attachHeader("#text_filter,#master_checkbox");
                 exportToExcelBranchesGrid.setColumnIds("name,select");
@@ -1175,7 +1175,7 @@ function devicesToolbarClicked(id) {
 
                 //export to excel fields selection grid
                 var exportToExcelFieldsGrid = exportToExcelLyt.cells('b').attachGrid();
-                exportToExcelFieldsGrid.setImagesPath('https://' + location.host + '/dhtmlxsuite4/skins/web/imgs/');
+                exportToExcelFieldsGrid.setImagesPath('https://' + location.host + '/dhtmlxSuite4/skins/web/imgs/');
                 exportToExcelFieldsGrid.setHeader("Field Name,Check");
                 exportToExcelFieldsGrid.attachHeader("#text_filter,#master_checkbox");
                 exportToExcelFieldsGrid.setColumnIds("name,select");
@@ -1206,7 +1206,7 @@ var dataTemplatesLayout = data_templates.attachLayout("1C");
 dataTemplatesLayout.cells("a").hideHeader();
 
 var dataTemplatesGrid = dataTemplatesLayout.cells("a").attachGrid();
-dataTemplatesGrid.setImagesPath('https://' + location.host + '/dhtmlxsuite4/skins/web/imgs/');
+dataTemplatesGrid.setImagesPath('https://' + location.host + '/dhtmlxSuite4/skins/web/imgs/');
 dataTemplatesGrid.setSkin('dhx_web');
 dataTemplatesGrid.setHeader("#,Template ID,Template Title,Default,Query");
 dataTemplatesGrid.setColumnIds("counter,asset_cat_id,template,default_value,query");

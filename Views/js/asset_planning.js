@@ -81,7 +81,7 @@ function assetEventsToolbarClicked(id) {
 
 //planning grid
 var assetEventsGrid = asset_events_layout.cells('a').attachGrid();
-assetEventsGrid.setImagesPath('https://' + location.host + '/dhtmlxsuite4/skins/web/imgs/');
+assetEventsGrid.setImagesPath('https://' + location.host + '/dhtmlxSuite4/skins/web/imgs/');
 assetEventsGrid.setSkin('dhx_web');
 assetEventsGrid.setHeader(",Event Name,Assigned To,Start Date,End Date,Details,Visible,Done");
 assetEventsGrid.setColumnIds("event_id,details,employee_id,start_date,end_date,event_name,visible,completed");
@@ -336,10 +336,10 @@ assetEventDetailsFormdata = [
 
 
 assetEventForm = asset_events_layout.cells('b').attachForm(assetEventDetailsFormdata);
-assetEventForm.getInput("start_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+assetEventForm.getInput("start_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 assetEventForm.getInput("start_date").style.backgroundPosition = "center right";
 assetEventForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-assetEventForm.getInput("end_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+assetEventForm.getInput("end_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 assetEventForm.getInput("end_date").style.backgroundPosition = "center right";
 assetEventForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 
@@ -621,7 +621,7 @@ function toolbarSaveAssetReoccurencesDetails(id) {
 }
 
 var assetEventReoccurencesGrid = assetEventReoccurencesListCell.attachGrid();
-assetEventReoccurencesGrid.setIconsPath("https://" + location.host + "/dhtmlxsuite4/codebase/imgs/");
+assetEventReoccurencesGrid.setIconsPath("https://" + location.host + "/dhtmlxSuite4/codebase/imgs/");
 assetEventReoccurencesGrid.setSkin('dhx_web');
 assetEventReoccurencesGrid.setHeader(["Event Name", "Assigned To", "Start Date", "End Date", "Details", "Protection", "Personal", "Visible", "Done"]);
 assetEventReoccurencesGrid.setColumnIds("details,employee_id,start_date,end_date,event_name,protection,personal,visible,completed");
@@ -704,10 +704,10 @@ var assetEventReoccurencesFormData = [
 
 
 var assetEventReoccurencesForm = assetEventReoccurencesFormCell.attachForm(assetEventReoccurencesFormData);
-assetEventReoccurencesForm.getInput("start_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+assetEventReoccurencesForm.getInput("start_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 assetEventReoccurencesForm.getInput("start_date").style.backgroundPosition = "center right";
 assetEventReoccurencesForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-assetEventReoccurencesForm.getInput("end_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+assetEventReoccurencesForm.getInput("end_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 assetEventReoccurencesForm.getInput("end_date").style.backgroundPosition = "center right";
 assetEventReoccurencesForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 

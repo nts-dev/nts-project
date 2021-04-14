@@ -218,7 +218,7 @@ function toolbar_1Clicked(id) {
 
 var grid_1 = documentsCell.attachGrid();
 grid_1.setSkin('dhx_web');
-grid_1.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+grid_1.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 
 grid_1.setHeader(["ID", "Employee", "Date", "Subject", "Category", "Author", "Language", "Explorer ID", "Template ID", "Accordion", "Visible", "ID2", "Default", "Char"], null, ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:left;", "text-align:left;", "text-align:left;"]);
 grid_1.setColumnIds('Report_ID,Report_Employee_ID,Report_Date,Report_Subject,category_id,Report_Author,language_id,explorer_id,template_id,accordion,visible_in_projects,proj_doc_id,default_report,char');
@@ -832,7 +832,7 @@ status_opts = [
 
 var grid_3 = cell_4.attachGrid();
 grid_3.setSkin('dhx_web');
-grid_3.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+grid_3.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 
 grid_3.setHeader(["Chapter", "Title", "Type", "Topics", "Prevoius Page", "Next Page", "Comments", "Date", "Employee", "Status", "Visible"]);
 grid_3.setColTypes("ro,tree,ro,ed,combo,combo,ed,ro,ro,combo,ch");
@@ -1335,7 +1335,7 @@ function toc_PlanningGridToolbarClicked(id) {
 }
 
 var toc_planningGrid = toc_planningGridCell.attachGrid();
-toc_planningGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+toc_planningGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 toc_planningGrid.setSkin('dhx_web');
 toc_planningGrid.setHeader(["ID", "Event Name", "Assigned To", "Begin Date", "End Date", "Details", "Visible", "Main Task", "Done"],
         null,
@@ -1577,10 +1577,10 @@ tocPlanningFormdata = [
 
 toc_planningFormCell.hideHeader();
 var toc_planningForm = toc_planningFormCell.attachForm(tocPlanningFormdata);
-toc_planningForm.getInput("start_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+toc_planningForm.getInput("start_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 toc_planningForm.getInput("start_date").style.backgroundPosition = "center right";
 toc_planningForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-toc_planningForm.getInput("end_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+toc_planningForm.getInput("end_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 toc_planningForm.getInput("end_date").style.backgroundPosition = "center right";
 toc_planningForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 

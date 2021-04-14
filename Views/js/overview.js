@@ -5,7 +5,7 @@ var overviewLayout = overview.attachLayout('2E');
 var overviewGridCell = overviewLayout.cells('a');
 overviewGridCell.hideHeader();
 var overviewGrid = overviewGridCell.attachGrid();
-overviewGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+overviewGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 overviewGrid.setSkin('dhx_web');
 overviewGrid.setHeader(["ID", "Date", "Done by", "TOC ID", "Location", "Proc. by", "Proc. name", "Proc. ID", "Impl. Doc ID", "Ch.", "BOM", "Bought", "Delivered", "Completed", "Verified", "Duration"], null, ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:left;"]);
 overviewGrid.attachHeader('#numeric_filter,#text_filter,#combo_filter,#numeric_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter', ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:left;"]);
@@ -171,27 +171,27 @@ var overviewForm = overviewFormTab.attachForm(overviewFormdata);
 var overviewFormEmployeeCombo = overviewForm.getCombo("employee_id");
 overviewFormEmployeeCombo.load("Controller/php/projectDocuments.php?action=1");
 
-overviewForm.getInput("date_added").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("date_added").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("date_added").style.backgroundPosition = "center right";
 overviewForm.getInput("date_added").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("procedure_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("procedure_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("procedure_date").style.backgroundPosition = "center right";
 overviewForm.getInput("procedure_date").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("bom").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("bom").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("bom").style.backgroundPosition = "center right";
 overviewForm.getInput("bom").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("delivered").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("delivered").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("delivered").style.backgroundPosition = "center right";
 overviewForm.getInput("delivered").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("completed").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("completed").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("completed").style.backgroundPosition = "center right";
 overviewForm.getInput("completed").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("bought").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("bought").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("bought").style.backgroundPosition = "center right";
 overviewForm.getInput("bought").style.backgroundRepeat = "no-repeat";
 
@@ -362,7 +362,7 @@ function doAfteroverviewGridRefresh() {
 overviewRecordDetailsTabbar.addTab('overviewPlanningTab', 'Planning');
 var overviewPlanningTab = overviewRecordDetailsTabbar.cells('overviewPlanningTab');
 var overviewPlanningGrid = overviewPlanningTab.attachGrid();
-overviewPlanningGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+overviewPlanningGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 overviewPlanningGrid.setSkin('dhx_web');
 overviewPlanningGrid.setHeader(["ID", "Event Name", "Assigned To", "Begin Date", "End Date", "Details", "Visible", "Main Task", "Done", "Comment"],
         null,

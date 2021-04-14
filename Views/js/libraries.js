@@ -32,7 +32,7 @@ function openClassesWindow() {
     classesGridContextMenu.loadStruct("Controller/php/data_libraries.php?action=2");
 
     classesGrid = classes.attachGrid();
-    classesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+    classesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
     classesGrid.setSkin('dhx_web');
     classesGrid.setHeader(["Libraries"]);
     classesGrid.setColTypes("tree");
@@ -245,7 +245,7 @@ function openClassesWindow() {
 
 
     classplanningGrid = classplanningGridCell.attachGrid();
-    classplanningGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+    classplanningGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
     classplanningGrid.setSkin('dhx_web');
     classplanningGrid.setHeader(["ID", "Event Name", "Assigned To", "Begin Date", "End Date", "Details", "Visible", "Main Task", "Done"],
             null,
@@ -347,10 +347,10 @@ function openClassesWindow() {
     classPlanningFormCell.hideHeader();
 
     classPlanningForm = classPlanningFormCell.attachForm(classPlanningFormdata);
-    classPlanningForm.getInput("start_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+    classPlanningForm.getInput("start_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
     classPlanningForm.getInput("start_date").style.backgroundPosition = "center right";
     classPlanningForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-    classPlanningForm.getInput("end_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+    classPlanningForm.getInput("end_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
     classPlanningForm.getInput("end_date").style.backgroundPosition = "center right";
     classPlanningForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 

@@ -204,7 +204,7 @@ function openImportQuestionsWindow(doc_id, page_id = null) {
 
 var grid_main_questions = cell_main_questions.attachGrid();
 grid_main_questions.setSkin('dhx_web');
-grid_main_questions.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+grid_main_questions.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 
 grid_main_questions.setHeader(["ID", "Title", "Content", "Type"]);
 grid_main_questions.setColTypes("ro,ed,ed,combo");
@@ -350,7 +350,7 @@ toolbar_main_choices.attachEvent('onClick', function (id) {
 
 var grid_main_choices = cell_main_choices.attachGrid();
 grid_main_choices.setSkin('dhx_web');
-grid_main_choices.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+grid_main_choices.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 
 grid_main_choices.setHeader(["#", "Answer", "Response", "Score", "JumpTo"]);
 grid_main_choices.setColTypes("cntr,ed,ed,ed,ed");
@@ -601,7 +601,7 @@ function openLinkQuestionsWindow(course_id, page_id) {
 
     var grid_main_questions = cell_main_questions.attachGrid();
     grid_main_questions.setSkin('dhx_web');
-    grid_main_questions.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+    grid_main_questions.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 
     grid_main_questions.setHeader(["S", "ID", "Title", "Content", "Type"]);
     grid_main_questions.setColTypes("ch,ro,ed,ed,combo");
@@ -617,7 +617,7 @@ function openLinkQuestionsWindow(course_id, page_id) {
 
 var grid_page_questions = cell_page_questions.attachGrid();
 grid_page_questions.setSkin('dhx_web');
-grid_page_questions.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+grid_page_questions.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 
 grid_page_questions.setHeader(["ID", "Title", "Content", "Type"]);
 grid_page_questions.setColTypes("ro,ed,ed,combo");
@@ -818,7 +818,7 @@ toolbar_page_choices.attachEvent('onClick', function (id) {
 
 var grid_page_choices = cell_page_question_answers.attachGrid();
 grid_page_choices.setSkin('dhx_web');
-grid_page_choices.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+grid_page_choices.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 
 grid_page_choices.setHeader(["#", "Answer", "Response", "Score", "JumpTo"]);
 grid_page_choices.setColTypes("cntr,ed,ed,ed,ed");

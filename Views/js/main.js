@@ -27,7 +27,7 @@ if (typeof (window.innerWidth) == 'number') {
     myHeight = document.body.clientHeight;
 
 }
-//dhtmlx.image_path = "https://" + location.host + "/dhtmlxsuite4/skins/web/imgs/";
+//dhtmlx.image_path = "https://" + location.host + "/dhtmlxSuite4/skins/web/imgs/";
 window.dhx4.skin = 'dhx_terrace';
 
 //first date values
@@ -237,7 +237,7 @@ var renamePopupFormdata = [
 ];
 
 var projectsTree = projectsTreeCell.attachTree();
-projectsTree.setImagePath('dhtmlxsuite4/codebase/imgs/dhxtree_skyblue/');
+projectsTree.setImagePath(DHTMLXPATH+'codebase/imgs/dhxtree_skyblue/');
 projectsTree.enableHighlighting('1');
 projectsTree.enableDragAndDrop('1', true);
 projectsTree.setSkin('dhx_skyblue');
@@ -415,7 +415,7 @@ projectDocumentsListCell.hideHeader();
 projectDocumentsListCell.setHeight(projectDetailsCell.getHeight() * 0.4);
 
 var projectDocumentsGrid = projectDocumentsListCell.attachGrid();
-projectDocumentsGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+projectDocumentsGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 projectDocumentsGrid.setSkin('dhx_web');
 projectDocumentsGrid.setHeader(["ID", "Employee", "Date", "Subject", "Category", "Author", "Language", "Explorer ID", "Template ID", "Accordion", "Visible", "ID2", "Default", "Char"], null, ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:left;", "text-align:left;", "text-align:left;"]);
 projectDocumentsGrid.setColumnIds('Report_ID,Report_Employee_ID,Report_Date,Report_Subject,category_id,Report_Author,language_id,explorer_id,template_id,accordion,visible_in_projects,proj_doc_id,default_report,char');
@@ -536,7 +536,7 @@ var projectDocumentBranchesCell = projectDocumentBranchesLayout.cells('a');
 projectDocumentBranchesCell.setText('Branches');
 
 var projectDocumentBranchesGrid = projectDocumentBranchesCell.attachGrid();
-projectDocumentBranchesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+projectDocumentBranchesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 projectDocumentBranchesGrid.setHeader(",Branch Name");
 projectDocumentBranchesGrid.setColumnIds("visible,branch_id");
 projectDocumentBranchesGrid.setInitWidthsP("7,*");
@@ -583,7 +583,7 @@ documentFilesToolbar.attachEvent("onClick", documentFilesToolbarClicked);
 
 
 var documentFilesGrid = documentFilesListCell.attachGrid();
-documentFilesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+documentFilesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 documentFilesGrid.setHeader(["ID", "File Name", "File Type", "Language", "File Size", "Upload Date", "Uploaded By", "Visible"]);
 documentFilesGrid.setColTypes("ro,ro,ro,combo,ro,ro,ro,ch");
 documentFilesGrid.setSkin('dhx_web');
@@ -678,7 +678,7 @@ var projectFilesBranchesCell = documentFilesLayout.cells('c');
 projectFilesBranchesCell.setText('Branches');
 
 var projectFileBranchesGrid = projectFilesBranchesCell.attachGrid();
-projectFileBranchesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+projectFileBranchesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 projectFileBranchesGrid.setHeader(",Branch Name");
 projectFileBranchesGrid.setColumnIds("visible,branch_id");
 projectFileBranchesGrid.setInitWidthsP("7,*");
@@ -1103,8 +1103,8 @@ function treeContextSelect(menuitemId, type) {
 }
 
 var projectObjectsGrid = projectObjectsListCell.attachGrid();
-//projectObjectsGrid.setImagePath("https://" + location.host + "/dhtmlxsuite4/codebase/imgs/");
-projectObjectsGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+//projectObjectsGrid.setImagePath("https://" + location.host + "/dhtmlxSuite4/codebase/imgs/");
+projectObjectsGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 projectObjectsGrid.setHeader(["#", "ID", "Name", "Description", "shortcut", "Type", "Status"]);
 projectObjectsGrid.setColumnIds("Nr,id,o_name,o_description,o_shortcut,o_type,o_status");
 projectObjectsGrid.attachHeader("#numeric_filter,#numeric_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter");
@@ -1668,10 +1668,10 @@ function projectsPlanningGridToolbarClicked(id) {
                 window_4.button('minmax').hide();
 
                 var copyEventForm = window_4.attachForm(copyFormData);
-                copyEventForm.getInput("start_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+                copyEventForm.getInput("start_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
                 copyEventForm.getInput("start_date").style.backgroundPosition = "center right";
                 copyEventForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-                copyEventForm.getInput("end_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+                copyEventForm.getInput("end_date").style.backgroundImage = "url(https://" + location.host + "/dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
                 copyEventForm.getInput("end_date").style.backgroundPosition = "center right";
                 copyEventForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 
@@ -1747,7 +1747,7 @@ function projectsPlanningGridToolbarClicked(id) {
                                 name: "myFiles",
                                 inputWidth: 330,
                                 url: "Controller/php/projectsPlanning.php?action=13&project_id=" + projectId + "&doc_id=" + documentId + "&eid=" + uID,
-                                swfPath: "https://" + location.host + "/dhtmlxsuite4/codebase/ext/uploader.swf",
+                                swfPath: "https://" + location.host + "/dhtmlxSuite4/codebase/ext/uploader.swf",
 //                                            swfUrl: "https://" + location.host + "/script/dhtmlx3.6pro/dhtmlxForm/samples/07_uploader/php/dhtmlxform_item_upload.php"
                             }]
                         }];
@@ -1782,7 +1782,7 @@ function projectsPlanningGridToolbarClicked(id) {
 }
 
 var projectPlanningGrid = grid.attachGrid();
-projectPlanningGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+projectPlanningGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 projectPlanningGrid.setSkin('dhx_web');
 projectPlanningGrid.setHeader(["ID", "Event Name", "Assigned To", "Begin Date", "End Date", "Details", "Visible", "Main Task", "Done", "Procedure"],
     null,
@@ -2104,10 +2104,10 @@ eventDetailsFormdata = [
 
 
 var eventDetailsForm = event_details.attachForm(eventDetailsFormdata);
-eventDetailsForm.getInput("start_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+eventDetailsForm.getInput("start_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 eventDetailsForm.getInput("start_date").style.backgroundPosition = "center right";
 eventDetailsForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-eventDetailsForm.getInput("end_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+eventDetailsForm.getInput("end_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 eventDetailsForm.getInput("end_date").style.backgroundPosition = "center right";
 eventDetailsForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 
@@ -2367,7 +2367,7 @@ function toolbarSaveReoccurencesDetails(id) {
 }
 
 var eventReoccurencesGrid = eventReoccurencesListCell.attachGrid();
-eventReoccurencesGrid.setIconsPath("dhtmlxsuite4/codebase/imgs/");
+eventReoccurencesGrid.setIconsPath("dhtmlxSuite4/codebase/imgs/");
 eventReoccurencesGrid.setSkin('dhx_web');
 eventReoccurencesGrid.setHeader(["Event Name", "Assigned To", "Start Date", "End Date", "Details", "Protection", "Personal", "Visible", "Done"]);
 eventReoccurencesGrid.setColumnIds("details,employee_id,start_date,end_date,event_name,protection,personal,visible,completed");
@@ -2506,10 +2506,10 @@ var reoccurencesFormData = [
 
 
 var eventReoccurencesForm = eventReoccurencesFormCell.attachForm(reoccurencesFormData);
-eventReoccurencesForm.getInput("start_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+eventReoccurencesForm.getInput("start_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 eventReoccurencesForm.getInput("start_date").style.backgroundPosition = "center right";
 eventReoccurencesForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-eventReoccurencesForm.getInput("end_date").style.backgroundImage = "url(dhtmlxsuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+eventReoccurencesForm.getInput("end_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
 eventReoccurencesForm.getInput("end_date").style.backgroundPosition = "center right";
 eventReoccurencesForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 

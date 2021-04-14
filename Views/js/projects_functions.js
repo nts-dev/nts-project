@@ -173,7 +173,7 @@ function projectsTreeToolbarClick(id) {
             });
 
             var archivesGrid = window_4.attachGrid();
-            archivesGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+            archivesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
             archivesGrid.setSkin('dhx_web');
             archivesGrid.setHeader(["", "Project ID", "Description"]);
             archivesGrid.attachHeader(",#text_filter,#text_filter");

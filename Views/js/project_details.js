@@ -56,7 +56,7 @@ var projectDetailsBranchCell = projectDetailsLayout.cells('b');
 projectDetailsBranchCell.setText('Branches');
 
 var projectDetailsBranchGrid = projectDetailsBranchCell.attachGrid();
-projectDetailsBranchGrid.setImagesPath('dhtmlxsuite4/skins/web/imgs/');
+projectDetailsBranchGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
 projectDetailsBranchGrid.setHeader(",Branch Name");
 projectDetailsBranchGrid.setColumnIds("visible,branch_id");
 projectDetailsBranchGrid.setInitWidthsP("7,*");
