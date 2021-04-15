@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config.php';
+include_once '../../../config/config.php';
 include_once 'GeneralClass.php';
 
 $action = $_GET['action'];

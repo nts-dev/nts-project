@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config.php';
+include_once '../../../config/config.php';
 require_once 'moodle_functions.php';
 
 define('FETCH_COURSES', 1);

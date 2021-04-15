@@ -1,5 +1,5 @@
 <?php
-include '../config.php';
+include '../config/config.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $query = "SELECT Report_Body,accordion FROM tradestar_reports WHERE Report_ID=" . $id;

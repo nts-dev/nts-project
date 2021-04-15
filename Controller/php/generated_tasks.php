@@ -1,7 +1,7 @@
 <?php
 
 //generate the tasks
-include_once '../../../config.php';
+include_once '../../../config/config.php';
 
 switch ($_GET['action']) {
     case 1:

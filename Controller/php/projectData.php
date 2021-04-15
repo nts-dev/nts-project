@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config.php';
+include_once '../../../config/config.php';
 mysqli_select_db($dbc,'nts_network');
 
 include("GeneralFunctions.php");

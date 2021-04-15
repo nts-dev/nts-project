@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config.php';
+include_once '../../../config/config.php';
 require_once("SpecialCharacter.php");
 
 $language_id = 1;

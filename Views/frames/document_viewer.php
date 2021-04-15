@@ -1,5 +1,5 @@
 <?php
-include_once '../../../config.php';
+include_once '../../../config/config.php';
 
 $id = filter_input(INPUT_GET, 'doc_id', FILTER_SANITIZE_NUMBER_INT);
 

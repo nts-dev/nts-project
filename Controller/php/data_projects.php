@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config.php';
+include_once '../../../config/config.php';
 date_default_timezone_set('UTC');
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_NUMBER_INT);
 $date = date('Y-m-d H:i:s');
