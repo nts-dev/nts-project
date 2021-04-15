@@ -1,10 +1,8 @@
 <?php
 
-ini_set('display_errors', '1');
-session_start();
-require 'config_mysqli.php';
+include_once '../../../config.php';
 include("GeneralFunctions.php");
-date_default_timezone_set('UTC');
+
 $action = $_GET['action'];
 
 switch ($action) {

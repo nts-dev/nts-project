@@ -1,7 +1,6 @@
 <?php
 
-ini_set('display_errors', '0');
-require 'config_mysqli.php';
+include_once '../../../config.php';
 mysqli_select_db($dbc,'nts_network');
 
 include("GeneralFunctions.php");

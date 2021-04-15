@@ -1,48 +1,29 @@
 <?php
-$eid = filter_input(INPUT_GET, 'eid', FILTER_SANITIZE_NUMBER_INT);
-require_once ('../includes.php');
-if (!$eid) {
-    header("location: login.php");
-}
-include 'dbconn.php';
+require '../auth.php';
 
-//error must
-session_start();
-$query_check_credentials = /** @lang text */
-    "
-SELECT 
-    contact_attendent,contact_id,contact_language_id,branch_id 
-    FROM relation_contact JOIN trainees ON trainees.IntranetID = relation_contact.contact_id WHERE contact_id = '" . $eid . "'";
-$result_check_credentials = mysqli_query($dbc, $query_check_credentials);
-if (!$result_check_credentials) {//If the QUery Failed 
-    echo 'Query Failed ';
+if (!isset($_SESSION['USER'])) {
+    header("location: ../login.php");
 }
-if (@mysqli_num_rows($result_check_credentials) == 1) {//if Query is successfull  // A match was made.
-    $_SESSION = mysqli_fetch_array($result_check_credentials, MYSQLI_ASSOC); //Assign the result of this query to SESSION Global Variable
-}
-$username = $_SESSION['contact_attendent'];
-$language = $_SESSION['contact_language_id'];
-//}
+
+$session = unserialize($_SESSION['USER']);
+
+$user = $session->getBOUser();
+$eid = $user->getTraineeId();
+$username = $user->getAttendent();
 ?>
 <html>
     <head>
         <title>Projects Program</title>
-        <link rel="shortcut icon" href="Views/imgs/laptop_settings-512.png"  type="image/x-icon" >
-
+        <link rel="shortcut icon" href="Views/imgs/laptop_settings-512.png"  type="image/x-icon"/>
 
         <?php
-
             CSSPackage::DHTMLX();
             CSSPackage::FONTAWESOME();
 
             JSPackage::DHTMLX();
             JSPackage::JQUERY();
-
-
         ?>
         <link rel="stylesheet" type="text/css" href="Views/css/custom.css"/>
-        <!--  Jquery -->
-<!--        <script src="Views/js/jquery-ui.min.js"></script>-->
 
         <style>
 

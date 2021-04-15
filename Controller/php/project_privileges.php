@@ -1,7 +1,6 @@
 <?php
 
-ini_set('display_errors', '0');
-require 'config_mysqli.php';
+include_once '../../../config.php';
 include("GeneralFunctions.php");
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_NUMBER_INT);

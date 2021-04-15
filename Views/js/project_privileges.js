@@ -26,13 +26,13 @@ userPrivilegesCellToolbar.attachEvent("onClick", doOnUserPrivilegesCellToolbarCl
 
 var userPrivilegesGrid = userMapPrivilegesCell.attachGrid();
 //userPrivilegesGrid.setImagePath('dhtmlxSuite4/codebase/imgs/');
-userPrivilegesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+userPrivilegesGrid.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 userPrivilegesGrid.setSkin('dhx_web');
 userPrivilegesGrid.setHeader(
-        ["Item Name", "Read", "Write", "Create", "Delete"],
-        null,
-        ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]
-        );
+    ["Item Name", "Read", "Write", "Create", "Delete"],
+    null,
+    ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]
+);
 userPrivilegesGrid.setColTypes("tree,ch,ch,ch,ch");
 userPrivilegesGrid.attachHeader('#text_filter,,,,', ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]);
 userPrivilegesGrid.setColAlign('left,center,center,center,center');
@@ -83,13 +83,13 @@ userPermissionsCellToolbar.attachEvent("onClick", userPermissionsCellToolbarClic
 
 
 var userPermissionsGrid = userMapPermissionsCell.attachGrid();
-userPermissionsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
+userPermissionsGrid.setImagePath(DHTMLXPATH + 'skins/web/imgs/');
 userPermissionsGrid.setSkin('dhx_web');
 userPermissionsGrid.setHeader(
-        ["Item Name", "Create New Maps", "Rename Maps", "Delete Maps"],
-        null,
-        ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center"]
-        );
+    ["Item Name", "Create New Maps", "Rename Maps", "Delete Maps"],
+    null,
+    ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center"]
+);
 userPermissionsGrid.setColTypes("tree,ch,ch,ch");
 userPermissionsGrid.attachHeader('#text_filter,,,', ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center"]);
 userPermissionsGrid.setColAlign('left,center,center,center');
@@ -146,16 +146,15 @@ newlyCreatedMapsDefaultRightsCellToolbar.addButton('refresh', 5, 'Refresh Items'
 newlyCreatedMapsDefaultRightsCellToolbar.attachEvent("onClick", newlyCreatedMapsDefaultRightsCellToolbarClicked);
 
 
-
 var newlyCreatedMapsDefaultRightsGrid = newlyCreatedMapsDefaultRightsCell.attachGrid();
 newlyCreatedMapsDefaultRightsGrid.setSkin('dhx_web');
-newlyCreatedMapsDefaultRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
+newlyCreatedMapsDefaultRightsGrid.setImagePath(DHTMLXPATH + 'skins/web/imgs/');
 
 newlyCreatedMapsDefaultRightsGrid.setHeader(
-        ["Item Name", "Read", "Write", "Create", "Delete"],
-        null,
-        ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]
-        );
+    ["Item Name", "Read", "Write", "Create", "Delete"],
+    null,
+    ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]
+);
 newlyCreatedMapsDefaultRightsGrid.setColTypes("tree,ch,ch,ch,ch");
 newlyCreatedMapsDefaultRightsGrid.attachHeader('#text_filter,,,,', ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]);
 newlyCreatedMapsDefaultRightsGrid.setColAlign('left,center,center,center,center');
@@ -187,7 +186,6 @@ newlyCreatedMapsDefaultRightsGrid.init();
 newlyCreatedMapsDefaultRightsGrid.loadXML("Controller/php/project_privileges.php?action=1&tab=3");
 
 
-
 defaultRightsTabbar.addTab('selfCreatedMapsDefaultRightsTab', 'Self Created Maps');
 var selfCreatedMapsDefaultRightsTab = defaultRightsTabbar.cells('selfCreatedMapsDefaultRightsTab');
 
@@ -206,16 +204,15 @@ selfCreatedMapsDefaultRightsCellToolbar.addButton('refresh', 5, 'Refresh Items',
 selfCreatedMapsDefaultRightsCellToolbar.attachEvent("onClick", selfCreatedMapsDefaultRightsCellToolbarClicked);
 
 
-
 var selfCreatedMapsDefaultRightsGrid = selfCreatedMapsDefaultRightsCell.attachGrid();
 selfCreatedMapsDefaultRightsGrid.setSkin('dhx_web');
-selfCreatedMapsDefaultRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
+selfCreatedMapsDefaultRightsGrid.setImagePath(DHTMLXPATH + 'skins/web/imgs/');
 
 selfCreatedMapsDefaultRightsGrid.setHeader(
-        ["Item Name", "Read", "Write", "Create", "Delete"],
-        null,
-        ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]
-        );
+    ["Item Name", "Read", "Write", "Create", "Delete"],
+    null,
+    ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]
+);
 selfCreatedMapsDefaultRightsGrid.setColTypes("tree,ch,ch,ch,ch");
 selfCreatedMapsDefaultRightsGrid.attachHeader('#text_filter,,,,', ["text-align:left;", "text-align:center;", "text-align:center", "text-align:center", "text-align:center"]);
 selfCreatedMapsDefaultRightsGrid.setColAlign('left,center,center,center,center');
@@ -268,13 +265,13 @@ masterRightsCellToolbar.attachEvent("onClick", masterRightsCellToolbarClicked);
 
 var masterRightsGrid = masterRightsCell.attachGrid();
 masterRightsGrid.setSkin('dhx_web');
-masterRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
+masterRightsGrid.setImagePath(DHTMLXPATH + 'skins/web/imgs/');
 
 masterRightsGrid.setHeader(
-        ["Item Name", "Master Rights"],
-        null,
-        ["text-align:left;", "text-align:center;"]
-        );
+    ["Item Name", "Master Rights"],
+    null,
+    ["text-align:left;", "text-align:center;"]
+);
 masterRightsGrid.setColTypes("tree,ch");
 masterRightsGrid.attachHeader('#text_filter', ["text-align:left;", "text-align:center;"]);
 masterRightsGrid.setColAlign('left,center');
@@ -307,8 +304,6 @@ masterRightsGrid.init();
 masterRightsGrid.loadXML("Controller/php/project_privileges.php?action=1&tab=5");
 
 
-
-
 userGenerelPrivilegesTabbar.addTab('locationRightsTab', 'Location Rights');
 var locationRightsTab = userGenerelPrivilegesTabbar.cells('locationRightsTab');
 
@@ -326,16 +321,15 @@ locationRightsCellToolbar.addButton('refresh', 5, 'Refresh Items', 'reload.png',
 locationRightsCellToolbar.attachEvent("onClick", locationRightsCellToolbarClicked);
 
 
-
 var locationRightsGrid = locationRightsCell.attachGrid();
 locationRightsGrid.setSkin('dhx_web');
-locationRightsGrid.setImagePath('dhtmlxSuite4/skins/web/imgs/');
+locationRightsGrid.setImagePath(DHTMLXPATH + 'skins/web/imgs/');
 
 locationRightsGrid.setHeader(
-        ["Item Name", "New Location", "Own New Location"],
-        null,
-        ["text-align:left;", "text-align:center;", "text-align:center"]
-        );
+    ["Item Name", "New Location", "Own New Location"],
+    null,
+    ["text-align:left;", "text-align:center;", "text-align:center"]
+);
 locationRightsGrid.setColTypes("tree,ch,ch");
 locationRightsGrid.attachHeader('#text_filter,,', ["text-align:left;", "text-align:center;", "text-align:center"]);
 locationRightsGrid.setColAlign('left,center,center');

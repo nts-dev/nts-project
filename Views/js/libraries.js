@@ -1,4 +1,6 @@
-var classesGrid, classesGridContextMenu, class_details_form, classHistoryGrid, classHistoryContentIframe, classplanningGrid, classPlanningForm, classContentIframe, classContentCell, classPlanningEmployeeCombo, class_accordion_view;
+var classesGrid, classesGridContextMenu, class_details_form, classHistoryGrid, classHistoryContentIframe,
+    classplanningGrid, classPlanningForm, classContentIframe, classContentCell, classPlanningEmployeeCombo,
+    class_accordion_view;
 var lib_id = null;
 
 function openClassesWindow() {
@@ -32,7 +34,7 @@ function openClassesWindow() {
     classesGridContextMenu.loadStruct("Controller/php/data_libraries.php?action=2");
 
     classesGrid = classes.attachGrid();
-    classesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+    classesGrid.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
     classesGrid.setSkin('dhx_web');
     classesGrid.setHeader(["Libraries"]);
     classesGrid.setColTypes("tree");
@@ -49,8 +51,7 @@ function openClassesWindow() {
         tId = tId > 0 ? tId : 0;
 
         $.get('Controller/php/data_libraries.php?action=13&sId=' + sId + '&tId=' + tId, function (data) {
-            if (data.data.response)
-            {
+            if (data.data.response) {
                 classesGrid.updateFromXML("Controller/php/data_libraries.php?action=4", true, true);
                 dhtmlx.message({title: 'Success', text: data.data.text});
             } else {
@@ -67,8 +68,13 @@ function openClassesWindow() {
                 var colId = classesGrid.getColumnId(cInd);
                 var colType = classesGrid.fldSort[cInd];
 
-                $.post("Controller/php/data_libraries.php?action=10", {id: row_id, index: cInd, fieldvalue: nValue, colId: colId, colType: colType}, function (data)
-                {
+                $.post("Controller/php/data_libraries.php?action=10", {
+                    id: row_id,
+                    index: cInd,
+                    fieldvalue: nValue,
+                    colId: colId,
+                    colType: colType
+                }, function (data) {
                     if (data.data.response) {
                         dhtmlx.message({title: 'Success', text: data.data.text});
                         classesGrid.updateFromXML("Controller/php/data_libraries.php?action=4", true, true);
@@ -79,8 +85,7 @@ function openClassesWindow() {
                 }, 'json');
 
             }
-        } else
-        if (stage === 0 && cell.isCheckbox()) {
+        } else if (stage === 0 && cell.isCheckbox()) {
             return true;
         }
     });
@@ -131,7 +136,7 @@ function openClassesWindow() {
     classContentCell = classEditorLayout.cells('a');
     classContentCell.hideHeader();
     classContentCell.attachURL("Views/frames/class_content.php", false,
-            {report_content: '', height: (classContentCell.getHeight()) / 1.35});
+        {report_content: '', height: (classContentCell.getHeight()) / 1.35});
     classEditorLayout.attachEvent("onContentLoaded", function (id) {
         classContentIframe = classEditorLayout.cells(id).getFrame();
     });
@@ -149,8 +154,7 @@ function openClassesWindow() {
             var rowId = classesGrid.getSelectedRowId();
             if (rowId !== null) {
                 function_details.progressOn();
-                class_details_form.send("Controller/php/data_libraries.php?action=12&id=" + rowId, function (loader, response)
-                {
+                class_details_form.send("Controller/php/data_libraries.php?action=12&id=" + rowId, function (loader, response) {
                     function_details.progressOff();
                     var parsedJSON = eval('(' + response + ')');
                     if (parsedJSON.data.response) {
@@ -245,11 +249,11 @@ function openClassesWindow() {
 
 
     classplanningGrid = classplanningGridCell.attachGrid();
-    classplanningGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+    classplanningGrid.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
     classplanningGrid.setSkin('dhx_web');
     classplanningGrid.setHeader(["ID", "Event Name", "Assigned To", "Begin Date", "End Date", "Details", "Visible", "Main Task", "Done"],
-            null,
-            ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:center;", "text-align:center;"]);
+        null,
+        ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:center;", "text-align:center;"]);
     classplanningGrid.setColumnIds("event_id,details,employee_id,start_date,end_date,event_name,visible,main_task,completed");
     classplanningGrid.attachHeader('#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,,,');
     classplanningGrid.setColTypes("ro,ro,ro,dhxCalendar,dhxCalendar,ed,ch,ch,ch");
@@ -275,21 +279,81 @@ function openClassesWindow() {
     classplanningFormToolbar.attachEvent('onClick', classPlanningFormToolbarClicked);
 
     classPlanningFormdata = [
-        {type: "settings", position: "label-left", labelWidth: classPlanningFormCell.getWidth() * 0.2, inputWidth: classPlanningFormCell.getWidth() * 0.6, offsetTop: 8, offsetLeft: 20},
+        {
+            type: "settings",
+            position: "label-left",
+            labelWidth: classPlanningFormCell.getWidth() * 0.2,
+            inputWidth: classPlanningFormCell.getWidth() * 0.6,
+            offsetTop: 8,
+            offsetLeft: 20
+        },
 //    {type: "fieldset", label: "Event Details", className: "formbox", width: taskDetailsCell.getWidth() * 0.9, offsetLeft: 10, list:
 //                [
         {type: "hidden", label: "ID", name: "event_id", value: ""},
         {type: "input", label: "Event Name", name: "event_name", value: ""},
-        {type: "editor", label: "Details", rows: 2, name: "libraries_details", position: "label-left", value: "", style: "width:" + classPlanningFormCell.getWidth() * 0.6 + ";height:" + classPlanningFormCell.getHeight() * 0.15 + ";"},
+        {
+            type: "editor",
+            label: "Details",
+            rows: 2,
+            name: "libraries_details",
+            position: "label-left",
+            value: "",
+            style: "width:" + classPlanningFormCell.getWidth() * 0.6 + ";height:" + classPlanningFormCell.getHeight() * 0.15 + ";"
+        },
         {type: "combo", comboType: "checkbox", label: "Assigned To", name: "emp", value: ""},
-        {type: "block", width: classPlanningFormCell.getWidth() * 0.8, offsetTop: 0, list: [
-                {type: "calendar", position: "label-left", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", enableTime: false, label: "Start Date", inputWidth: 90, name: "start_date", value: "", readonly: false, offsetLeft: 0},
-                {type: "calendar", position: "label-left", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", enableTime: false, label: "End Date", inputWidth: 90, name: "end_date", value: "", readonly: false, offsetLeft: 0}, //%H:%i
+        {
+            type: "block", width: classPlanningFormCell.getWidth() * 0.8, offsetTop: 0, list: [
+                {
+                    type: "calendar",
+                    position: "label-left",
+                    dateFormat: "%Y-%m-%d",
+                    serverDateFormat: "%Y-%m-%d",
+                    enableTime: false,
+                    label: "Start Date",
+                    inputWidth: 90,
+                    name: "start_date",
+                    value: "",
+                    readonly: false,
+                    offsetLeft: 0
+                },
+                {
+                    type: "calendar",
+                    position: "label-left",
+                    dateFormat: "%Y-%m-%d",
+                    serverDateFormat: "%Y-%m-%d",
+                    enableTime: false,
+                    label: "End Date",
+                    inputWidth: 90,
+                    name: "end_date",
+                    value: "",
+                    readonly: false,
+                    offsetLeft: 0
+                }, //%H:%i
                 {type: "newcolumn", offsetLeft: 10},
-                {type: "input", label: "Time", position: "label-left", name: "begn", value: "", inputWidth: 50, offsetLeft: 10, labelWidth: 30},
-                {type: "input", label: "Time", position: "label-left", name: "end", value: "", inputWidth: 50, offsetLeft: 10, labelWidth: 30}
-            ]},
-        {type: "combo", name: "period", offsetLeft: 20, inputWidth: 150, label: "Period", options: [
+                {
+                    type: "input",
+                    label: "Time",
+                    position: "label-left",
+                    name: "begn",
+                    value: "",
+                    inputWidth: 50,
+                    offsetLeft: 10,
+                    labelWidth: 30
+                },
+                {
+                    type: "input",
+                    label: "Time",
+                    position: "label-left",
+                    name: "end",
+                    value: "",
+                    inputWidth: 50,
+                    offsetLeft: 10,
+                    labelWidth: 30
+                }
+            ]
+        },
+        {
+            type: "combo", name: "period", offsetLeft: 20, inputWidth: 150, label: "Period", options: [
                 {value: "0", text: "_"},
                 {value: "5", text: "5m", selected: false},
                 {value: "10", text: "10m"},
@@ -301,8 +365,10 @@ function openClassesWindow() {
                 {value: "180", text: "3hr"},
                 {value: "240", text: "4hr"},
                 {value: "480", text: "8hr"}
-            ]},
-        {type: "combo", name: "freq", label: "Frequency", offsetLeft: 20, inputWidth: 150, options: [
+            ]
+        },
+        {
+            type: "combo", name: "freq", label: "Frequency", offsetLeft: 20, inputWidth: 150, options: [
                 {value: "1", text: "Every Week", selected: true},
                 {value: "2", text: "Every (2) Weeks"},
                 {value: "10", text: "Every (3) Weeks"},
@@ -313,9 +379,11 @@ function openClassesWindow() {
                 {value: "4", text: "Every (12) Weeks"},
                 {value: "5", text: "Every half year"},
                 {value: "6", text: "Every year"}
-            ]},
+            ]
+        },
 //    {type: "newcolumn", offset: 30},
-        {type: "fieldset", name: "label_days", label: "Select Days", width: classPlanningFormCell.getWidth() * 0.8,
+        {
+            type: "fieldset", name: "label_days", label: "Select Days", width: classPlanningFormCell.getWidth() * 0.8,
             list: [
                 {type: "checkbox", name: "days_select[1]", labelWidth: 25, label: "Mon"},
                 {type: "newcolumn"},
@@ -332,10 +400,43 @@ function openClassesWindow() {
 //            {type: "checkbox", name: "days_select[7]", labelWidth: 25, label: "Sun"},
             ],
         },
-        {type: "checkbox", name: "variable", position: "label-left", labelWidth: 100, value: "1", label: "Enable Variable", checked: false, offsetLeft: 20},
-        {type: "hidden", label: "Rec_Type", position: "label-left", name: "rec_type", value: "", inputWidth: 48, offsetLeft: 5},
-        {type: "hidden", label: "Cat_id", position: "label-left", name: "cat_id", value: "", inputWidth: 48, offsetLeft: 5},
-        {type: "editor", label: "Information", rows: 2, position: "label-left", name: "toc_info", value: "", style: "width:" + classPlanningFormCell.getWidth() * 0.6 + ";height:" + classPlanningFormCell.getHeight() * 0.15 + ";"},
+        {
+            type: "checkbox",
+            name: "variable",
+            position: "label-left",
+            labelWidth: 100,
+            value: "1",
+            label: "Enable Variable",
+            checked: false,
+            offsetLeft: 20
+        },
+        {
+            type: "hidden",
+            label: "Rec_Type",
+            position: "label-left",
+            name: "rec_type",
+            value: "",
+            inputWidth: 48,
+            offsetLeft: 5
+        },
+        {
+            type: "hidden",
+            label: "Cat_id",
+            position: "label-left",
+            name: "cat_id",
+            value: "",
+            inputWidth: 48,
+            offsetLeft: 5
+        },
+        {
+            type: "editor",
+            label: "Information",
+            rows: 2,
+            position: "label-left",
+            name: "toc_info",
+            value: "",
+            style: "width:" + classPlanningFormCell.getWidth() * 0.6 + ";height:" + classPlanningFormCell.getHeight() * 0.15 + ";"
+        },
         {type: "combo", comboType: "checkbox", label: "Approved by", name: "approved_by", value: ""},
         {type: "checkbox", name: "map", value: "0", label: "Show map", checked: true},
         {type: "checkbox", name: "masterrecord", value: "0", label: "Show masterrecord", checked: false},
@@ -347,10 +448,11 @@ function openClassesWindow() {
     classPlanningFormCell.hideHeader();
 
     classPlanningForm = classPlanningFormCell.attachForm(classPlanningFormdata);
-    classPlanningForm.getInput("start_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+    classPlanningForm.getInput("start_date").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
     classPlanningForm.getInput("start_date").style.backgroundPosition = "center right";
     classPlanningForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-    classPlanningForm.getInput("end_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+    classPlanningForm.getInput("end_date").style.backgroundImage = "url("
+    DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
     classPlanningForm.getInput("end_date").style.backgroundPosition = "center right";
     classPlanningForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 
@@ -365,8 +467,12 @@ function openClassesWindow() {
         var eventId = classplanningGrid.getSelectedRowId();
         var employeeId = value;
 
-        $.post("Controller/php/projectsPlanning.php?action=28", {eventId: eventId, employeeId: employeeId, nValue: ((state) ? 1 : 0), eid: uID}, function (data)
-        {
+        $.post("Controller/php/projectsPlanning.php?action=28", {
+            eventId: eventId,
+            employeeId: employeeId,
+            nValue: ((state) ? 1 : 0),
+            eid: uID
+        }, function (data) {
             if (data.data.response) {
                 dhtmlx.message({title: 'Success', text: data.data.text});
             } else {
@@ -411,7 +517,7 @@ function openClassesWindow() {
     var classHistoryContentCell = classHistoryLayout.cells('b');
     classHistoryContentCell.hideHeader();
     classHistoryContentCell.attachURL("Views/frames/history_content.php", false,
-            {report_content: '', height: (classHistoryContentCell.getHeight()) / 1.26});
+        {report_content: '', height: (classHistoryContentCell.getHeight()) / 1.26});
     classHistoryLayout.attachEvent("onContentLoaded", function (id) {
         classHistoryContentIframe = classHistoryLayout.cells(id).getFrame();
     });
@@ -423,10 +529,8 @@ function openClassesWindow() {
     var source_code_history = class_details_tabbar.cells('source_code_history');
 }
 
-function classesToolbarClicked(id)
-{
-    switch (id)
-    {
+function classesToolbarClicked(id) {
+    switch (id) {
         case 'new':
 
             window.dhx4.ajax.get("Controller/php/data_libraries.php?action=1&parent_id=0", function (r) {
@@ -461,8 +565,7 @@ function classesToolbarClicked(id)
                         type: "confirm-warning",
                         text: "Are you sure you  want to delete?",
                         callback: function (y) {
-                            if (y)
-                            {
+                            if (y) {
                                 $.get("Controller/php/data_libraries.php?action=3&id=" + rowId, function (data) {
                                     if (data.data.response) {
                                         dhtmlx.message({title: 'Success', text: data.data.text});
@@ -471,21 +574,19 @@ function classesToolbarClicked(id)
                                         dhtmlx.alert({title: 'Error', text: data.data.text});
                                     }
                                 }, 'json');
-                            } else
-                            {
+                            } else {
                                 return false;
                             }
-                        }});
+                        }
+                    });
                 }
             }
             break;
     }
 }
 
-function classesGridContextMenuSelect(menuitemId, type)
-{
-    switch (menuitemId)
-    {
+function classesGridContextMenuSelect(menuitemId, type) {
+    switch (menuitemId) {
         case 'new_parent':
 
             window.dhx4.ajax.get("Controller/php/data_libraries.php?action=1&parent_id=0", function (r) {
@@ -544,8 +645,7 @@ function classesGridContextMenuSelect(menuitemId, type)
                         type: "confirm-warning",
                         text: "Are you sure you  want to delete?",
                         callback: function (y) {
-                            if (y)
-                            {
+                            if (y) {
                                 $.get("Controller/php/data_libraries.php?action=3&id=" + rowId, function (data) {
                                     if (data.data.response) {
                                         dhtmlx.message({title: 'Success', text: data.data.text});
@@ -554,11 +654,11 @@ function classesGridContextMenuSelect(menuitemId, type)
                                         dhtmlx.alert({title: 'Error', text: data.data.text});
                                     }
                                 }, 'json');
-                            } else
-                            {
+                            } else {
                                 return false;
                             }
-                        }});
+                        }
+                    });
                 }
             }
             break;
@@ -582,8 +682,7 @@ function classHistoryGridStateChanged(id, ind) {
 }
 
 function classHistoryToolbarClicked(id) {
-    switch (id)
-    {
+    switch (id) {
         case "delete":
 
             var row_id = classHistoryGrid.getSelectedRowId();
@@ -594,8 +693,7 @@ function classHistoryToolbarClicked(id) {
                     type: "confirm-warning",
                     text: "Are you sure you to delete this Row?",
                     callback: function (ok) {
-                        if (ok)
-                        {
+                        if (ok) {
                             window.dhx4.ajax.get("Controller/php/data_libraries.php?action=20&case=1&id=" + row_id, function (r) {
                                 var t = null;
                                 try {
@@ -610,8 +708,7 @@ function classHistoryToolbarClicked(id) {
                                 } else
                                     dhtmlx.alert({title: 'Error', text: t.data.text});
                             });
-                        } else
-                        {
+                        } else {
                             return false;
                         }
                     }
@@ -629,8 +726,7 @@ function classHistoryToolbarClicked(id) {
                 type: "confirm-warning",
                 text: "Are you sure you to delete all History?",
                 callback: function (ok) {
-                    if (ok)
-                    {
+                    if (ok) {
                         window.dhx4.ajax.get("Controller/php/data_libraries.php?action=20&case=default&id=" + lib_id, function (r) {
                             var t = null;
                             try {
@@ -645,8 +741,7 @@ function classHistoryToolbarClicked(id) {
                             } else
                                 dhtmlx.alert({title: 'Error', text: t.data.text});
                         });
-                    } else
-                    {
+                    } else {
                         return false;
                     }
                 }
@@ -679,8 +774,7 @@ function classPlanningGridToolbarClicked(id) {
                             ;
                             if (t !== null && t.data.response) {
                                 dhtmlx.message({title: 'Success', text: t.data.text});
-                                classplanningGrid.clearAndLoad('Controller/php/data_libraries.php?action=17&id=' + lib_id, function ()
-                                {
+                                classplanningGrid.clearAndLoad('Controller/php/data_libraries.php?action=17&id=' + lib_id, function () {
                                     classplanningGrid.selectRowById(t.data.newId);
                                 });
                             } else {
@@ -711,8 +805,7 @@ function classPlanningGridToolbarClicked(id) {
                                 type: "confirm-warning",
                                 text: "Are you sure you  want to delete?",
                                 callback: function (y) {
-                                    if (y)
-                                    {
+                                    if (y) {
                                         window.dhx4.ajax.get("Controller/php/projectsPlanning.php?action=4&id=" + row_id + "&project_id=" + projectId, function (r) {
                                             var t = null;
                                             try {
@@ -728,8 +821,7 @@ function classPlanningGridToolbarClicked(id) {
                                                 dhtmlx.alert({title: 'Error', text: t.data.text});
                                             }
                                         });
-                                    } else
-                                    {
+                                    } else {
                                         return false;
                                     }
                                 }
@@ -757,11 +849,9 @@ function classplanningGridEdit(stage, id, index, new_value, old_value, cellIndex
                     dhtmlx.message({type: "Success", text: data.data.text});
                     classplanningGrid.updateFromXML('Controller/php/data_libraries.php?action=17&id=' + lib_id, true, true);
                     classPlanningForm.clear();
-                    classPlanningForm.load('Controller/php/data_libraries.php?action=18&id=' + event_id, function (id, response)
-                    {
+                    classPlanningForm.load('Controller/php/data_libraries.php?action=18&id=' + event_id, function (id, response) {
                         var rec_type = classPlanningForm.getItemValue('rec_type');
-                        for (var i = 0; i < 8; i++)
-                        {
+                        for (var i = 0; i < 8; i++) {
                             classPlanningForm.uncheckItem('days_select[' + i + ']');
                         }
                         var s = '' + rec_type + '';
@@ -770,8 +860,7 @@ function classplanningGridEdit(stage, id, index, new_value, old_value, cellIndex
                             var d = s[k];
                             classPlanningForm.checkItem('days_select[' + d + ']');
                         }
-                        if (classPlanningForm.isItemChecked('variable') == true)
-                        {
+                        if (classPlanningForm.isItemChecked('variable') == true) {
                             disableCheckBox();
                         } else {
                             classPlanningForm.setItemLabel("label_days", "Select Days");
@@ -784,8 +873,7 @@ function classplanningGridEdit(stage, id, index, new_value, old_value, cellIndex
                     dhtmlx.alert({title: 'Error', text: data.data.text});
             }, 'json');
         }
-    } else
-    if (stage === 0 && cell.isCheckbox()) {
+    } else if (stage === 0 && cell.isCheckbox()) {
         return true;
     }
 }
@@ -793,8 +881,11 @@ function classplanningGridEdit(stage, id, index, new_value, old_value, cellIndex
 function classPlanningGridChecked(id, index, state) {
     var colId = classplanningGrid.getColumnId(index);
 
-    $.post("Controller/php/projectsPlanning.php?action=10", {colId: colId, id: id, nValue: ((state) ? 1 : 0)}, function (data)
-    {
+    $.post("Controller/php/projectsPlanning.php?action=10", {
+        colId: colId,
+        id: id,
+        nValue: ((state) ? 1 : 0)
+    }, function (data) {
         if (data.data.response) {
             dhtmlx.message({title: 'Success', text: data.data.text});
         } else {
@@ -812,8 +903,7 @@ function classPlanningGridRowSelect(id, ind) {
     classPlanningForm.load('Controller/php/data_libraries.php?action=18&id=' + event_id, function (id, response) {
 
         var rec_type = classPlanningForm.getItemValue('rec_type');
-        for (var i = 0; i < 8; i++)
-        {
+        for (var i = 0; i < 8; i++) {
             classPlanningForm.uncheckItem('days_select[' + i + ']');
         }
         var s = '' + rec_type + '';
@@ -822,8 +912,7 @@ function classPlanningGridRowSelect(id, ind) {
             var d = s[k];
             classPlanningForm.checkItem('days_select[' + d + ']');
         }
-        if (classPlanningForm.isItemChecked('variable') === true)
-        {
+        if (classPlanningForm.isItemChecked('variable') === true) {
             disableCheckBox();
         } else {
             classPlanningForm.setItemLabel("label_days", "Select Days");
@@ -837,8 +926,7 @@ function classPlanningGridRowSelect(id, ind) {
 }
 
 function classPlanningFormToolbarClicked(id) {
-    switch (id)
-    {
+    switch (id) {
         case 'save':
             var eventId = classplanningGrid.getSelectedRowId();
             var projectId = '9524';
@@ -855,8 +943,7 @@ function classPlanningFormToolbarClicked(id) {
                     dhtmlx.alert("Select employee from dropdown!")
                 } else {
                     classplanningGridCell.progressOn();
-                    classPlanningForm.send("Controller/php/projectsPlanning.php?action=30&approved=" + approved_by + "&eid=" + uID, function (loader, response)
-                    {
+                    classPlanningForm.send("Controller/php/projectsPlanning.php?action=30&approved=" + approved_by + "&eid=" + uID, function (loader, response) {
                         var parsedJSON = eval('(' + response + ')');
                         if (parsedJSON.data.response) {
                             dhtmlx.message({title: 'Success', text: parsedJSON.data.text})
@@ -866,7 +953,6 @@ function classPlanningFormToolbarClicked(id) {
                                 classPlanningEmployeeCombo.load("Controller/php/projectsPlanning.php?action=29&evt_id=" + eventId);
                                 classplanningGridCell.progressOff();
                             });
-
 
 
                         } else {

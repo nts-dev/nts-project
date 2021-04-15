@@ -15,8 +15,7 @@ toolbar_1.loadStruct('<toolbar><item type="button" id="create" text="Create New"
 toolbar_1.attachEvent("onClick", toolbar_1Clicked);
 
 function toolbar_1Clicked(id) {
-    switch (id)
-    {
+    switch (id) {
         case 'libraries':
             openClassesWindow();
             break;
@@ -55,9 +54,11 @@ function toolbar_1Clicked(id) {
                     type: "confirm-warning",
                     text: "Are you sure you to delete this Option?",
                     callback: function (ok) {
-                        if (ok)
-                        {
-                            $.post("Controller/php/projectDocuments.php?action=8", {id: row_id, project_id: projectsTree.getSelectedItemId()}, function (data) {
+                        if (ok) {
+                            $.post("Controller/php/projectDocuments.php?action=8", {
+                                id: row_id,
+                                project_id: projectsTree.getSelectedItemId()
+                            }, function (data) {
                                 if (data.data.response) {
                                     grid_1.deleteRow(grid_1.getSelectedRowId());
                                     tocContentIframe.contentWindow.tinymce.activeEditor.setContent("");
@@ -71,8 +72,7 @@ function toolbar_1Clicked(id) {
                                     dhtmlx.alert({title: 'Error', text: data.data.text});
                             }, 'json');
 
-                        } else
-                        {
+                        } else {
                             return false;
                         }
                     }
@@ -104,8 +104,13 @@ function toolbar_1Clicked(id) {
                 var report_id = row_id.substring(4);
 //                var content = projectDocumentsContentIframe.contentWindow.tinymce.activeEditor.getContent();
 
-                $.post("Controller/projectDocuments.php?action=28", {id: report_id, doc_id: doc_id, lang_id: lang_id, content: content, eid: uID}, function (data)
-                {
+                $.post("Controller/projectDocuments.php?action=28", {
+                    id: report_id,
+                    doc_id: doc_id,
+                    lang_id: lang_id,
+                    content: content,
+                    eid: uID
+                }, function (data) {
                     if (data.data.response) {
                         dhtmlx.message({title: 'Success', text: data.data.text});
                     } else {
@@ -119,13 +124,26 @@ function toolbar_1Clicked(id) {
         case "document_number":
             var resumeFormWidth = myWidth * 0.8;
             var resumeFormData =
-                    [{type: "settings", position: "label-left", labelWidth: resumeFormWidth * 0.08, inputWidth: resumeFormWidth * 0.2, offsetTop: 10, offsetLeft: 10},
-                        {type: "hidden", label: "Applicants Details ", className: "formbox", width: resumeFormWidth * 0.57, list:
-                                    [{type: "input", label: "Document No.", name: "document", value: ""},
-                                        {type: "hidden", name: "report", value: ""},
-                                        {type: "button", name: "submit", value: "submit", offsetLeft: 100}
-                                    ]}
-                    ];
+                [{
+                    type: "settings",
+                    position: "label-left",
+                    labelWidth: resumeFormWidth * 0.08,
+                    inputWidth: resumeFormWidth * 0.2,
+                    offsetTop: 10,
+                    offsetLeft: 10
+                },
+                    {
+                        type: "hidden",
+                        label: "Applicants Details ",
+                        className: "formbox",
+                        width: resumeFormWidth * 0.57,
+                        list:
+                            [{type: "input", label: "Document No.", name: "document", value: ""},
+                                {type: "hidden", name: "report", value: ""},
+                                {type: "button", name: "submit", value: "submit", offsetLeft: 100}
+                            ]
+                    }
+                ];
 
             var row_id = grid_1.getSelectedRowId();
 
@@ -143,8 +161,7 @@ function toolbar_1Clicked(id) {
 
                     addResumeForm.setItemValue("report", row_id);
 
-                    addResumeForm.send("Controller/php/projectDocuments.php?action=9", function (loader, response)
-                    {
+                    addResumeForm.send("Controller/php/projectDocuments.php?action=9", function (loader, response) {
                         popupWindow.hide();
                         var parsedJSON = eval('(' + response + ')');
                         if (parsedJSON.data.response) {
@@ -218,7 +235,7 @@ function toolbar_1Clicked(id) {
 
 var grid_1 = documentsCell.attachGrid();
 grid_1.setSkin('dhx_web');
-grid_1.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+grid_1.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 
 grid_1.setHeader(["ID", "Employee", "Date", "Subject", "Category", "Author", "Language", "Explorer ID", "Template ID", "Accordion", "Visible", "ID2", "Default", "Char"], null, ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:left;", "text-align:left;", "text-align:left;"]);
 grid_1.setColumnIds('Report_ID,Report_Employee_ID,Report_Date,Report_Subject,category_id,Report_Author,language_id,explorer_id,template_id,accordion,visible_in_projects,proj_doc_id,default_report,char');
@@ -363,19 +380,18 @@ cell_1.hideHeader();
 var toolbar_3 = cell_1.attachToolbar();
 toolbar_3.setIconsPath('./codebase/imgs/');
 
-toolbar_3.loadStruct('<toolbar><item type="button" id="save" text="Save" /></toolbar>', function () {});
+toolbar_3.loadStruct('<toolbar><item type="button" id="save" text="Save" /></toolbar>', function () {
+});
 toolbar_3.attachEvent('onClick', toolbar_3Clicked);
-function toolbar_3Clicked(id)
-{
-    switch (id)
-    {
+
+function toolbar_3Clicked(id) {
+    switch (id) {
         case 'save':
             var docId = grid_1.getSelectedRowId();
             if (docId !== null) {
                 docId = docId.substring(4);
                 documentsCell.progressOn();
-                toc_form.send("Controller/php/data_toc.php?action=8&id=" + docId, function (loader, response)
-                {
+                toc_form.send("Controller/php/data_toc.php?action=8&id=" + docId, function (loader, response) {
                     documentsCell.progressOff();
                     var parsedJSON = eval('(' + response + ')');
                     if (parsedJSON.data.response) {
@@ -403,7 +419,8 @@ var toc_formdata = [
     {type: "combo", name: "employee", label: "Employee", comboType: "checkbox", inputWidth: 300, required: true},
     {type: "combo", name: "branch", label: "Branch", comboType: "checkbox", inputWidth: 300, required: true},
     {type: "combo", name: "category", label: "Category", inputWidth: 300},
-    {type: "combo", name: "doc_frequency", label: "Frequency", inputWidth: 300, options: [
+    {
+        type: "combo", name: "doc_frequency", label: "Frequency", inputWidth: 300, options: [
             {value: "0", text: "", selected: true},
             {value: "1", text: "Every Week"},
             {value: "2", text: "Every (2) Weeks"},
@@ -415,7 +432,8 @@ var toc_formdata = [
             {value: "4", text: "Every (12) Weeks"},
             {value: "5", text: "Every half year"},
             {value: "6", text: "Every year"}
-        ]},
+        ]
+    },
     {type: "input", name: "doc_input", label: "Input", rows: "2"},
     {type: "input", name: "doc_output", label: "Output", rows: "2"},
     {type: "input", name: "explorer_id", label: "Procedure"}
@@ -437,8 +455,12 @@ toc_employeeCombo.attachEvent("onCheck", function (value, state) {
     var docId = grid_1.getSelectedRowId();
     var employeeId = value;
 
-    $.post("Controller/php/data_toc.php?action=14", {docId: docId, employeeId: employeeId, nValue: ((state) ? 1 : 0), eid: uID}, function (data)
-    {
+    $.post("Controller/php/data_toc.php?action=14", {
+        docId: docId,
+        employeeId: employeeId,
+        nValue: ((state) ? 1 : 0),
+        eid: uID
+    }, function (data) {
         if (data.data.response) {
             dhtmlx.message({title: 'Success', text: data.data.text});
         } else {
@@ -458,8 +480,12 @@ toc_branchCombo.attachEvent("onCheck", function (value, state) {
     var docId = grid_1.getSelectedRowId();
     var branchId = value;
 
-    $.post("Controller/php/data_toc.php?action=24", {docId: docId, branchId: branchId, nValue: ((state) ? 1 : 0), eid: uID}, function (data)
-    {
+    $.post("Controller/php/data_toc.php?action=24", {
+        docId: docId,
+        branchId: branchId,
+        nValue: ((state) ? 1 : 0),
+        eid: uID
+    }, function (data) {
         if (data.data.response) {
             dhtmlx.message({title: 'Success', text: data.data.text});
         } else {
@@ -486,7 +512,8 @@ cell_4.hideHeader();
 var toolbar_2 = cell_4.attachToolbar();
 toolbar_2.setIconsPath('Views/imgs/');
 
-toolbar_2.loadStruct('<toolbar><item type="button" id="new" text="New" img="new.gif"/><item type="separator" id="button_separator_6" /><item type="button" id="delete" text="Delete"  img="deleteall.png"/><item type="separator" id="button_separator_7" /><item type="button" id="up" text="Up"  img="up.png"/><item type="separator" id="button_separator_8" /><item type="button" id="down" text="Down"  img="down.png"/><item type="separator" id="button_separator_9" /><item type="buttonTwoState" id="details" text="Details On" /><item type="separator" id="sep_8" /><item type="button" id="save_all" text="Save All" img="save.gif" /></toolbar>', function () {});
+toolbar_2.loadStruct('<toolbar><item type="button" id="new" text="New" img="new.gif"/><item type="separator" id="button_separator_6" /><item type="button" id="delete" text="Delete"  img="deleteall.png"/><item type="separator" id="button_separator_7" /><item type="button" id="up" text="Up"  img="up.png"/><item type="separator" id="button_separator_8" /><item type="button" id="down" text="Down"  img="down.png"/><item type="separator" id="button_separator_9" /><item type="buttonTwoState" id="details" text="Details On" /><item type="separator" id="sep_8" /><item type="button" id="save_all" text="Save All" img="save.gif" /></toolbar>', function () {
+});
 toolbar_2.attachEvent('onClick', toolbar_2Clicked);
 
 toolbar_2.attachEvent("onStateChange", function (id, state) {
@@ -505,10 +532,8 @@ toolbar_2.attachEvent("onStateChange", function (id, state) {
     }
 });
 
-function toolbar_2Clicked(id)
-{
-    switch (id)
-    {
+function toolbar_2Clicked(id) {
+    switch (id) {
         case 'new':
             var docId = grid_1.getSelectedRowId();
             if (docId !== null) {
@@ -549,8 +574,7 @@ function toolbar_2Clicked(id)
                         type: "confirm-warning",
                         text: "Are you sure you  want to delete?",
                         callback: function (y) {
-                            if (y)
-                            {
+                            if (y) {
                                 $.get("Controller/php/data_toc.php?action=3&id=" + rowId, function (data) {
                                     if (data.data.response) {
                                         dhtmlx.message({title: 'Success', text: data.data.text});
@@ -559,11 +583,11 @@ function toolbar_2Clicked(id)
                                         dhtmlx.alert({title: 'Error', text: data.data.text});
                                     }
                                 }, 'json');
-                            } else
-                            {
+                            } else {
                                 return false;
                             }
-                        }});
+                        }
+                    });
                 }
             }
             break;
@@ -580,8 +604,7 @@ function toolbar_2Clicked(id)
                 var parentId = grid_3.getParentId(toc_id);
                 var sortId = grid_3.cells(toc_id, 2).getValue();
 
-                $.get("Controller/php/data_toc.php?action=5&itemId=" + toc_id + "&parentId=" + parentId + "&sortId=" + sortId + "&direction=" + id, function (data)
-                {
+                $.get("Controller/php/data_toc.php?action=5&itemId=" + toc_id + "&parentId=" + parentId + "&sortId=" + sortId + "&direction=" + id, function (data) {
                     if (data.data.success) {
                         grid_3.updateFromXML("Controller/php/data_toc.php?action=4&doc_id=" + docId);
                         grid_3.moveRowUp(grid_3.getSelectedId());
@@ -601,8 +624,7 @@ function toolbar_2Clicked(id)
                 var parentId = grid_3.getParentId(toc_id);
                 var sortId = grid_3.cells(toc_id, 2).getValue();
 
-                $.get("Controller/php/data_toc.php?action=5&itemId=" + toc_id + "&parentId=" + parentId + "&sortId=" + sortId + "&direction=" + id, function (data)
-                {
+                $.get("Controller/php/data_toc.php?action=5&itemId=" + toc_id + "&parentId=" + parentId + "&sortId=" + sortId + "&direction=" + id, function (data) {
 
                     if (data.data.success) {
                         grid_3.updateFromXML("Controller/php/data_toc.php?action=4&doc_id=" + docId);
@@ -629,12 +651,10 @@ function toolbar_2Clicked(id)
     }
 }
 
-function grid_3ContextMenuSelect(menuitemId, type)
-{
+function grid_3ContextMenuSelect(menuitemId, type) {
     var docId = grid_1.getSelectedRowId().split('_')[1];
 //    docId = docId.substring(4);
-    switch (menuitemId)
-    {
+    switch (menuitemId) {
         case 'new_parent':
             //check if row is selected
             if (docId === null) {
@@ -706,7 +726,7 @@ function grid_3ContextMenuSelect(menuitemId, type)
             createTopic(course_id, count);
             break;
 
-            //add page module
+        //add page module
         case 'page':
 
 //            var section_id = grid_3.cells(rowId, 2).getValue();
@@ -778,8 +798,7 @@ function grid_3ContextMenuSelect(menuitemId, type)
                         type: "confirm-warning",
                         text: "Are you sure you  want to delete?",
                         callback: function (y) {
-                            if (y)
-                            {
+                            if (y) {
                                 $.get("Controller/php/data_toc.php?action=3&id=" + rowId, function (data) {
                                     if (data.data.response) {
                                         dhtmlx.message({title: 'Success', text: data.data.text});
@@ -788,11 +807,11 @@ function grid_3ContextMenuSelect(menuitemId, type)
                                         dhtmlx.alert({title: 'Error', text: data.data.text});
                                     }
                                 }, 'json');
-                            } else
-                            {
+                            } else {
                                 return false;
                             }
-                        }});
+                        }
+                    });
                 }
             }
             break;
@@ -800,7 +819,8 @@ function grid_3ContextMenuSelect(menuitemId, type)
 }
 
 var struct = [
-    {id: "new", text: "New", items: [
+    {
+        id: "new", text: "New", items: [
             {id: "new_parent", text: "Root Item", img: "new.gif"},
             {id: "new_child", text: "Child Item", img: "new.gif"},
             {id: "topic", text: "Topic", img: "new.gif"},
@@ -808,7 +828,8 @@ var struct = [
             {id: "lesson", text: "Lesson", img: "new.gif"},
             {id: "content_page", text: "Content Page", img: "new.gif"},
             {id: "quiz", text: "Question Page", img: "new.gif"},
-        ]},
+        ]
+    },
     {id: "delete", text: "Delete", img: "deleteall.png"}
 ];
 
@@ -821,7 +842,6 @@ grid_3ContextMenu.attachEvent("onClick", grid_3ContextMenuSelect);
 grid_3ContextMenu.loadStruct(struct);
 
 
-
 status_opts = [
     ["To do", "To do"],
     ["Planned", "Planned"],
@@ -832,7 +852,7 @@ status_opts = [
 
 var grid_3 = cell_4.attachGrid();
 grid_3.setSkin('dhx_web');
-grid_3.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+grid_3.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 
 grid_3.setHeader(["Chapter", "Title", "Type", "Topics", "Prevoius Page", "Next Page", "Comments", "Date", "Employee", "Status", "Visible"]);
 grid_3.setColTypes("ro,tree,ro,ed,combo,combo,ed,ro,ro,combo,ch");
@@ -950,10 +970,15 @@ function grid_1EditCell(stage, id, index, new_value) {
                 } else if (level === 1) {
 
                     var serverurl = domainname + '/moosh.php?action=3&course=' + course_id;
-                    var postData = {id: grid_3.cells(row_id, 3).getValue(), index: index, fieldvalue: new_value, colId: colId, colType: colType};
+                    var postData = {
+                        id: grid_3.cells(row_id, 3).getValue(),
+                        index: index,
+                        fieldvalue: new_value,
+                        colId: colId,
+                        colType: colType
+                    };
 
-                    $.post(serverurl, postData, function (data)
-                    {
+                    $.post(serverurl, postData, function (data) {
                         if (data.data.response) {
                             dhtmlx.message({title: 'Success', text: data.data.text});
                         } else {
@@ -1005,8 +1030,13 @@ function grid_1EditCell(stage, id, index, new_value) {
 
             if (row_id > 0 || typeof row_id !== 'undefined') {
 
-                $.post("Controller/php/data_toc.php?action=10", {id: row_id, index: index, fieldvalue: new_value, colId: colId, colType: colType}, function (data)
-                {
+                $.post("Controller/php/data_toc.php?action=10", {
+                    id: row_id,
+                    index: index,
+                    fieldvalue: new_value,
+                    colId: colId,
+                    colType: colType
+                }, function (data) {
                     if (data.data.response) {
                         dhtmlx.message({title: 'Success', text: data.data.text});
                         grid_3.updateFromXML("Controller/php/data_toc.php?action=4&doc_id=" + docId, true, true);
@@ -1025,7 +1055,13 @@ function grid_1EditCell(stage, id, index, new_value) {
             cell = grid_3.cells(id, index);
             new_value = (cell.getValue() == '1') ? '0' : '1';
 
-            $.post("Controller/php/data_toc.php?action=10", {id: id, index: index, fieldvalue: new_value, colId: colId, colType: colType}, function (data) {
+            $.post("Controller/php/data_toc.php?action=10", {
+                id: id,
+                index: index,
+                fieldvalue: new_value,
+                colId: colId,
+                colType: colType
+            }, function (data) {
                 if (data.data.response) {
 
                     cell.setValue(new_value);
@@ -1051,8 +1087,7 @@ grid_3.attachEvent('onDrop', function (sId, tId, dId, sObj, tObj, sCol, tCol) {
     docId = docId.substring(4);
 
     $.get('Controller/php/data_toc.php?action=13&sId=' + sId + '&tId=' + tId + "&doc_id=" + docId, function (data) {
-        if (data.data.response)
-        {
+        if (data.data.response) {
             grid_3.updateFromXML("Controller/php/data_toc.php?action=4&doc_id=" + docId, true, true);
             dhtmlx.message({title: 'Success', text: data.data.text});
         } else {
@@ -1081,9 +1116,8 @@ grid_3.attachEvent('onSelectStateChanged', function (id, ind) {
             if (modname === 'lesson') {
 
                 var lesson_id = grid_3.cells(grid_3.getParentId(id), 3).getValue();
-                
-                grid_page_questions.clearAndLoad("Controller/php/data_questions.php?action=4&page_id=" + id.split("_")[1]);
 
+                grid_page_questions.clearAndLoad("Controller/php/data_questions.php?action=4&page_id=" + id.split("_")[1]);
 
 
 //                tabMoodleCell.progressOn();
@@ -1157,7 +1191,7 @@ var tocContentIframe;
 var tocContentCell = tocEditorLayout.cells('a');
 tocContentCell.hideHeader();
 tocContentCell.attachURL("Views/frames/toc_content.php", false,
-        {report_content: '', height: (tocContentCell.getHeight()) / 1.65});
+    {report_content: '', height: (tocContentCell.getHeight()) / 1.65});
 tocEditorLayout.attachEvent("onContentLoaded", function (id) {
     tocContentIframe = tocEditorLayout.cells(id).getFrame();
 });
@@ -1179,14 +1213,14 @@ var tab_7 = tabbar_3.cells('tab_7');
 var toolbar_4 = tab_7.attachToolbar();
 toolbar_4.setIconsPath('./codebase/imgs/');
 
-toolbar_4.loadStruct('<toolbar><item type="button" id="save" text="Save" /></toolbar>', function () {});
+toolbar_4.loadStruct('<toolbar><item type="button" id="save" text="Save" /></toolbar>', function () {
+});
 toolbar_4.attachEvent("onClick", function (id) {
     if (id === 'save') {
         var chapterId = grid_3.getSelectedRowId();
         if (chapterId !== null) {
             tab_7.progressOn();
-            form_4.send("Controller/php/data_toc.php?action=12&id=" + chapterId, function (loader, response)
-            {
+            form_4.send("Controller/php/data_toc.php?action=12&id=" + chapterId, function (loader, response) {
                 tab_7.progressOff();
                 var parsedJSON = eval('(' + response + ')');
                 if (parsedJSON.data.response) {
@@ -1210,17 +1244,30 @@ var toc_formdata = [
 //    {type: "input", name: "form_input_7", label: "Chapter", readonly: true},
 
     {type: "input", name: "title", label: "Title"},
-    {type: "calendar", className: "formbox", position: "label-left", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", enableTime: false, label: "Date", name: "chapter_date", value: "", readonly: true},
+    {
+        type: "calendar",
+        className: "formbox",
+        position: "label-left",
+        dateFormat: "%Y-%m-%d",
+        serverDateFormat: "%Y-%m-%d",
+        enableTime: false,
+        label: "Date",
+        name: "chapter_date",
+        value: "",
+        readonly: true
+    },
     {type: "input", name: "chapter_author", label: "Author", readonly: true},
     {type: "input", name: "topics", label: "Topics", rows: "8"},
     {type: "input", name: "comments", label: "Comments", rows: "8"},
-    {type: "combo", name: "status", label: "Status", inputWidth: 300, options: [
+    {
+        type: "combo", name: "status", label: "Status", inputWidth: 300, options: [
             {value: "To do", text: "To do", selected: true},
             {value: "Planned", text: "Planned"},
             {value: "Done", text: "Done"},
             {value: "Verified", text: "Verified"},
             {value: "Implemented", text: "Implemented"}
-        ]},
+        ]
+    },
 ];
 var form_4 = tab_7.attachForm(toc_formdata);
 
@@ -1264,8 +1311,7 @@ function toc_PlanningGridToolbarClicked(id) {
                                 ;
                                 if (t !== null && t.data.response) {
                                     dhtmlx.message({title: 'Success', text: t.data.text});
-                                    toc_planningGrid.clearAndLoad('Controller/php/data_toc.php?action=17&id=' + toc_id, function ()
-                                    {
+                                    toc_planningGrid.clearAndLoad('Controller/php/data_toc.php?action=17&id=' + toc_id, function () {
                                         toc_planningGrid.selectRowById(t.data.newId);
                                     });
                                 } else {
@@ -1301,8 +1347,7 @@ function toc_PlanningGridToolbarClicked(id) {
                                 type: "confirm-warning",
                                 text: "Are you sure you  want to delete?",
                                 callback: function (y) {
-                                    if (y)
-                                    {
+                                    if (y) {
                                         window.dhx4.ajax.get("Controller/php/projectsPlanning.php?action=4&id=" + row_id + "&project_id=" + projectId, function (r) {
                                             var t = null;
                                             try {
@@ -1318,8 +1363,7 @@ function toc_PlanningGridToolbarClicked(id) {
                                                 dhtmlx.alert({title: 'Error', text: t.data.text});
                                             }
                                         });
-                                    } else
-                                    {
+                                    } else {
                                         return false;
                                     }
                                 }
@@ -1335,11 +1379,11 @@ function toc_PlanningGridToolbarClicked(id) {
 }
 
 var toc_planningGrid = toc_planningGridCell.attachGrid();
-toc_planningGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+toc_planningGrid.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 toc_planningGrid.setSkin('dhx_web');
 toc_planningGrid.setHeader(["ID", "Event Name", "Assigned To", "Begin Date", "End Date", "Details", "Visible", "Main Task", "Done"],
-        null,
-        ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:center;", "text-align:center;"]);
+    null,
+    ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:center;", "text-align:center;"]);
 toc_planningGrid.setColumnIds("event_id,details,employee_id,start_date,end_date,event_name,visible,main_task,completed");
 toc_planningGrid.attachHeader('#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,,,');
 toc_planningGrid.setColTypes("ro,ro,ro,dhxCalendar,dhxCalendar,ed,ch,ch,ch");
@@ -1374,11 +1418,9 @@ function toc_planningGridEdit(stage, id, index, new_value, old_value, cellIndex)
                     dhtmlx.message({type: "Success", text: data.data.text});
                     toc_planningGrid.updateFromXML('Controller/php/data_toc.php?action=17&id=' + toc_id, true, true);
                     toc_planningForm.clear();
-                    toc_planningForm.load('Controller/php/data_toc.php?action=18&id=' + event_id, function (id, response)
-                    {
+                    toc_planningForm.load('Controller/php/data_toc.php?action=18&id=' + event_id, function (id, response) {
                         var rec_type = toc_planningForm.getItemValue('rec_type');
-                        for (var i = 0; i < 8; i++)
-                        {
+                        for (var i = 0; i < 8; i++) {
                             toc_planningForm.uncheckItem('days_select[' + i + ']');
                         }
                         var s = '' + rec_type + '';
@@ -1387,8 +1429,7 @@ function toc_planningGridEdit(stage, id, index, new_value, old_value, cellIndex)
                             var d = s[k];
                             toc_planningForm.checkItem('days_select[' + d + ']');
                         }
-                        if (toc_planningForm.isItemChecked('variable') == true)
-                        {
+                        if (toc_planningForm.isItemChecked('variable') == true) {
                             disableCheckBox();
                         } else {
                             toc_planningForm.setItemLabel("label_days", "Select Days");
@@ -1401,8 +1442,7 @@ function toc_planningGridEdit(stage, id, index, new_value, old_value, cellIndex)
                     dhtmlx.alert({title: 'Error', text: data.data.text});
             }, 'json');
         }
-    } else
-    if (stage === 0 && cell.isCheckbox()) {
+    } else if (stage === 0 && cell.isCheckbox()) {
         return true;
     }
 }
@@ -1410,8 +1450,11 @@ function toc_planningGridEdit(stage, id, index, new_value, old_value, cellIndex)
 function toc_planningGridChecked(id, index, state) {
     var colId = toc_planningGrid.getColumnId(index);
 
-    $.post("Controller/php/projectsPlanning.php?action=10", {colId: colId, id: id, nValue: ((state) ? 1 : 0)}, function (data)
-    {
+    $.post("Controller/php/projectsPlanning.php?action=10", {
+        colId: colId,
+        id: id,
+        nValue: ((state) ? 1 : 0)
+    }, function (data) {
         if (data.data.response) {
             dhtmlx.message({title: 'Success', text: data.data.text});
         } else {
@@ -1426,11 +1469,9 @@ function toc_planningGridRowSelect(id, ind) {
     var event_id = id;
 
     //load form details
-    toc_planningForm.load('Controller/php/data_toc.php?action=18&id=' + event_id, function (id, response)
-    {
+    toc_planningForm.load('Controller/php/data_toc.php?action=18&id=' + event_id, function (id, response) {
         var rec_type = toc_planningForm.getItemValue('rec_type');
-        for (var i = 0; i < 8; i++)
-        {
+        for (var i = 0; i < 8; i++) {
             toc_planningForm.uncheckItem('days_select[' + i + ']');
         }
         var s = '' + rec_type + '';
@@ -1439,8 +1480,7 @@ function toc_planningGridRowSelect(id, ind) {
             var d = s[k];
             toc_planningForm.checkItem('days_select[' + d + ']');
         }
-        if (toc_planningForm.isItemChecked('variable') == true)
-        {
+        if (toc_planningForm.isItemChecked('variable') == true) {
             disableCheckBox();
         } else {
             toc_planningForm.setItemLabel("label_days", "Select Days");
@@ -1460,10 +1500,8 @@ toc_planningFormToolbar.loadStruct('<toolbar><item type="button" id="save" text=
 });
 toc_planningFormToolbar.attachEvent('onClick', toc_planningFormToolbarClicked);
 
-function toc_planningFormToolbarClicked(id)
-{
-    switch (id)
-    {
+function toc_planningFormToolbarClicked(id) {
+    switch (id) {
         case 'save':
             var eventId = toc_planningGrid.getSelectedRowId();
             if (eventId > 0) {
@@ -1478,8 +1516,7 @@ function toc_planningFormToolbarClicked(id)
                     dhtmlx.alert("Select employee from dropdown!")
                 } else {
                     toc_planningGridCell.progressOn();
-                    toc_planningForm.send("Controller/php/projectsPlanning.php?action=38&approved=" + approved_by + "&eid=" + uID, function (loader, response)
-                    {
+                    toc_planningForm.send("Controller/php/projectsPlanning.php?action=38&approved=" + approved_by + "&eid=" + uID, function (loader, response) {
                         var parsedJSON = eval('(' + response + ')');
                         if (parsedJSON.data.response) {
                             dhtmlx.message({title: 'Success', text: parsedJSON.data.text});
@@ -1505,21 +1542,81 @@ function toc_planningFormToolbarClicked(id)
 
 
 tocPlanningFormdata = [
-    {type: "settings", position: "label-left", labelWidth: toc_planningFormCell.getWidth() * 0.2, inputWidth: toc_planningFormCell.getWidth() * 0.6, offsetTop: 8, offsetLeft: 20},
+    {
+        type: "settings",
+        position: "label-left",
+        labelWidth: toc_planningFormCell.getWidth() * 0.2,
+        inputWidth: toc_planningFormCell.getWidth() * 0.6,
+        offsetTop: 8,
+        offsetLeft: 20
+    },
 //    {type: "fieldset", label: "Event Details", className: "formbox", width: taskDetailsCell.getWidth() * 0.9, offsetLeft: 10, list:
 //                [
     {type: "hidden", label: "ID", name: "event_id", value: ""},
     {type: "input", label: "Event Name", name: "event_name", value: ""},
-    {type: "editor", label: "Details", rows: 2, name: "toc_details", position: "label-top", value: "", style: "width:" + toc_planningFormCell.getWidth() * 0.8 + ";height:" + toc_planningFormCell.getHeight() * 0.2 + ";"},
+    {
+        type: "editor",
+        label: "Details",
+        rows: 2,
+        name: "toc_details",
+        position: "label-top",
+        value: "",
+        style: "width:" + toc_planningFormCell.getWidth() * 0.8 + ";height:" + toc_planningFormCell.getHeight() * 0.2 + ";"
+    },
     {type: "combo", comboType: "checkbox", label: "Assigned To", name: "emp", value: ""},
-    {type: "block", width: toc_planningFormCell.getWidth() * 0.8, offsetTop: 0, list: [
-            {type: "calendar", position: "label-left", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", enableTime: false, label: "Start Date", inputWidth: 90, name: "start_date", value: "", readonly: false, offsetLeft: 0},
-            {type: "calendar", position: "label-left", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", enableTime: false, label: "End Date", inputWidth: 90, name: "end_date", value: "", readonly: false, offsetLeft: 0}, //%H:%i
+    {
+        type: "block", width: toc_planningFormCell.getWidth() * 0.8, offsetTop: 0, list: [
+            {
+                type: "calendar",
+                position: "label-left",
+                dateFormat: "%Y-%m-%d",
+                serverDateFormat: "%Y-%m-%d",
+                enableTime: false,
+                label: "Start Date",
+                inputWidth: 90,
+                name: "start_date",
+                value: "",
+                readonly: false,
+                offsetLeft: 0
+            },
+            {
+                type: "calendar",
+                position: "label-left",
+                dateFormat: "%Y-%m-%d",
+                serverDateFormat: "%Y-%m-%d",
+                enableTime: false,
+                label: "End Date",
+                inputWidth: 90,
+                name: "end_date",
+                value: "",
+                readonly: false,
+                offsetLeft: 0
+            }, //%H:%i
             {type: "newcolumn", offsetLeft: 10},
-            {type: "input", label: "Time", position: "label-left", name: "begn", value: "", inputWidth: 50, offsetLeft: 10, labelWidth: 30},
-            {type: "input", label: "Time", position: "label-left", name: "end", value: "", inputWidth: 50, offsetLeft: 10, labelWidth: 30}
-        ]},
-    {type: "combo", name: "period", offsetLeft: 20, inputWidth: 150, label: "Period", options: [
+            {
+                type: "input",
+                label: "Time",
+                position: "label-left",
+                name: "begn",
+                value: "",
+                inputWidth: 50,
+                offsetLeft: 10,
+                labelWidth: 30
+            },
+            {
+                type: "input",
+                label: "Time",
+                position: "label-left",
+                name: "end",
+                value: "",
+                inputWidth: 50,
+                offsetLeft: 10,
+                labelWidth: 30
+            }
+        ]
+    },
+    {
+        type: "combo", name: "period", offsetLeft: 20, inputWidth: 150, label: "Period", options: [
             {value: "0", text: "_"},
             {value: "5", text: "5m", selected: false},
             {value: "10", text: "10m"},
@@ -1531,8 +1628,10 @@ tocPlanningFormdata = [
             {value: "180", text: "3hr"},
             {value: "240", text: "4hr"},
             {value: "480", text: "8hr"}
-        ]},
-    {type: "combo", name: "freq", label: "Frequency", offsetLeft: 20, inputWidth: 150, options: [
+        ]
+    },
+    {
+        type: "combo", name: "freq", label: "Frequency", offsetLeft: 20, inputWidth: 150, options: [
             {value: "1", text: "Every Week", selected: true},
             {value: "2", text: "Every (2) Weeks"},
             {value: "10", text: "Every (3) Weeks"},
@@ -1543,9 +1642,11 @@ tocPlanningFormdata = [
             {value: "4", text: "Every (12) Weeks"},
             {value: "5", text: "Every half year"},
             {value: "6", text: "Every year"}
-        ]},
+        ]
+    },
 //    {type: "newcolumn", offset: 30},
-    {type: "fieldset", name: "label_days", label: "Select Days", width: toc_planningFormCell.getWidth() * 0.8,
+    {
+        type: "fieldset", name: "label_days", label: "Select Days", width: toc_planningFormCell.getWidth() * 0.8,
         list: [
             {type: "checkbox", name: "days_select[1]", labelWidth: 25, label: "Mon"},
 //            {type: "newcolumn"},
@@ -1562,10 +1663,35 @@ tocPlanningFormdata = [
 //            {type: "checkbox", name: "days_select[7]", labelWidth: 25, label: "Sun"},
         ],
     },
-    {type: "checkbox", name: "variable", position: "label-left", labelWidth: 100, value: "1", label: "Enable Variable", checked: false, offsetLeft: 20},
-    {type: "hidden", label: "Rec_Type", position: "label-left", name: "rec_type", value: "", inputWidth: 48, offsetLeft: 5},
+    {
+        type: "checkbox",
+        name: "variable",
+        position: "label-left",
+        labelWidth: 100,
+        value: "1",
+        label: "Enable Variable",
+        checked: false,
+        offsetLeft: 20
+    },
+    {
+        type: "hidden",
+        label: "Rec_Type",
+        position: "label-left",
+        name: "rec_type",
+        value: "",
+        inputWidth: 48,
+        offsetLeft: 5
+    },
     {type: "hidden", label: "Cat_id", position: "label-left", name: "cat_id", value: "", inputWidth: 48, offsetLeft: 5},
-    {type: "editor", label: "Information", rows: 2, position: "label-top", name: "toc_info", value: "", style: "width:" + toc_planningFormCell.getWidth() * 0.8 + ";height:" + toc_planningFormCell.getHeight() * 0.2 + ";"},
+    {
+        type: "editor",
+        label: "Information",
+        rows: 2,
+        position: "label-top",
+        name: "toc_info",
+        value: "",
+        style: "width:" + toc_planningFormCell.getWidth() * 0.8 + ";height:" + toc_planningFormCell.getHeight() * 0.2 + ";"
+    },
     {type: "combo", comboType: "checkbox", label: "Approved by", name: "approved_by", value: ""},
     {type: "checkbox", name: "map", value: "0", label: "Show map", checked: true},
     {type: "checkbox", name: "masterrecord", value: "0", label: "Show masterrecord", checked: false},
@@ -1577,10 +1703,10 @@ tocPlanningFormdata = [
 
 toc_planningFormCell.hideHeader();
 var toc_planningForm = toc_planningFormCell.attachForm(tocPlanningFormdata);
-toc_planningForm.getInput("start_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+toc_planningForm.getInput("start_date").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 toc_planningForm.getInput("start_date").style.backgroundPosition = "center right";
 toc_planningForm.getInput("start_date").style.backgroundRepeat = "no-repeat";
-toc_planningForm.getInput("end_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+toc_planningForm.getInput("end_date").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 toc_planningForm.getInput("end_date").style.backgroundPosition = "center right";
 toc_planningForm.getInput("end_date").style.backgroundRepeat = "no-repeat";
 
@@ -1595,8 +1721,12 @@ toc_planningEmployeeCombo.attachEvent("onCheck", function (value, state) {
     var eventId = toc_planningGrid.getSelectedRowId();
     var employeeId = value;
 
-    $.post("Controller/php/projectsPlanning.php?action=28", {eventId: eventId, employeeId: employeeId, nValue: ((state) ? 1 : 0), eid: uID}, function (data)
-    {
+    $.post("Controller/php/projectsPlanning.php?action=28", {
+        eventId: eventId,
+        employeeId: employeeId,
+        nValue: ((state) ? 1 : 0),
+        eid: uID
+    }, function (data) {
         if (data.data.response) {
 //            var projectId = projectsTree.getSelectedItemId();
 //            projectPlanningGrid.updateFromXML("Controller/php/projectsPlanning.php?action=1&id=" + projectId);
@@ -1701,8 +1831,7 @@ tocHistoryToolbar.addSeparator("sep2", 4);
 tocHistoryToolbar.attachEvent("onClick", tocHistoryToolbarClicked);
 
 function tocHistoryToolbarClicked(id) {
-    switch (id)
-    {
+    switch (id) {
         case "delete":
 
             var row_id = tocHistoryGrid.getSelectedRowId();
@@ -1713,8 +1842,7 @@ function tocHistoryToolbarClicked(id) {
                     type: "confirm-warning",
                     text: "Are you sure you to delete this Row?",
                     callback: function (ok) {
-                        if (ok)
-                        {
+                        if (ok) {
                             window.dhx4.ajax.get("Controller/php/data_toc.php?action=20&case=1&id=" + row_id, function (r) {
                                 var t = null;
                                 try {
@@ -1729,8 +1857,7 @@ function tocHistoryToolbarClicked(id) {
                                 } else
                                     dhtmlx.alert({title: 'Error', text: t.data.text});
                             });
-                        } else
-                        {
+                        } else {
                             return false;
                         }
                     }
@@ -1747,8 +1874,7 @@ function tocHistoryToolbarClicked(id) {
                 type: "confirm-warning",
                 text: "Are you sure you to delete all History?",
                 callback: function (ok) {
-                    if (ok)
-                    {
+                    if (ok) {
                         window.dhx4.ajax.get("Controller/php/data_toc.php?action=20&id=" + toc_id, function (r) {
                             var t = null;
                             try {
@@ -1763,8 +1889,7 @@ function tocHistoryToolbarClicked(id) {
                             } else
                                 dhtmlx.alert({title: 'Error', text: t.data.text});
                         });
-                    } else
-                    {
+                    } else {
                         return false;
                     }
                 }
@@ -1779,7 +1904,7 @@ var tocHistoryContentIframe;
 var tocHistoryContentCell = tocHistoryLayout.cells('b');
 tocHistoryContentCell.hideHeader();
 tocHistoryContentCell.attachURL("Views/frames/history_content.php", false,
-        {report_content: '', height: (tocHistoryContentCell.getHeight()) / 1.26});
+    {report_content: '', height: (tocHistoryContentCell.getHeight()) / 1.26});
 tocHistoryLayout.attachEvent("onContentLoaded", function (id) {
     tocHistoryContentIframe = tocHistoryLayout.cells(id).getFrame();
 });
@@ -1797,21 +1922,16 @@ comments_toolbar.addSeparator("sep1", 2);
 comments_toolbar.addButton("delete", 3, "Delete", "deleteall.png");
 comments_toolbar.addSeparator("sep2", 4);
 
-comments_toolbar.attachEvent("onClick", function (id)
-{
+comments_toolbar.attachEvent("onClick", function (id) {
     comment_id = comments_grid.getSelectedRowId();
     chapter_id = grid_3.getSelectedRowId();
 
-    if (id == "new")
-    {
-        if (chapter_id)
-        {
+    if (id == "new") {
+        if (chapter_id) {
             $.post("Controller/php/data_toc.php?action=31", "eid=" + uID + "&chapter_id=" + chapter_id, function (data) {
-                if (data.data.success)
-                {
+                if (data.data.success) {
                     comments_grid.clearAndLoad("Controller/php/data_toc.php?action=32&id=" + chapter_id);
-                } else
-                {
+                } else {
                     dhtmlx.alert({
                         title: "Important!",
                         type: "alert-error",
@@ -1819,16 +1939,14 @@ comments_toolbar.attachEvent("onClick", function (id)
                     });
                 }
             }, 'json');
-        } else
-        {
+        } else {
             dhtmlx.alert({
                 title: "Important!",
                 type: "alert-error",
                 text: "Please select a Chapter"
             });
         }
-    } else if (id == "delete")
-    {
+    } else if (id == "delete") {
         dhtmlx.confirm({
             title: "Delete Record",
             ok: "Yes",
@@ -1837,11 +1955,9 @@ comments_toolbar.attachEvent("onClick", function (id)
             callback: function (result) {
                 if (result) {
                     $.post("Controller/php/data_toc.php?action=33", "comment_id=" + comment_id, function (data) {
-                        if (data.data.success)
-                        {
+                        if (data.data.success) {
                             comments_grid.deleteRow(comment_id);
-                        } else
-                        {
+                        } else {
                             dhtmlx.alert({
                                 title: "Important!",
                                 type: "alert-error",
@@ -1876,14 +1992,12 @@ comments_grid.attachEvent("onXLS", function (grid_obj) {
     tocCommentsLayout.cells("a").progressOn();
 });
 
-comments_grid.attachEvent("onEditCell", function (stage, id, index, new_value, old_value, cellIndex)
-{
+comments_grid.attachEvent("onEditCell", function (stage, id, index, new_value, old_value, cellIndex) {
     var colId = comments_grid.getColumnId(index);
     var colType = comments_grid.fldSort[index];
     chapter_id = grid_3.getSelectedRowId();
 
-    if (stage == 2)
-    {
+    if (stage == 2) {
         var cont = {
             table: "documents_comments",
             id: id,
@@ -1893,8 +2007,7 @@ comments_grid.attachEvent("onEditCell", function (stage, id, index, new_value, o
             colId: colId
         }
 
-        $.post("Controller/php/data_toc.php?action=34", cont, function (data)
-        {
+        $.post("Controller/php/data_toc.php?action=34", cont, function (data) {
             if (data.data.response) {
                 dhtmlx.message({title: 'Success', text: data.data.text});
                 comments_grid.updateFromXML("Controller/php/data_toc.php?action=32&id=" + chapter_id, true, true);

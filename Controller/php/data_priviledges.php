@@ -1,7 +1,6 @@
 <?php
 
-ini_set('display_errors', '0');
-require 'config_mysqli.php';
+include_once '../../../config.php';
 $language_id = 1;
 $id = $_GET['id'];
 switch ($_GET['action']) {

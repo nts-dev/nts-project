@@ -1,10 +1,7 @@
 <?php
 
-ini_set('display_errors', '0');
-require 'config_mysqli.php';
+include_once '../../../config.php';
 
-mysqli_query($dbc,"SET NAMES 'utf8'");
-mysqli_query($dbc,"SET CHARACTER SET 'utf8'");
 //$id=$_GET['id'];
 
 $action = $_GET['action'];

@@ -1,5 +1,5 @@
 <?php
-require 'config_mysqli.php';
+include_once '../../../config.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $query = "

@@ -1,6 +1,6 @@
 <?php
 
-require 'config_mysqli.php';
+include_once '../../../config.php';
 include_once 'GeneralFunctions.php';
 
 $action=$_GET['action'];

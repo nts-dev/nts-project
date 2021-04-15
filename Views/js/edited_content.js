@@ -8,7 +8,7 @@ editedDocumentsListCell.hideHeader();
 editedDocumentsListCell.setHeight(projectDetailsCell.getHeight() * 0.3);
 
 var editedDocumentsGrid = editedDocumentsListCell.attachGrid();
-editedDocumentsGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+editedDocumentsGrid.setImagesPath(DHTMLXPATH+'skins/web/imgs/');
 editedDocumentsGrid.setSkin('dhx_web');
 editedDocumentsGrid.setHeader(["Document ID", "Subject", "Employee", "Author","Date","Char"]);
 editedDocumentsGrid.attachHeader("#numeric_filter,#text_filter,#text_filter,#text_filter,,");

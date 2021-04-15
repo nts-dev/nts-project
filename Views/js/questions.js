@@ -1,4 +1,3 @@
-
 /*************************** MAIN QUESTIONS  *****************************/
 projectDetailsTabbar.addTab('tab_main_questions', 'Questions');
 var tab_main_questions = projectDetailsTabbar.cells('tab_main_questions');
@@ -122,10 +121,10 @@ function openImportQuestionsWindow(doc_id, page_id = null) {
             label: "Enter document link",
             iconset: "awesome",
             list: [{
-                    type: "input",
-                    name: "url",
-                    inputWidth: 500,
-                },
+                type: "input",
+                name: "url",
+                inputWidth: 500,
+            },
                 {
                     type: "button",
                     name: "btn",
@@ -138,14 +137,14 @@ function openImportQuestionsWindow(doc_id, page_id = null) {
             type: "fieldset",
             label: "Uploader",
             list: [{
-                    type: "upload",
-                    name: "myFiles",
-                    inputWidth: 330,
-                    url: url,
-                    autoStart: true,
-                    swfPath: "/plugin/dhtmlx/dhtmlxSuite502/codebase/ext/uploader.swf",
-                    autoRemove: true
-                }]
+                type: "upload",
+                name: "myFiles",
+                inputWidth: 330,
+                url: url,
+                autoStart: true,
+                swfPath: "/plugin/dhtmlx/dhtmlxSuite502/codebase/ext/uploader.swf",
+                autoRemove: true
+            }]
         }];
 
     var form_2 = window_4.attachForm(formData);
@@ -204,7 +203,7 @@ function openImportQuestionsWindow(doc_id, page_id = null) {
 
 var grid_main_questions = cell_main_questions.attachGrid();
 grid_main_questions.setSkin('dhx_web');
-grid_main_questions.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+grid_main_questions.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 
 grid_main_questions.setHeader(["ID", "Title", "Content", "Type"]);
 grid_main_questions.setColTypes("ro,ed,ed,combo");
@@ -254,8 +253,7 @@ grid_main_questions.attachEvent('onEditCell', function (stage, id, index, new_va
                 colType: colType
             };
 
-            $.post("Controller/php/data_questions.php?action=10", post_data, function (data)
-            {
+            $.post("Controller/php/data_questions.php?action=10", post_data, function (data) {
                 if (data.data.response) {
                     dhtmlx.message({title: 'Success', text: data.data.text});
                     grid_main_questions.updateFromXML("Controller/php/data_questions.php?action=8&course_id=" + course_id, true, true);
@@ -350,7 +348,7 @@ toolbar_main_choices.attachEvent('onClick', function (id) {
 
 var grid_main_choices = cell_main_choices.attachGrid();
 grid_main_choices.setSkin('dhx_web');
-grid_main_choices.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+grid_main_choices.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 
 grid_main_choices.setHeader(["#", "Answer", "Response", "Score", "JumpTo"]);
 grid_main_choices.setColTypes("cntr,ed,ed,ed,ed");
@@ -381,8 +379,7 @@ grid_main_choices.attachEvent('onEditCell', function (stage, id, index, new_valu
                 colType: colType
             };
 
-            $.post("Controller/php/data_questions.php?action=10", post_data, function (data)
-            {
+            $.post("Controller/php/data_questions.php?action=10", post_data, function (data) {
                 if (data.data.response) {
                     dhtmlx.message({title: 'Success', text: data.data.text});
                     grid_main_choices.updateFromXML("Controller/php/data_questions.php?action=9&id=" + grid_main_questions.getSelectedRowId(), true, true);
@@ -472,8 +469,7 @@ toolbar_page_questions.attachEvent('onClick', function (id) {
                 server_id: server_id
             };
 
-            $.post("Controller/php/courses.php?action=8", post_data, function (data)
-            {
+            $.post("Controller/php/courses.php?action=8", post_data, function (data) {
                 if (data.data.response) {
                     dhtmlx.message({title: 'Success', text: data.data.text});
                 } else {
@@ -551,7 +547,11 @@ toolbar_page_questions.attachEvent('onClick', function (id) {
                 return;
             }
 
-            $.post('Controller/php/data_questions.php?action=1', {course_id: course_id, type: id, page_id: page_id.split("_")[1]}, function (data) {
+            $.post('Controller/php/data_questions.php?action=1', {
+                course_id: course_id,
+                type: id,
+                page_id: page_id.split("_")[1]
+            }, function (data) {
                 if (data.data.response) {
                     dhtmlx.message({title: 'Success', text: data.data.text});
 
@@ -601,7 +601,7 @@ function openLinkQuestionsWindow(course_id, page_id) {
 
     var grid_main_questions = cell_main_questions.attachGrid();
     grid_main_questions.setSkin('dhx_web');
-    grid_main_questions.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+    grid_main_questions.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 
     grid_main_questions.setHeader(["S", "ID", "Title", "Content", "Type"]);
     grid_main_questions.setColTypes("ch,ro,ed,ed,combo");
@@ -617,7 +617,7 @@ function openLinkQuestionsWindow(course_id, page_id) {
 
 var grid_page_questions = cell_page_questions.attachGrid();
 grid_page_questions.setSkin('dhx_web');
-grid_page_questions.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+grid_page_questions.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 
 grid_page_questions.setHeader(["ID", "Title", "Content", "Type"]);
 grid_page_questions.setColTypes("ro,ed,ed,combo");
@@ -653,8 +653,7 @@ grid_page_questions.attachEvent('onEditCell', function (stage, id, index, new_va
             colType: colType
         };
 
-        $.post("Controller/php/data_questions.php?action=2", post_data, function (data)
-        {
+        $.post("Controller/php/data_questions.php?action=2", post_data, function (data) {
             if (data.data.response) {
                 dhtmlx.message({title: 'Success', text: data.data.text});
 
@@ -818,7 +817,7 @@ toolbar_page_choices.attachEvent('onClick', function (id) {
 
 var grid_page_choices = cell_page_question_answers.attachGrid();
 grid_page_choices.setSkin('dhx_web');
-grid_page_choices.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+grid_page_choices.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 
 grid_page_choices.setHeader(["#", "Answer", "Response", "Score", "JumpTo"]);
 grid_page_choices.setColTypes("cntr,ed,ed,ed,ed");
@@ -852,8 +851,7 @@ grid_page_choices.attachEvent('onEditCell', function (stage, id, index, new_valu
                 colType: colType
             };
 
-            $.post("Controller/php/data_questions.php?action=10", post_data, function (data)
-            {
+            $.post("Controller/php/data_questions.php?action=10", post_data, function (data) {
                 if (data.data.response) {
                     dhtmlx.message({title: 'Success', text: data.data.text});
                     grid_page_choices.updateFromXML("Controller/php/data_questions.php?action=9&id=" + grid_page_questions.getSelectedRowId(), true, true);
@@ -871,8 +869,11 @@ grid_page_choices.attachEvent('onCheck', function (rId, cInd, state) {
 
     var colId = grid_page_choices.getColumnId(cInd);
 
-    $.post("Controller/php/data_questions.php?action=11", {colId: colId, id: rId, nValue: ((state) ? 1 : 0)}, function (data)
-    {
+    $.post("Controller/php/data_questions.php?action=11", {
+        colId: colId,
+        id: rId,
+        nValue: ((state) ? 1 : 0)
+    }, function (data) {
         if (data.data.response) {
             dhtmlx.message({title: 'Success', text: data.data.text});
         } else {
@@ -885,7 +886,6 @@ grid_page_choices.attachEvent('onRowSelect', function (id, ind) {
     form_page_answers.clear();
     form_page_answers.load("Controller/php/data_questions.php?action=14&id=" + id);
 });
-
 
 
 var cell_form_page_answers = layout_page_question_answers.cells('b');

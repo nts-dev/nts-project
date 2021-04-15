@@ -5,7 +5,7 @@ var overviewLayout = overview.attachLayout('2E');
 var overviewGridCell = overviewLayout.cells('a');
 overviewGridCell.hideHeader();
 var overviewGrid = overviewGridCell.attachGrid();
-overviewGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+overviewGrid.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 overviewGrid.setSkin('dhx_web');
 overviewGrid.setHeader(["ID", "Date", "Done by", "TOC ID", "Location", "Proc. by", "Proc. name", "Proc. ID", "Impl. Doc ID", "Ch.", "BOM", "Bought", "Delivered", "Completed", "Verified", "Duration"], null, ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:left;"]);
 overviewGrid.attachHeader('#numeric_filter,#text_filter,#combo_filter,#numeric_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter', ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:left;"]);
@@ -37,10 +37,10 @@ function overviewGridRowSelect(id, ind) {
     var doc_id = overviewGrid.cells(id, 8).getValue();
     if (doc_id > 0) {
         overviewPlanningGrid.clearAndLoad('Controller/php/data_overview.php?action=10&id=' + doc_id);
-    }else{
+    } else {
         overviewPlanningGrid.clearAll();
     }
-    
+
 }
 
 function overviewGridEditCell(stage, id, index, new_value, old_value, cellIndex) {
@@ -69,8 +69,7 @@ function overviewGridEditCell(stage, id, index, new_value, old_value, cellIndex)
             });
         }
 
-    } else
-    if (stage == 0 && cell.isCheckbox()) {
+    } else if (stage == 0 && cell.isCheckbox()) {
         return true;
     }
 
@@ -79,8 +78,11 @@ function overviewGridEditCell(stage, id, index, new_value, old_value, cellIndex)
 function overviewGridChecked(id, index, state) {
     var colId = overviewGrid.getColumnId(index);
 
-    $.post("Controller/php/data_overview.php?action=6", {colId: colId, id: id, nValue: ((state) ? 1 : 0)}, function (data)
-    {
+    $.post("Controller/php/data_overview.php?action=6", {
+        colId: colId,
+        id: id,
+        nValue: ((state) ? 1 : 0)
+    }, function (data) {
         if (data.data.response) {
             dhtmlx.message({title: 'Success', text: data.data.text});
             overviewGrid.updateFromXML("Controller/php/data_overview.php?action=3", true, true);
@@ -89,7 +91,6 @@ function overviewGridChecked(id, index, state) {
         }
     }, 'json');
 }
-
 
 
 var overviewFormCell = overviewLayout.cells('b');
@@ -104,7 +105,8 @@ overviewFormTab.setActive();
 var overviewFormToolbar = overviewFormTab.attachToolbar();
 overviewFormToolbar.setIconsPath('Views/imgs/');
 
-overviewFormToolbar.loadStruct('<toolbar><item type="button" id="save" text="Save" img="save.gif"/></toolbar>', function () {});
+overviewFormToolbar.loadStruct('<toolbar><item type="button" id="save" text="Save" img="save.gif"/></toolbar>', function () {
+});
 
 overviewFormToolbar.attachEvent('onClick', function (id) {
     if (id === 'save') { //save button
@@ -137,61 +139,110 @@ overviewFormToolbar.attachEvent('onClick', function (id) {
 });
 
 var overviewFormdata =
-        [{type: "settings", labelWidth: 110, inputWidth: 220, offsetLeft: "20", offsetTop: "8"},
-            {type: "hidden", label: "ID", name: "id"},
-            {type: "calendar", label: "Date", name: "date_added", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", calendarPosition: "bottom"},
-            {type: "combo", label: "Location", name: "location", options: [
-                    {value: "Bendor", text: "Bendor"},
-                    {value: "Longonot", text: "Longonot"},
-                    {value: "Tradestar Office", text: "Tradestar Office"}
-                ]},
-            {type: "combo", label: "Done by", name: "employee_id"},
-            {type: "input", label: "TOC ID", name: "toc_id"},
-            {type: "input", label: "Procedure ID", name: "procedure_id"},
-            {type: "input", label: "Procedure Name", name: "procedure_name"},
-            {type: "input", label: "Procedure By", name: "procedure_by"},
-            {type: "calendar", label: "Procedure Date", name: "procedure_date", value: "", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", calendarPosition: "bottom"},
-            {type: "input", label: "Impl. Doc ID", name: "doc_id"},
-            {type: "input", label: "Chapter", name: "chapter"},
-            {type: "newcolumn", offset: 10},
-            {type: "input", label: "Observation", rows: "4", name: "observation", inputWidth: 280, value: ""},
-            {type: "input", label: "Solution", rows: "4", name: "solution", inputWidth: 280, value: ""},
-            {type: "input", label: "Problems", rows: "4", name: "problems", inputWidth: 280, value: ""},
+    [{type: "settings", labelWidth: 110, inputWidth: 220, offsetLeft: "20", offsetTop: "8"},
+        {type: "hidden", label: "ID", name: "id"},
+        {
+            type: "calendar",
+            label: "Date",
+            name: "date_added",
+            dateFormat: "%Y-%m-%d",
+            serverDateFormat: "%Y-%m-%d",
+            calendarPosition: "bottom"
+        },
+        {
+            type: "combo", label: "Location", name: "location", options: [
+                {value: "Bendor", text: "Bendor"},
+                {value: "Longonot", text: "Longonot"},
+                {value: "Tradestar Office", text: "Tradestar Office"}
+            ]
+        },
+        {type: "combo", label: "Done by", name: "employee_id"},
+        {type: "input", label: "TOC ID", name: "toc_id"},
+        {type: "input", label: "Procedure ID", name: "procedure_id"},
+        {type: "input", label: "Procedure Name", name: "procedure_name"},
+        {type: "input", label: "Procedure By", name: "procedure_by"},
+        {
+            type: "calendar",
+            label: "Procedure Date",
+            name: "procedure_date",
+            value: "",
+            dateFormat: "%Y-%m-%d",
+            serverDateFormat: "%Y-%m-%d",
+            calendarPosition: "bottom"
+        },
+        {type: "input", label: "Impl. Doc ID", name: "doc_id"},
+        {type: "input", label: "Chapter", name: "chapter"},
+        {type: "newcolumn", offset: 10},
+        {type: "input", label: "Observation", rows: "4", name: "observation", inputWidth: 280, value: ""},
+        {type: "input", label: "Solution", rows: "4", name: "solution", inputWidth: 280, value: ""},
+        {type: "input", label: "Problems", rows: "4", name: "problems", inputWidth: 280, value: ""},
 
-            {type: "newcolumn", offset: 10},
-            {type: "calendar", label: "BOM", name: "bom", value: "", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", calendarPosition: "bottom"},
-            {type: "calendar", label: "Bought", name: "bought", value: "", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", calendarPosition: "bottom"},
-            {type: "calendar", label: "Delivered", name: "delivered", value: "", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", calendarPosition: "bottom"},
-            {type: "calendar", label: "Completed", name: "completed", value: "", dateFormat: "%Y-%m-%d", serverDateFormat: "%Y-%m-%d", calendarPosition: "bottom"},
-            {type: "checkbox", label: "Verified", name: "verified"},
-            {type: "input", label: "Duration", name: "duration"},
-        ];
+        {type: "newcolumn", offset: 10},
+        {
+            type: "calendar",
+            label: "BOM",
+            name: "bom",
+            value: "",
+            dateFormat: "%Y-%m-%d",
+            serverDateFormat: "%Y-%m-%d",
+            calendarPosition: "bottom"
+        },
+        {
+            type: "calendar",
+            label: "Bought",
+            name: "bought",
+            value: "",
+            dateFormat: "%Y-%m-%d",
+            serverDateFormat: "%Y-%m-%d",
+            calendarPosition: "bottom"
+        },
+        {
+            type: "calendar",
+            label: "Delivered",
+            name: "delivered",
+            value: "",
+            dateFormat: "%Y-%m-%d",
+            serverDateFormat: "%Y-%m-%d",
+            calendarPosition: "bottom"
+        },
+        {
+            type: "calendar",
+            label: "Completed",
+            name: "completed",
+            value: "",
+            dateFormat: "%Y-%m-%d",
+            serverDateFormat: "%Y-%m-%d",
+            calendarPosition: "bottom"
+        },
+        {type: "checkbox", label: "Verified", name: "verified"},
+        {type: "input", label: "Duration", name: "duration"},
+    ];
 var overviewForm = overviewFormTab.attachForm(overviewFormdata);
 
 var overviewFormEmployeeCombo = overviewForm.getCombo("employee_id");
 overviewFormEmployeeCombo.load("Controller/php/projectDocuments.php?action=1");
 
-overviewForm.getInput("date_added").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("date_added").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("date_added").style.backgroundPosition = "center right";
 overviewForm.getInput("date_added").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("procedure_date").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("procedure_date").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("procedure_date").style.backgroundPosition = "center right";
 overviewForm.getInput("procedure_date").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("bom").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("bom").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("bom").style.backgroundPosition = "center right";
 overviewForm.getInput("bom").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("delivered").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("delivered").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("delivered").style.backgroundPosition = "center right";
 overviewForm.getInput("delivered").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("completed").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("completed").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("completed").style.backgroundPosition = "center right";
 overviewForm.getInput("completed").style.backgroundRepeat = "no-repeat";
 
-overviewForm.getInput("bought").style.backgroundImage = "url(dhtmlxSuite4/samples/dhtmlxCalendar/common/calendar.gif)";
+overviewForm.getInput("bought").style.backgroundImage = "url(" + DHTMLXPATH + "samples/dhtmlxCalendar/common/calendar.gif)";
 overviewForm.getInput("bought").style.backgroundPosition = "center right";
 overviewForm.getInput("bought").style.backgroundRepeat = "no-repeat";
 
@@ -234,8 +285,7 @@ overviewMainToolbar.loadStruct('<toolbar><item type="button" id="new" text="Add 
 overviewMainToolbar.attachEvent("onClick", doOnoverviewMainToolbarClicked);
 
 function doOnoverviewMainToolbarClicked(id) {
-    switch (id)
-    {
+    switch (id) {
         case "new":
 
             $.get("Controller/php/data_overview.php?action=2", function (data) {
@@ -262,8 +312,7 @@ function doOnoverviewMainToolbarClicked(id) {
                     type: "confirm-warning",
                     text: "Are you sure you  want to delete?",
                     callback: function (y) {
-                        if (y)
-                        {
+                        if (y) {
                             $.get("Controller/php/data_overview.php?action=29&id=" + row_id, function (data) {
                                 if (data.data.response) {
 
@@ -273,8 +322,7 @@ function doOnoverviewMainToolbarClicked(id) {
                                     dhtmlx.alert({title: 'Error', text: data.data.text});
                                 }
                             }, 'json');
-                        } else
-                        {
+                        } else {
                             return false;
                         }
                     }
@@ -335,8 +383,7 @@ function doOnoverviewMainToolbarClicked(id) {
                 });
                 return;
             }
-            $.post("Controller/php/data_overview.php?action=9", {search_doc_input: doc_id}, function (data)
-            {
+            $.post("Controller/php/data_overview.php?action=9", {search_doc_input: doc_id}, function (data) {
                 selected_doc_id = doc_id;
                 projectsTree.selectItem(data.data.item_id, false, true);
                 projectDetailsTabbar.tabs("project_documents").setActive();
@@ -362,11 +409,11 @@ function doAfteroverviewGridRefresh() {
 overviewRecordDetailsTabbar.addTab('overviewPlanningTab', 'Planning');
 var overviewPlanningTab = overviewRecordDetailsTabbar.cells('overviewPlanningTab');
 var overviewPlanningGrid = overviewPlanningTab.attachGrid();
-overviewPlanningGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+overviewPlanningGrid.setImagesPath(DHTMLXPATH + 'skins/web/imgs/');
 overviewPlanningGrid.setSkin('dhx_web');
 overviewPlanningGrid.setHeader(["ID", "Event Name", "Assigned To", "Begin Date", "End Date", "Details", "Visible", "Main Task", "Done", "Comment"],
-        null,
-        ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:center;", "text-align:center;", "text-align:left;"]);
+    null,
+    ["text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:left;", "text-align:center;", "text-align:center;", "text-align:center;", "text-align:left;"]);
 overviewPlanningGrid.setColumnIds("event_id,details,employee_id,start_date,end_date,event_name,visible,main_task,completed,comment");
 overviewPlanningGrid.attachHeader('#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,,,,');
 overviewPlanningGrid.setColTypes("ro,ro,combo,dhxCalendar,dhxCalendar,ed,ch,ch,ch,ed");
@@ -397,8 +444,7 @@ function overviewPlanningGridEdit(stage, id, index, new_value, old_value, cellIn
                     dhtmlx.alert({title: 'Error', text: data.data.text});
             }, 'json');
         }
-    } else
-    if (stage === 0 && cell.isCheckbox()) {
+    } else if (stage === 0 && cell.isCheckbox()) {
         return true;
     }
 }
@@ -406,8 +452,11 @@ function overviewPlanningGridEdit(stage, id, index, new_value, old_value, cellIn
 function overviewPlanningGridChecked(id, index, state) {
     var colId = overviewPlanningGrid.getColumnId(index);
 
-    $.post("Controller/php/projectsPlanning.php?action=10", {colId: colId, id: id, nValue: ((state) ? 1 : 0)}, function (data)
-    {
+    $.post("Controller/php/projectsPlanning.php?action=10", {
+        colId: colId,
+        id: id,
+        nValue: ((state) ? 1 : 0)
+    }, function (data) {
         if (data.data.response) {
             dhtmlx.message({title: 'Success', text: data.data.text});
         } else {

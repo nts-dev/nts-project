@@ -1,7 +1,5 @@
 <?php
-
-ini_set('display_errors', '0');
-include_once 'config_mysqli.php';
+include_once '../../../config.php';
 require("GeneralClass.php");
 
 switch ($_GET['action']) {

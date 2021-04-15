@@ -1,8 +1,6 @@
 <?php
 
-ini_set('display_errors', '1');
-
-require_once 'config_mysqli.php';
+include_once '../../../config.php';
 require_once 'moodle_functions.php';
 
 define('FETCH_COURSES', 1);

@@ -1,10 +1,8 @@
 <?php
 
-ini_set('display_errors', '0');
-session_start();
-require 'config_mysqli.php';
+include_once '../../../config.php';
 include("GeneralFunctions.php");
-date_default_timezone_set('UTC');
+
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_NUMBER_INT);
 
 define('SHORT_ANSWER', 1);

@@ -221,7 +221,7 @@ function doAfterprojectTasksGridRefresh() {
 
 var projectTasksGrid = projectTasksCell.attachGrid();
 projectTasksGrid.setSkin('dhx_web');
-projectTasksGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+projectTasksGrid.setImagesPath(DHTMLXPATH+'skins/web/imgs/');
 projectTasksGrid.setHeader(["ID","Task Name", "Project ID", "PID", "Document ID", "Frequency", "Begin Time", "End Time", "Duration", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], null, []);
 projectTasksGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ch,ch,ch,ch,ch,ch");
 projectTasksGrid.attachHeader("#numeric_filter,#text_filter,#text_filter,,#numeric_filter,#text_filter,#text_filter,#text_filter,#text_filter,,,,,,");
@@ -478,7 +478,7 @@ function projectTasksReoccurencesGridToolbarClicked(id) {
 }
 
 var projectTasksReoccurencesGrid = projectTasksReoccurencesListCell.attachGrid();
-projectTasksReoccurencesGrid.setImagesPath('dhtmlxSuite4/skins/web/imgs/');
+projectTasksReoccurencesGrid.setImagesPath(DHTMLXPATH+'skins/web/imgs/');
 projectTasksReoccurencesGrid.setSkin('dhx_web');
 projectTasksReoccurencesGrid.setHeader(["Event Name", "Assigned To", "Start Date", "End Date", "Details", "Protection", "Personal", "Visible", "Done"]);
 projectTasksReoccurencesGrid.setColumnIds("details,employee_id,start_date,end_date,event_name,protection,personal,visible,completed");
