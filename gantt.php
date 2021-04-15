@@ -1,6 +1,6 @@
 <?php
 
-include '../config/config.php';
+include '../config.php';
 
 $start_date = (isset($_GET['start_date'])) ? $_GET['start_date'] : date("Y-m-d");
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);

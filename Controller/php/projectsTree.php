@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config/config.php';
+include_once '../../../config.php';
 include 'funcs.php';
 require_once 'curl.php';
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_NUMBER_INT);

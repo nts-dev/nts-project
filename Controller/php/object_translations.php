@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config/config.php';
+include_once '../../../config.php';
 require("GeneralClass.php");
 
 switch ($_GET['action']) {

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config/config.php';
+include_once '../../../config.php';
 header("Content-type:text/xml");
 
 print('<menu id="0" >');

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config/config.php';
+include_once '../../../config.php';
 require_once 'moodle_functions.php';
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_NUMBER_INT);

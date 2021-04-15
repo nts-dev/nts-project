@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../../config/config.php';
+include_once '../../../config.php';
 $language_id = 1;
 $id = $_GET['id'];
 switch ($_GET['action']) {

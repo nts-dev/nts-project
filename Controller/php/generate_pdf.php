@@ -6,7 +6,7 @@ set_time_limit(0);
 
 ini_set('memory_limit', '-1');
 
-include_once '../../../config/config.php';
+include_once '../../../config.php';
 
 
 $query = "
