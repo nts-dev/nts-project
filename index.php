@@ -140,12 +140,11 @@ $username = $user->getAttendent();
             // var languageId = '1';
 
 
-        </script> 
+        </script>
         <script src="Views/js/ats_functions.js"></script>
         <script src="Views/js/projects_functions.js"></script>
         <script src="Views/js/document_functions.js"></script>
         <script src="Views/js/main.js"></script>
-<!--        <script src="Views/js/assets.js"></script>-->
         <script src="Views/js/tasks.js"></script>
         <script src="Views/js/overview.js"></script>
         <script src="Views/js/documents.js"></script>
@@ -155,7 +154,6 @@ $username = $user->getAttendent();
         <script src="Views/js/project_privileges_functions.js"></script>
         <script src="Views/js/project_privileges.js"></script>
         <script src="Views/js/map_privileges.js"></script>
-<!--        <script src="Views/js/asset_planning.js"></script>-->
         <script src="Views/js/questions.js"></script>
     </body>
 
