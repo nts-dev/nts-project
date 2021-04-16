@@ -133,7 +133,7 @@ $username = $user->getAttendent();
     <body>
         <script>
             var uID = "<?= $eid ?>";
-            var username = "<b><?= $_SESSION['contact_attendent'] ?></b>";
+            var username = "<b><?= $username ?></b>";
 
             const DHTMLXPATH = "<?=  Boot::WWWROOT .'packages/lib/dhtmlxSuite4/' ?>";
             // var branchId = '1';
